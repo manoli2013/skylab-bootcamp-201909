@@ -36,53 +36,36 @@
   border: 1px solid blue;
   grid-area: main;
   display: grid;
-  grid-areas: "sale collection-autum renew collection-special news";
-  grid-template-columns: 100%;
-  grid-template-rows: 15% 25% 25% 25% 10%;
 }
-
-.sale {
-  grid-area: sale;
-  background-color: red;
+.main .sale {
+  width: 100%;
+  background-image: url("https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwe1c0245c/campaigns/2019/AW2019/W40/MSS/MSS_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=767");
+  color: #ffffff;
 }
-
-.collection-autum {
-  grid-area: collection-autum;
+.main .renew {
+  width: 100%;
 }
-
-.renew {
-  grid-area: renew;
-  display: flex;
-  flex-direction: column;
-}
-.renew__container {
+.main .renew__container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
 }
-.renew__fig {
-  width: 20px;
+.main .renew__container__fig {
+  width: 30%;
 }
-
-.collection-special {
-  grid-area: collection-special;
+.main .collection-special {
+  width: 100%;
 }
-
-.news {
-  grid-area: news;
-}
-
-* {
-  margin: 0 auto;
+.main .news {
+  width: 100%;
 }
 
 img {
   max-width: 100%;
 }
-
-.container {
-  width: 100vw;
-  /* height:  */
+img .grid {
+  width: 100%;
+  height: 100vh;
   display: grid;
   grid-template-areas: "header main footer";
   grid-template-columns: 1fr;

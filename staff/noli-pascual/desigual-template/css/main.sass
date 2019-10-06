@@ -1,48 +1,39 @@
-@import display-flex
+@import center
 @import border-box
-/* import center */
+@import patterns
     
 .main
     width: 100%
     border: 1px solid blue
     grid-area: main
-    
     display: grid
-    grid-areas: "sale collection-autum renew collection-special news"
-    grid-template-columns: 100%
-    grid-template-rows: 15% 25% 25% 25% 10% 
-
-.sale
-    grid-area: sale  
-    background-color: red
-
-.collection-autum
-    grid-area: collection-autum
-
-.renew
-    grid-area: renew
-    display: flex
-    flex-direction: column
     
-    &__container
-        display: flex
-        flex-direction: row
-        flex-wrap: wrap
+    .sale
+        width: 100%
+        background-image: url('https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwe1c0245c/campaigns/2019/AW2019/W40/MSS/MSS_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=767')
+        color: $sale__discount-color
+        
+    .renew
+        width: 100%
+            
+        &__container
+            width: 100%
+            display: flex
+            flex-direction: row
+        
+            &__fig
+                width: 30%
 
-        &__fig
-            width: 20px
+    .collection-special
+        width: 100%
 
-.collection-special
-    grid-area: collection-special
+    .news
+        width: 100%
 
-.news
-    grid-area: news
-
-
-
-    
 
         
+
+            
             
 
 
