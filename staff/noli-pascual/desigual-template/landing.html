@@ -8,26 +8,214 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class= "container">
-        <header class = "container__header">
-            <section class = "container__header__nav"></section>
-                <section class = "menu"></section>
-                <section class = "container__header__logo"></section>
+    <div class= "grid">
+        <header class = "header">
+            <div class = "header__top">
+                <section class = "header__logo">
+                    <a href="https://www.desigual.com">
+                        <img class = "header__img" src="images/logo-desigual.png" alt="logo-desigual"></a>    
+                </section>
+                <section class = "header__nav">
+                    <i class = "header__icon" >Hamb</i>
+                    <i class = "header__icon">Love</i>
+                    <i class = "header__icon">Bag</i>
+
+                </section>
+            </div>
+
+            <div class = "header__bottom">
+                <section class = "header__search-form">
+                    <input type="text" class = "header__input" placeholder="Buscar">
+                    <i class = "header__icon"></i>
+                </section>
+            </div>
+            
         </header>
 
-        <main class = "container__main">
-            <section class = "container__main__banner-sale"></section>
-            <section class = "container__main__banner-selection"></section>
-            <section class = "container__main__banner-renew"></section>
-            <section class = "container__main__banner-special-colection"></section>
-            <section class = "container__main__banner-new-colection"></section>
+        <main class = "main">
+            <section class = "sale">
+                <a class = "sale__discount">
+                    <h1 class = "sale__title">Mid Season Sale</h1>
+                    <img class = "sale__img" src="https://www.desigual.com/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwebb23314/MSS_home_Hero01_1_desktopmobile_ES.svg" alt="img-discount" srcset="">
+                    <p class ="sale__bottom">en artículos seleccionados</p>
+                </a>
+                <div class = "sale__links">
+                    <ul>
+                        <li class = "banner-sale__item">
+                            <a href="https://www.desigual.com">Vestidos</a>
+                        </li>
+                        <li class = "banner-sale__item">
+                            <a href="https://www.desigual.com">Abrigos</a>
+                        </li>
+                        <li class = "banner-sale__item">
+                            <a href="https://www.desigual.com">Jerseys</a>
+                        </li>
+                        <li class = "banner-sale__item">
+                            <a href="https://www.desigual.com">Bolsos</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <section class = "collection">
+
+                <a class = "collection__link" href="https://www.desigual.com/es_ES/moda-mujer/destacados/coleccion-otono-invierno/">
+                    <img class = "collection__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwae60c596/campaigns/2019/AW2019/W40/Home/W40_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=750" alt="" srcset="">
+                    <div class = "collection__bottom">
+                        <h3 class = "collection__bottom__first">Energía de</p>
+                        <h2 class = "collection__bottom__second">Otoño</p>
+                        <h6 class = "collection__bottom__third">Ver selección</p>
+                    </div>
+                </a>
+
+            </section>
+
+            <section class = "renew">
+                <h1 class = "renew__title">Renuévate</h1>
+                <h3 class = "renew__subtitle">Tendencias para dominar el otoño</h3>
+                <div class = renew__container>
+                    <figure class = "renew__container__fig">
+                        <img class = "renew__container__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwae60c596/campaigns/2019/AW2019/W40/Home/W40_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=750" alt="">
+                        <h4 class = "renew__container__title"> Tartan Grunge</h4>
+                        <p class = "renew__container__text">El neo underground en vestidos urbanos</p>
+                    </figure>
+                    
+                    <figure class = "renew__container__fig">
+                        <img class = "renew__container__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwae60c596/campaigns/2019/AW2019/W40/Home/W40_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=750" alt="">
+                        <h4 class = "renew__container__title"> No-leather vitamin</h4>
+                        <p class = "renew__container__text">Bolsos y mochilas para vitaminar el Otoño.</p>
+                    </figure>
+
+                    <figure class = "renew__container__fig">
+                        <img class = "renew__container__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwae60c596/campaigns/2019/AW2019/W40/Home/W40_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=750" alt="">
+                        <h4 class = "renew__container__title">Light Jackets</h4>
+                        <p class = "renew__container__text">Las primeras chaquetas de la temporada</p>
+                    </figure>
+                </div>
+
+            </section>
+
+
+            <section class = "collection">
+
+                <a class = "collection__link" href="https://www.desigual.com/es_ES/moda-mujer/destacados/designed-by-mr-christian-lacroix/">
+                    <img class = "collection__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dw0ca12302/campaigns/2019/AW2019/W40/Home/Lacroix_Home_Hero01_1_mobile_all.jpg?sfrm=jpg&sw=750" alt="" srcset="">
+                    <div class = "collection__bottom">
+                        <h3 class = "collection__bottom__first">Designed by</p>
+                        <h2 class = "collection__bottom__second">Otoño</p>
+                        <h6 class = "collection__bottom__third">Ver selección</p>
+                    </div>
+                </a>
+                
+            </section>
+
+            <section class = "news">
+                <a class = "news__link" href="https://www.desigual.com/es_ES/stories/la-box/black/">
+                    <img class = "news__img" src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Library-Sites-DsglSharedLibrary/default/dwb23bc361/campaigns/2019/AW2019/W40/Home/blackbox_home_hero1_01_mobile_all.jpg?sfrm=jpg&sw=750" alt="" srcset="">
+                    <div class = "news__top">
+                        <h3 class = "news__title">Ia</h3>
+                        <h1 class = "news__subtitle">Black Box.</h1>
+                    </div>
+                    
+                    <div class = "news__bottom">
+                        <h2 class = "news__bottom__text">Contiene una brillante selección de la Nueva Colección.</p>
+                        <a class = "news__bottom__link" href="https://www.desigual.com/es_ES/stories/la-box/black/">Ábrela</a>
+                    </div>
+                </a>
+                    
+            </section>
+
         </main>
 
-        <footer class = "container__footer">
-            <section class = "container__footer__top"></section>
-            <section class = "container__footer__banner-login"></section>
-            <section class = "container__footer__banner-info"></section>
-            <section class = "container__footer__media"></section>
+        <footer class = "footer">
+
+            <section class = "footer__shipment">
+                <ul class = "footer__shipment__list">
+                    <li class = "footer__shipment__item">
+                        <i class = "footer__shipment__icon">1</i>
+                        <a class = "footer__shipment__link" href="https://www.desigual.com/es_ES/guia-de-compra/"></a> Envíos gratis</li>
+                    <li class = "footer__shipment__item">
+                        <i class = "footer__shipment__icon">2</i>
+                        <a class = "footer__shipment__link" href="https://www.desigual.com/es_ES/guia-de-compra/"></a> Devoluciones gratis</li>
+                    <li class = "footer__shipment__item">
+                        <i class = "footer__shipment__icon">3</i>
+                        <a class = "footer__shipment__link" href="https://www.desigual.com/es_ES/guia-de-compra/"></a> Sigue tu pedido</li>                       
+                </ul>
+
+            </section>
+            
+            <section class = "footer__registration">
+
+                <div class = "footer__registration__info">
+                    <h2 class = "footer__registration__title">Magic</h2>
+                    <h6 class = "footer__registration__text">Disfruta al máximo de la experiencia Desigual!</h6>
+                    <button class = "footer__registration__button" type ="button">Registrase</button>
+                </div>
+
+            </section>
+
+            <section class = "footer__info">
+                <ul class = "footer__info__list">
+
+                    <li class = footer__info__item>
+                        <i class = "footer__info__icon">Ic1</i>
+                        <a class = "footer__info__text" href="https://www.desigual.com/es_ES/guia-de-compra/">Guía de compra</a>
+                    </li>
+                
+                    <li class = footer__info__item>
+                        <i class = "footer__info__icon">Ic2</i>
+                        <a class = "footer__info__text" href="https://help-es-es.desigual.com/app/home/items/0/total/">Contacto y Ayuda</a>
+                    </li>    
+
+                    <li class = footer__info__item>
+                        <i class = "footer__info__icon">Ic3</i>
+                        <a class = "footer__info__text" href="https://corporate.desigual.com/es/">Desigual</a>
+                    </li>
+
+                    <li class = footer__info__item>
+                        <i class = "footer__info__icon">Ic1</i>
+                        <a class = "footer__info__text" href="http://">Legal y Cookies</a>
+                    </li>                
+
+                </ul>
+            </section>
+
+            <form class = "footer__form" action="" method="get">
+                <label class = "footer__form__label" for="country">País</label>
+                <input class = "footer__form__input" type="text" name="country" id="country" placeholder="España">
+                <label class = "footer__form__label" for="language">Idioma</label>
+                <input class = "footer__form__input" type="text" name="language" id="language" placeholder="Español">
+            </form>
+
+            <section class = "footer__bottom">
+                <div class = "footer__bottom__content">
+                    <a class = "footer__bottom__media" href="https://twitter.com/Desigual_ES">
+                        <i>Twiter</i>
+                    </a>
+                    <a class = "footer__bottom__media" href="https://www.facebook.com/Desigual/">
+                        <i>Facebook</i>
+                    </a>
+                    <a class = "footer__bottom__media" href="https://www.instagram.com/desigual/">
+                        <i>Instagram</i>
+                    </a>
+                    <a class = "footer__bottom__media" href="https://www.youtube.com/user/webdesigual">
+                        <i>youtube</i>
+                    </a>
+                </div>
+
+                <div class = "footer__bottom__content">
+                    <a href="http://www.desigual.com">
+                        <img class = "footer__bottom_img" src="images/logo-desigual.png" alt="logo_desigual" srcset=""></a>
+                    <div class = "footer__bottom__">
+                        <i class = "footer__bottom__icon">Ic1</i>
+                        <p class = "footer__bottom__text">2019</p>
+
+                    </div>
+                </div>
+            </section>
+            
+          
         </footer>
     </div>
     
