@@ -1,0 +1,92 @@
+.header {
+  /* border: 1px solid  */
+  grid-area: header;
+}
+.header__top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.header__menu {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+.header__logo-container {
+  width: 60%;
+}
+.header__logo {
+  width: 100%;
+}
+.header__bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer {
+  border: 1px solid;
+  grid-area: footer;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  width: 100%;
+  border: 1px solid blue;
+  grid-area: main;
+  display: grid;
+  grid-areas: "sale collection-autum renew collection-special news";
+  grid-template-columns: 100%;
+  grid-template-rows: 15% 25% 25% 25% 10%;
+}
+
+.sale {
+  grid-area: sale;
+  background-color: red;
+}
+
+.collection-autum {
+  grid-area: collection-autum;
+}
+
+.renew {
+  grid-area: renew;
+  display: flex;
+  flex-direction: column;
+}
+.renew__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.renew__fig {
+  width: 20px;
+}
+
+.collection-special {
+  grid-area: collection-special;
+}
+
+.news {
+  grid-area: news;
+}
+
+* {
+  margin: 0 auto;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: 100vw;
+  /* height:  */
+  display: grid;
+  grid-template-areas: "header main footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: 10% 60% 30%;
+}
+
+/*# sourceMappingURL=style.css.map */
