@@ -1,17 +1,18 @@
-/* Error: Expected identifier.
- *   ,
- * 4 | img:
- *   |     ^
- *   '
- *   style.sass 4:5  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: "Error: Expected identifier.\a   \2577 \a 4 \2502  img:\a   \2502      ^\a   \2575 \a   style.sass 4:5  root stylesheet";
+* {
+  margin: 0;
 }
+
+.icon {
+  max-width: 50px;
+  height: auto;
+}
+
+.header {
+  background-color: black;
+}
+
+.footer {
+  background-color: black;
+}
+
+/*# sourceMappingURL=style.css.map */
