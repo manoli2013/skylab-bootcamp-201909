@@ -9,7 +9,11 @@
 
 body {
   background-color: #e4e9ed;
-  font-family: Raleway, sans-serif;
+  font-family: Raleway, sans-serifin;
+  margin: 0;
+  padding: 0;
+  list-style: none outside none;
+  text-decoration: none;
 }
 
 br {
@@ -24,24 +28,20 @@ br {
   grid-template-rows: max-content 1fr;
   grid-template-columns: 1fr max-content;
 }
-.header__logo {
-  fill: white;
-  width: 3rem;
-  padding: 1rem;
-  cursor: pointer;
-}
 .header__bg {
   width: 100%;
   height: 100%;
-  background-image: url("https://www.spacex.com/sites/spacex/files/spx01_fairing-1080_v3.mp4");
   background-size: cover;
   background-position: center;
-  filter: brightness(30%);
+  filter: brightness(60%);
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   position: absolute;
   top: 0;
   left: 0;
   z-index: -2;
+}
+.header__bg--video {
+  width: auto;
 }
 .header__title {
   grid-area: 2/1/2/3;
@@ -52,24 +52,33 @@ br {
   font-size: 4rem;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
   margin-top: -5rem;
+  z-index: 1;
 }
 .header__nav {
+  background-color: black;
   display: flex;
-  align-items: center;
-  grid-area: 1/2/1/3;
+  justify-content: space-around;
   padding: 1rem 2rem;
-  color: white;
+}
+.header__nav--logo {
+  fill: white;
+  width: 3rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+.header__nav--bar {
+  margin-top: 1%;
+}
+.header__nav--bar__button {
+  text-transform: capitalize;
+  margin-left: 2rem;
+  color: gray;
+  font-size: 0.9rem;
   cursor: pointer;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
-.header__nav--icon {
-  fill: currentColor;
-  margin-right: 0.5rem;
-  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
-}
-.header__nav--button {
-  text-transform: capitalize;
-  margin-left: 2rem;
+.header__nav--bar__button:hover {
+  color: white;
 }
 
 .about {
@@ -84,9 +93,14 @@ br {
   text-transform: uppercase;
   color: #232323;
 }
+.about__title:hover {
+  color: #1d241d44;
+}
 .about__text {
   width: 80%;
   margin: 5% auto;
+}
+.about__text--justify {
   text-align: justify;
 }
 
