@@ -62,24 +62,40 @@ class App extends Component {
     }
 
     handleSearch = (query) => {
-        console.log(query)
+        
+        try {
+            searchLaunches(query, (error, launches) => {
+                if(error) {
+                    
+                    this.setState({error: error.message})
+                }
+                else {
+                    this.setState({error: undefined, launches })
+                   
+                }
+            })
+
+        } catch (error) {
+            this.setState({error: error.message})
+        }
+        //ToDo
     }
 
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
+        const {state: {view, error, result, query, launches}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} />}
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} />}
+
+            
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.launch_date} /> }/>}/>}        
+            
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
-
-
-        
         </>
     }
 
