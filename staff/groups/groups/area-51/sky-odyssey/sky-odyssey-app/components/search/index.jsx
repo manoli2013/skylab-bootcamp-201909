@@ -1,8 +1,8 @@
-function Search({onSearch, query}) {
+function Search({onSearch, query, error, output, }) {
     return   <section className="search">
             
     <div className="search__bar">
-        <form className = "search__form" onSubmit = {event => {
+        <form className = "search__form" onSubmit = {event => {debugger
             event.preventDefault()
             const query = event.target.query.value
 
@@ -17,6 +17,9 @@ function Search({onSearch, query}) {
             </button>
         </form>
     </div>
+    {error && <Feedback message={error} />}
+    
 
 </section>
 }
+//cuando haya output, renderízalo

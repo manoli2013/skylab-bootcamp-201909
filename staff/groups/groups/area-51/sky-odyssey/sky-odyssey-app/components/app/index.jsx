@@ -62,13 +62,29 @@ class App extends Component {
     }
 
     handleSearch = (query) => {
-        console.log(query)
+        
+        try {
+            searchLaunches(query, (error, launches) => {
+                if(error) {
+                    
+                    this.setState({error: error.message})
+                }
+                else {
+                    this.setState({error: undefined, launches })
+                    console.log(launches.details)
+                }
+            })
+
+        } catch (error) {
+            this.setState({error: error.message})
+        }
+        //ToDo
     }
 
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
+        const {state: {view, error, result, query, launches}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
     
         return <>
             
@@ -77,9 +93,6 @@ class App extends Component {
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
-
-
-        
         </>
     }
 
