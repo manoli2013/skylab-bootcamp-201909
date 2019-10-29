@@ -1,22 +1,28 @@
-function Output({}) {
+function Output({ rows, onRowsRender }) {
 
-    return <section class="active results">
+    return <section className="active output">
 
-    <div class = "results__container">
+        <div className="output__container">
 
-        <section class = "results__header header">
+            <section className="output__header header">
+                <h2 className="header__title">HEADER RESULTS</h2>
 
-            <h2 class = "header__title">HEADER RESULTS</h2>
-               
-        </section>
+            </section>
 
-        <section class = "results__main main">
+            <section className="output__main main">
 
-            <ul class = "main__list list"></ul>
+                {rows instanceof Array && <ul className="main__list list">
+                    {
+                        rows.map(row => 
+                            onRowsRender(row)
+                        )
+                    }
+                </ul>}
 
-        </section>
+            </section>
 
-    </div>
-    
-</section>
+        </div>
+
+    </section>
 }
+

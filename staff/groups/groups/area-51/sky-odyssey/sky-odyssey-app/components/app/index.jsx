@@ -71,7 +71,7 @@ class App extends Component {
                 }
                 else {
                     this.setState({error: undefined, launches })
-                    console.log(launches.details)
+                   
                 }
             })
 
@@ -89,7 +89,10 @@ class App extends Component {
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} />}
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} />}
+
+            
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.launch_date} /> }/>}/>}        
+            
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}

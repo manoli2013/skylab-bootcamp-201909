@@ -1,5 +1,5 @@
-function Search({onSearch, query, error, output, }) {
-    return   <section className="search">
+function Search({onSearch, query, error, output, onOutputRender }) {
+    return <section className="search">
             
     <div className="search__bar">
         <form className = "search__form" onSubmit = {event => {debugger
@@ -18,7 +18,7 @@ function Search({onSearch, query, error, output, }) {
         </form>
     </div>
     {error && <Feedback message={error} />}
-    
+    {output && onOutputRender(output)}
 
 </section>
 }
