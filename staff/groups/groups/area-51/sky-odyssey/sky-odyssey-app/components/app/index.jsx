@@ -39,7 +39,7 @@ class App extends Component {
                     this.setState({error: error.message})
                 }
                 else {
-                    console.log(result)
+                    
                     this.setState({view: 'landing', result})
                 }
             }) 
