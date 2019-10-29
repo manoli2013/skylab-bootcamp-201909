@@ -1,4 +1,4 @@
-function Register({onRegister, error}) {
+function Register({onRegister, error, back}) {
 
 
     return <section className="active registration">
@@ -27,6 +27,7 @@ function Register({onRegister, error}) {
                     <input className="content__input" type="password" name="password"/>
 
                     <button className="content__submit content__button">Send</button>
+                    <button className = "content__back content__button" onClick>Back</button>
 
             </form>
             {error && <Feedback message = {error} />}
