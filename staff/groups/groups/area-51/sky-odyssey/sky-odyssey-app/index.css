@@ -31,17 +31,14 @@ br {
 .header__bg {
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
   filter: brightness(60%);
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: -2;
 }
 .header__bg--video {
-  width: auto;
+  width: 100%;
+  height: 100%;
 }
 .header__title {
   grid-area: 2/1/2/3;
@@ -49,9 +46,9 @@ br {
   justify-self: center;
   color: white;
   text-transform: uppercase;
-  font-size: 4rem;
+  font-size: 1.4rem;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
-  margin-top: -5rem;
+  margin-top: -6rem;
   z-index: 1;
 }
 .header__nav {
@@ -60,16 +57,11 @@ br {
   justify-content: space-around;
   padding: 1rem 2rem;
 }
-.header__nav--logo {
-  fill: white;
-  width: 3rem;
-  padding: 1rem;
-  cursor: pointer;
-}
 .header__nav--bar {
   margin-top: 1%;
 }
 .header__nav--bar__button {
+  fill: white;
   text-transform: capitalize;
   margin-left: 2rem;
   color: gray;
@@ -77,14 +69,20 @@ br {
   cursor: pointer;
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
-.header__nav--bar__button:hover {
+.header__nav--bar__button__button:hover {
   color: white;
+}
+.header__logo {
+  fill: white;
+  width: 3rem;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .about {
   width: 100%;
   height: 60vh;
-  margin-top: -7rem;
+  margin-top: -10rem;
   clip-path: polygon(0 27%, 100% 0, 100% 100%, 0 100%);
 }
 .about__title {
@@ -237,6 +235,14 @@ br {
   color: white;
   font-size: 1.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search {
+  background-color: #e4e9ed;
+  font-family: Raleway, sans-serifin;
+  list-style: none outside none;
+  text-decoration: none;
+  width: 30%;
 }
 
 /*# sourceMappingURL=index.css.map */

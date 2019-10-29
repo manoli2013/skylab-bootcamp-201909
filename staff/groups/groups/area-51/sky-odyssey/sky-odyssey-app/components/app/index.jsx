@@ -61,14 +61,19 @@ class App extends Component {
         console.log('ha entrado a Profile')
     }
 
+    handleSearch = (query) => {
+        console.log(query)
+    }
+
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile} = this
+        const {state: {view, error, result, query}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} />}
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} />}
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
