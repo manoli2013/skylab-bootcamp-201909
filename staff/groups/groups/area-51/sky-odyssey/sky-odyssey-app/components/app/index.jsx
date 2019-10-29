@@ -2,7 +2,7 @@ const { Component } = React
 
 class App extends Component {
 
-    state = { view: 'landing', error: undefined}
+    state = { view: 'landing', error: undefined, result: undefined}
 
     handleGoToRegistration = () => {
         this.setState({view: 'register'})
@@ -49,17 +49,29 @@ class App extends Component {
         }   
     }
 
+    handleLogout = () => {
+        console.log('ha entrado a logout')
+    }
+
+    handleFavCar = () => {
+        console.log('ha entrado a FavCar')
+    }
+
+    handleProfile = () => {
+        console.log('ha entrado a Profile')
+    }
+
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin} = this
+        const {state: {view, error, result}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile} = this
     
         return <>
             
-            {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} />}
+            {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} />}
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
-            {view === 'login' && <Login onLogin = {handleLogin} />}
+            {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
 
 
         

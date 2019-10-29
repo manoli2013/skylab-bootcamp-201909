@@ -1,5 +1,4 @@
-function Header({onLogin, onRegister, error}) {
-
+function Header({onLogin, onRegister, result, onLogout, onFavCar, onProfile, error}) {
 
     return  <> <header className="header">
 
@@ -15,19 +14,39 @@ function Header({onLogin, onRegister, error}) {
                     <div className="header__nav--logo">
                             <img title="Home" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
                     </div>
-                    <div className="header__nav--bar">
-                        <a className="header__nav--bar__button" onClick = {event => {
-                                event.preventDefault()
-                                onLogin()
-                        }}>Login</a>
-                        <a className="header__nav--bar__button" onClick = {event =>{
-                                event.preventDefault()
-                                onRegister()
-                        }}>Sign Up</a>
-                    </div>
-                    
-            </nav>
 
+                {!result ?
+        
+                        <div className="header__nav--bar">
+                                <a className="header__nav--bar__button" onClick = {event => {
+                                        event.preventDefault()
+                                        onLogin()
+                                }}>Login</a>
+                                <a className="header__nav--bar__button" onClick = {event =>{
+                                        event.preventDefault()
+                                        onRegister()
+                                }}>Sign Up</a>
+                        </div>
+                :
+
+                        <div className="header__nav--bar">
+                                <a className="header__nav--bar__button" onClick = {event => {
+                                        event.preventDefault()
+                                        onLogout()
+                                }}>Logout</a>
+                                <a className="header__nav--bar__button" onClick = {event =>{
+                                        event.preventDefault()
+                                        onFavCar()
+                                }}>Favourites</a>
+                                <a className="header__nav--bar__button" onClick = {event =>{
+                                        event.preventDefault()
+                                        onProfile()
+                                }}>Personal Profile</a>
+                        </div>
+                }
+                   
+            </nav>
+                    
             </header>
                  
         <article className="about">
@@ -43,6 +62,6 @@ function Header({onLogin, onRegister, error}) {
 
         </article> 
 
-        
+                {error && <Feedback message = {error} />}   
         </>
 }

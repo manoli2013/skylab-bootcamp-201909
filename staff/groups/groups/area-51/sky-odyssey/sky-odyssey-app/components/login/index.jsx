@@ -21,7 +21,7 @@ function Login({onLogin, error}) {//pending back button
                     <button className="content__submit content__button" >Send</button>
 
                 </form>
-            
+                {error && <Feedback message = {error} />}
             </div>
 
         </section>
