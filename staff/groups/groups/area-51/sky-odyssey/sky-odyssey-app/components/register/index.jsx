@@ -29,10 +29,10 @@ function Register({onRegister, error}) {
                     <button className="content__submit content__button">Send</button>
 
             </form>
-            
+            {error && <Feedback message = {error} />}
         </div>
             
-            {error && <Feedback message = {error} />}
+            
 
         </section>
 }

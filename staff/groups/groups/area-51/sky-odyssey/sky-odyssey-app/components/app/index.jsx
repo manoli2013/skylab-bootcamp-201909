@@ -26,13 +26,27 @@ class App extends Component {
 
             })
         } catch (error) {
+            
             this.setState({error: error.message})
         }
     }
 
     handleLogin = (email, password) => {
-        console.log('login')
-        //todo
+
+        try {
+            authenticateUser(email,password, (error, result) => {
+                if(error) {
+                    this.setState({error: error.message})
+                }
+                else {
+                    console.log(result)
+                    this.setState({view: 'landing', result})
+                }
+            }) 
+        }
+        catch (error) {
+            this.setState({error: error.message})
+        }   
     }
 
     render() {
