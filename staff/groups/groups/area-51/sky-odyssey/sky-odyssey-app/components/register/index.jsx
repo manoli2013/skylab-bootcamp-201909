@@ -1,8 +1,7 @@
 function Register({onRegister, error}) {
 
 
-    return <>
-        <section className="active registration">
+    return <section className="active registration">
             
         <div className = "registration__container">
 
@@ -27,19 +26,13 @@ function Register({onRegister, error}) {
                     <label className = "content__label" htmlFor="password">Password</label>
                     <input className="content__input" type="password" name="password"/>
 
-                    <button className="content__submit content__button" onClick = {event => {
-                        event.preventDefault()
-                        const { name: { value: name }, surname: { value: surname }, email: { value: email }, password: { value: password } } = event.target
-                        
-                        onSubmit(name, surname, email, password)
-
-                    }}>Send</button>
+                    <button className="content__submit content__button">Send</button>
 
             </form>
             
         </div>
-                
-        </section>
+            
+            {error && <Feedback message = {error} />}
 
-    </>
+        </section>
 }
