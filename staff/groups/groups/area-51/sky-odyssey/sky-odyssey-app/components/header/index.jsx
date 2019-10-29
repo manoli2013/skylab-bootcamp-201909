@@ -23,6 +23,7 @@ function Header({onLogin, onRegister, error}) {
                         <a className="header__nav--bar__button" onClick = {event =>{
                                 event.preventDefault()
                                 onRegister()
+                                debugger
                         }}>Sign Up</a>
                     </div>
                     
