@@ -12,24 +12,27 @@ class App extends Component {
         this.setState({view: 'login'})
     }
 
-    handleRegister = () => {
-        alert('ha entrado en handle register') //todo
+    handleRegister = (name, surname, email, password) => {
+        console.log('register')
     }
 
-    handleLogin = () => {
-        alert('ha entrado en handle')//todo
+    handleLogin = (email, password) => {
+        console.log('login')
+        //todo
     }
 
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin} = this
+        const {state: {view}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} />}
-            {view === 'register' && <Register onSubmit={handleRegister} />}
-                {view === 'login' && <Login onSubmit ={handleLogin} />}
+            {view === 'register' && <Register onRegister={handleRegister} />}
+            
+            {view === 'login' && <Login onLogin = {handleLogin} />}
+
 
         
         </>
