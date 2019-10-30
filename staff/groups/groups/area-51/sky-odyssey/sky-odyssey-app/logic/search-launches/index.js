@@ -8,7 +8,7 @@ function searchLaunches(query, callback) {
         else {
    
             
-            const results = output.filter(result => result.launch_year >= query)
+            const results = output.filter(result => result.launch_year >= query && result.launch_year <= query)
            
             callback(undefined, results)
 
