@@ -298,11 +298,6 @@ br {
   padding-bottom: 5%;
 }
 
-* {
-  border: 1px solid red;
-  padding: 1px;
-}
-
 .detail {
   width: 100%;
 }
