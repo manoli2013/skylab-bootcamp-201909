@@ -81,21 +81,30 @@ class App extends Component {
         //ToDo
     }
 
-    render() {
+    handleDetail = () => {
+        this.setState({view: 'detail'})
+        console.log('ha entrado en detail')
+    }
+
+
+
+    render() {debugger
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch} = this
+        const {state: {view, error, result, query, launches}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} />}
 
             
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} /> }/>}/>}        
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} onClick = {handleDetail} /> }/>}/>}        
             
             {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
+
+            {view === 'detail' && <DetailLaunch item={item}  />}
         </>
     }
 
