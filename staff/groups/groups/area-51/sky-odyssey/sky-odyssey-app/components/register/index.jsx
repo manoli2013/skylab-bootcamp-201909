@@ -1,4 +1,4 @@
-function Register({onRegister, error, back}) {
+function Register({onRegister, error, onBack}) {
 
 
     return <section className="active registration">
@@ -27,7 +27,12 @@ function Register({onRegister, error, back}) {
                     <input className="content__input" type="password" name="password"/>
 
                     <button className="content__submit content__button">Send</button>
-                    <button className = "content__back content__button" onClick>Back</button>
+
+                    <a className="content__back" href="" onClick={event => {
+                        event.preventDefault()
+
+                        onBack()
+                    }}>Go back</a>
 
             </form>
             {error && <Feedback message = {error} />}

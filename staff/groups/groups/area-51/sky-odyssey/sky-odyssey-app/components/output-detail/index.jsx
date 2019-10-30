@@ -17,7 +17,7 @@ function DetailLaunch({ launch, onBack }) {
             <section className="detail__main main">
 
                 <h1 className="main__site">{site}</h1>
-                <h3 className="main__success">`MISSION RESULT: {success}`</h3>
+                
                 <h4 className="main__date">{date}</h4>
 
                 <p className="main__details">{details}</p>
@@ -45,21 +45,15 @@ function DetailLaunch({ launch, onBack }) {
             <section className="detail__footer footer">
 
                 <span className="footer__fav">💔</span>
-                <div className="footer__button-container">
-
-                    <button type="button" className="footer__button" href="#">Back</button>
-
-                </div>
-
-            </section>
-
-       
-
-            <a className="detail__back" href="" onClick={event => {
+                
+                <a className="detail__back" href="" onClick={event => {
                 event.preventDefault()
 
                 onBack()
             }}>Go back</a>
-         </div>
+
+            </section>
+            
+        </div>
     </section>
 }
