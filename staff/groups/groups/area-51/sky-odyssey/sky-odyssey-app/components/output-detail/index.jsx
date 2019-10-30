@@ -27,7 +27,7 @@ function DetailLaunch({ launch, onBack }) {
                     <ul className="media__gallery">GALERÍA
 
                         {
-                            images.map(img =>
+                            images.splice(0, 3).map(img =>
                                 <li className="media__item"> <img className = "media__image" src={img} /> </li>
                             )
                         }
