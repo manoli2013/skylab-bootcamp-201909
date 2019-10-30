@@ -1,8 +1,13 @@
-function OutputRow({row}) {
+function OutputRow({row, onClick}) {
     
-    const { mission_name: mission, links: { mission_patch_small: image }, launch_year: year} = row
+    const { flight_number: id, mission_name: mission, links: { mission_patch_small: image }, launch_year: year} = row
+    
     return <li className = "row">
-    <a className = "row__link">
+    <a className = "row__link" onClick = {event => {
+        event.preventDefault()
+        onClick(id)
+
+    }}>
         <h2 className = "row__mission">{mission}</h2>
         <h3 className = "row__year">{year}</h3>
 
