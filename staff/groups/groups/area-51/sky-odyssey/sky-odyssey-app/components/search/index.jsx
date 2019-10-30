@@ -5,7 +5,7 @@ function Search({onSearch, query, error, output, onOutputRender }) {
         <form className = "search__form" onSubmit = {event => {debugger
             event.preventDefault()
             const query = event.target.query.value
-
+            
             onSearch(query)
 
         }}>
