@@ -9,7 +9,7 @@ function DetailLaunch({ launch, onBack }) {
             <figure className="detail__banner">
 
                 <img className="detail__image" src={images[0] ? images[0] : logo} alt="detail" />
-                {console.log(images)}
+                
                 <figcaption className="detail__caption">{mission} {year}</figcaption>
 
             </figure>
@@ -17,24 +17,24 @@ function DetailLaunch({ launch, onBack }) {
             <section className="detail__main main">
 
                 <h1 className="main__site">{site}</h1>
-                <h3 className="main__id">`MISSION RESULT: {success}`</h3>
+                <h3 className="main__success">`MISSION RESULT: {success}`</h3>
                 <h4 className="main__date">{date}</h4>
 
                 <p className="main__details">{details}</p>
 
                 <section className="main__media media">
 
-                    <ul className="main__gallery">
+                    <ul className="media__gallery">GALERÍA
 
                         {
                             images.map(img =>
-                                <li className="main__item"> <img src={img} /> </li>
+                                <li className="media__item"> <img className = "media__image" src={img} /> </li>
                             )
                         }
 
-                        GALERÍA</ul>
+                    </ul>
 
-                    <figure className="main__video">
+                    <figure className="media__video">
                         <video src={video}></video>
                     </figure>
 
@@ -53,12 +53,13 @@ function DetailLaunch({ launch, onBack }) {
 
             </section>
 
-        </div>
+       
 
-        <a className="detail__back" href="" onClick={event => {
-            event.preventDefault()
+            <a className="detail__back" href="" onClick={event => {
+                event.preventDefault()
 
-            onBack()
-        }}>Go back</a>
+                onBack()
+            }}>Go back</a>
+         </div>
     </section>
 }
