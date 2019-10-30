@@ -13,7 +13,7 @@ function Search({onSearch, query, error, output, onOutputRender }) {
             <input type="text" className="search__bar--searchTerm" placeholder="What are you looking for?" name = "query" defaultValue = {query}/>
 
             <button type="submit" className="search__bar--searchButton">
-                <ion-icon name="planet"></ion-icon>
+            search
             </button>
         </form>
     </div>
