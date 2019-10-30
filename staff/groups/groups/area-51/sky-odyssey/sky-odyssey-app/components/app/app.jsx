@@ -4,9 +4,11 @@ const { query } = location
 
 const { id, token } = sessionStorage
 
+let credentials;
+
 class App extends Component {
 
-    state = { view: 'landing', error: undefined, result: undefined}
+    state = { view: 'landing', credentials, error: undefined, result: undefined}
 
     componentWillMount() {
         debugger
@@ -57,7 +59,7 @@ class App extends Component {
         }
     }
 
-    handleLogin = (email, password) => {debugger
+    handleLogin = (email, password) => {
         try {
             authenticateUser(email, password, (error, result) => {
                 if (error) this.setState({ error: error.message })
@@ -86,7 +88,14 @@ class App extends Component {
     }
 
     handleLogout = () => {
-        console.log('ha entrado a logout')
+    
+    
+            delete sessionStorage.id
+            delete sessionStorage.token
+    
+            this.setState({ credentials: undefined })
+        
+        
     }
 
     handleFavCar = () => {
