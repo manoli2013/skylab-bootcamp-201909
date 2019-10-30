@@ -1,5 +1,5 @@
-function Header({onLogin, onRegister, result, onLogout, onFavCar, onProfile, error}) {
-
+function Header({onLogin, onRegister, onLogout, onFavCar, onProfile, error, user}) {
+        const {id} = sessionStorage
     return  <> <header className="header">
 
             <div className="header__bg">
@@ -15,8 +15,8 @@ function Header({onLogin, onRegister, result, onLogout, onFavCar, onProfile, err
                             <img title="Home" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
                     </div>
 
-                {!result ?
-        
+                {!id ?
+                        
                         <div className="header__nav--bar">
                                 <a className="header__nav--bar__button" onClick = {event => {
                                         event.preventDefault()
@@ -41,7 +41,7 @@ function Header({onLogin, onRegister, result, onLogout, onFavCar, onProfile, err
                                 <a className="header__nav--bar__button" onClick = {event =>{
                                         event.preventDefault()
                                         onProfile()
-                                }}>Personal Profile</a>
+                                }}>{user}</a>
                         </div>
                 }
                    
