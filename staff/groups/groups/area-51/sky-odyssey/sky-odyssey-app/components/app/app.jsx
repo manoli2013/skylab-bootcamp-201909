@@ -9,7 +9,7 @@ class App extends Component {
     state = { view: 'landing', error: undefined, result: undefined}
 
     componentWillMount() {
-        debugger
+       
         if (id && token) {
             try {
                 retrieveUser(id, token, (error, user) => {
@@ -57,7 +57,7 @@ class App extends Component {
         }
     }
 
-    handleLogin = (email, password) => {debugger
+    handleLogin = (email, password) => {
         try {
             authenticateUser(email, password, (error, result) => {
                 if (error) this.setState({ error: error.message })
@@ -117,6 +117,7 @@ class App extends Component {
         //ToDo
     }
 
+
     handleDetail = (id) => {
         console.log('ha entrado en handleDetail')
         try {
@@ -130,27 +131,31 @@ class App extends Component {
     }
 
 
-    handleBackToSearch = () => {
+    handleBackToLanding = () => {
         this.setState({view: 'landing'})
+    }
+
+    handleLogOut = () =>{
+        console.log('ha entrado en handleLogOut')
     }
 
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToSearch} = this
+        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} user = {user} />}
 
             
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} onClick = {handleDetail} /> }/>} user = {user}/>}        
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} onClick = {handleDetail} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
             
-            {view === 'register' && <Register onRegister={handleRegister} error = {error}/>}
+            {view === 'register' && <Register onRegister={handleRegister} error = {error} onBack = {handleBackToLanding} />}
             
-            {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
+            {view === 'login' && <Login onLogin = {handleLogin} error = {error} onBack = {handleBackToLanding}/>}
 
-             {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToSearch} />}
+            {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToLanding} />}
         </>
     }
 

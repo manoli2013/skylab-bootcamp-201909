@@ -1,4 +1,4 @@
-function Login({onLogin, error}) {//pending back button 
+function Login({onLogin, error, onBack}) {//pending back button 
     return  <section className="active login">
 
             <div className = "login__container">
@@ -19,6 +19,11 @@ function Login({onLogin, error}) {//pending back button
                     <input className="content__input" type="password" name="password" />
 
                     <button className="content__submit content__button" >Send</button>
+                    <a className="content__back" href="" onClick={event => {
+                        event.preventDefault()
+
+                        onBack()
+                    }}>Go back</a>
 
                 </form>
                 {error && <Feedback message = {error} />}
