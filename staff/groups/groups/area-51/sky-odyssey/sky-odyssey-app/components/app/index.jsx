@@ -81,17 +81,27 @@ class App extends Component {
         //ToDo
     }
 
-    handleDetail = () => {
-        this.setState({view: 'detail'})
-        console.log('ha entrado en detail')
+    handleDetail = (id) => {
+        console.log('ha entrado en handleDetail')
+        try {
+            retrieveLaunch(id, (error, launch) => {
+                if (error) this.setState({ error: error.message })
+                else this.setState({ view: 'detail', launch})
+            })
+        } catch (error) {
+            this.setState({ error: error.message })
+        }
     }
 
 
+    handleBackToSearch = () => {
+        this.setState({view: 'search'})
+    }
 
-    render() {debugger
+    render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail} = this
+        const {state: {view, error, result, query, launches, launch}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToSearch} = this
     
         return <>
             
@@ -104,7 +114,7 @@ class App extends Component {
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} />}
 
-            {view === 'detail' && <DetailLaunch item={item}  />}
+             {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToSearch} />}
         </>
     }
 

@@ -1,15 +1,15 @@
-function DetailLaunch({item, onBack}) {
+function DetailLaunch({launch, onBack}) {
 
-    const { launch_date_local: date, launch_success: success, mission_name: mission, launch_site: {site_name_long: site}, launch_year: year, links: {flickr_images: image}, details, video_link: video} = item
+    const { launch_date_local: date, launch_success: success, mission_name: mission, launch_site: {site_name_long: site}, launch_year: year, links: {flickr_images: images}, details, video_link: video, links: {mission_patch: logo}} = launch
 
     return <section className="active detail">
 
     <div className = "detail__container">
 
         <figure className = "detail__banner">
-
-            <image className = "detail__image" src= {image[0]} alt="detail" /> 
             
+            <img className = "detail__image" src= {images[0] ? images[0] : logo} alt="detail" /> 
+            {console.log(images)}
             <figcaption className = "detail__caption">{mission} {year}</figcaption>
 
         </figure>
@@ -24,15 +24,16 @@ function DetailLaunch({item, onBack}) {
     
             <section className = "main__media media">
 
-                <ul className = "main__gallery">GALERÍA</ul>
+                {/* <ul className = "main__gallery">GALERÍA</ul>
                 
                 {
                     image.forEach(img => {
+                        console.log(img)
                         const galleryItem = document.createElement('li')
                         galleryItem.classList.add('image-gallery')
                         this.documentGetElementsByClassName('main__gallery')[0].append(img)
                     })
-                }
+                } */}
               
                 
                 <figure className = "main__video">
