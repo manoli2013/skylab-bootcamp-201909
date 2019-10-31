@@ -159,6 +159,8 @@ class App extends Component {
 
             
             {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} onClick = {handleDetail} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
+
+            {view === 'landing' && <Footer />}
             
             {view === 'register' && <Register onRegister={handleRegister} error = {error} onBack = {handleBackToLanding} />}
             
