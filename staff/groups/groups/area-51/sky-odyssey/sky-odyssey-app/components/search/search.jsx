@@ -12,7 +12,7 @@ function Search({onSearch, query, error, output, onOutputRender }) {
             <input type="text" className="search__bar--searchTerm" placeholder="YEAR" name = "query" defaultValue = {query}/>
 
             <button className="search__bar--searchButton">
-            search
+            <i className="fas fa-rocket"></i>
             </button>
         </form>
     

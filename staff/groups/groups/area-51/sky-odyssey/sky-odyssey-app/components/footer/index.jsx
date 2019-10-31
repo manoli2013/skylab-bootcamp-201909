@@ -3,19 +3,20 @@ function Footer() {
 
     <div className="footer__box">
 
+  
       <div className="footer__box">
           <ul className="footer__box--car">
-            <li className="footer__box--car__icons"><a href=""><ion-icon  name="logo-twitter"></ion-icon></a></li>
-            <li className="footer__box--car__icons" ><a href=""><ion-icon  name="logo-facebook"></ion-icon></a></li>
-            <li className="footer__box--car__icons"><a href=""><ion-icon  name="logo-flickr"></ion-icon></a></li>
-            <li className="footer__box--car__icons"><a href=""><ion-icon  name="logo-youtube"></ion-icon></a></li>
-            <li className="footer__box--car__icons" ><a href=""><ion-icon name="logo-github"></ion-icon></a></li>
+            <li className="footer__box--car__icons"><a href=""><i className="fab fa-twitter-square"></i></a></li>
+            <li className="footer__box--car__icons" ><a href=""><i class="fab fa-facebook-square"></i></a></li>
+            <li className="footer__box--car__icons"><a href=""><i className="fab fa-flickr"></i></a></li>
+            <li className="footer__box--car__icons"><a href=""><i className="fab fa-youtube-square"></i></a></li>
+            <li className="footer__box--car__icons" ><a href=""><i className="fab fa-github-square"></i></a></li>
           </ul> 
       </div>
 
 
     <div className="footer__box--img">
-        <img title="Home" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
+        <img title="Home" className="footer__box--img__logo" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
     </div>
 
     <div className="footer__box--copyright">
@@ -24,4 +25,3 @@ function Footer() {
 </div>
 </footer>
 }
-//cuando haya output, renderízalo
