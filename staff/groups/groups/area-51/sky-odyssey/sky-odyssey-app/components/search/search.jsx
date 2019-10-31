@@ -1,7 +1,7 @@
 function Search({onSearch, query, error, output, onOutputRender }) {
     return <section className="search">
    
-        <form className = "search__form" onSubmit = {event => {debugger
+        <form className = "search__form" onSubmit = {event => {
             event.preventDefault()
             const query = event.target.query.value
             

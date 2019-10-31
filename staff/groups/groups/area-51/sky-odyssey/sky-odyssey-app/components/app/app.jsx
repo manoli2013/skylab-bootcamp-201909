@@ -107,9 +107,10 @@ class App extends Component {
     }
 
     handleSearch = (query) => {
+        location.query = query
         
         try {
-            searchLaunches(query, (error, launches) => {
+            searchLaunches(id, token, query, (error, launches) => {
                 if(error) {
                     
                     this.setState({error: error.message})
@@ -148,17 +149,30 @@ class App extends Component {
         console.log('ha entrado en handleLogOut')
     }
 
+    handleFav = (idLaunch) => {
+        try {
+            toggleFav(id, token, idLaunch, (error) => {
+                error && this.setState({ error: error.message })
+                this.handleSearch(location.query)
+            })
+
+        } catch (error) {
+
+            this.setState({ error: error.message })
+        }
+    }
+
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut} = this
+        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut, handleFav} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} user = {user} />}
 
             
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow  row = {row} key = {row.mission_name} onClick = {handleDetail} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
+            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow row = {row} key = {row.mission_name} onClick = {handleDetail} onFav = {handleFav} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
 
             {view === 'landing' && <Footer />}
             
