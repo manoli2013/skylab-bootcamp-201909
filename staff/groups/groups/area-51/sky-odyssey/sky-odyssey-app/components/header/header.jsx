@@ -12,7 +12,7 @@ function Header({onLogin, onRegister, onLogout, onFavCar, onProfile, error, user
 
             <nav className="header__nav">
                     <div className="header__nav--logo">
-                            <img title="Home" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
+                            <img title="Home" className="header__nav--logo__img" src="https://www.spacex.com/sites/spacex/files/spacex_logo_white.png"></img>
                     </div>
 
                 {!id ?

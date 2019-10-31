@@ -1,22 +1,13 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700")
-*,
-*::before,
-*::after 
-   margin: 0
-   padding: 0
-   box-sizing: border-box
-body
-   background-color: #e4e9ed
-   font-family: Raleway, sans-serifin
-   margin: 0
-   padding: 0
-   list-style: none outside none
-   text-decoration: none
+
+
+
 br 
    margin-bottom: 2%
+
 .header 
    width: 100%
-   height: 50vh
+   height: 45vh
    position: relative
    display: grid
    grid-template-rows: max-content 1fr
@@ -57,7 +48,11 @@ br
                     
         &--bar 
             margin-top: 1%
+
             &__button
+
+                justify-content: flex-end
+                width: 30%
                 fill: white
                 text-transform: capitalize
                 margin-left: 2rem
@@ -68,6 +63,11 @@ br
                 
                 &__button:hover
                     color: white
+        &--logo
+            max-width: 40%
+
+            &__img
+                width: 100%
     
    &__logo  
         fill: white
@@ -77,8 +77,8 @@ br
             
 .about 
     width: 100%
-    height: 40vh
-    margin-top: -10rem
+    height: 45vh
+    margin-top: -8rem
     clip-path: polygon(0 27%, 100% 0, 100% 100%, 0 100%)
    
     &__title
