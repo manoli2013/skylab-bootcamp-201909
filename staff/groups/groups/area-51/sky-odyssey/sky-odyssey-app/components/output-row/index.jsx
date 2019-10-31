@@ -1,4 +1,4 @@
-function OutputRow({row, onClick}) {
+function OutputRow({row, onClick, onFav}) {
     
     const { flight_number: id, mission_name: mission, links: { mission_patch_small: image }, launch_year: year} = row
     
@@ -16,5 +16,7 @@ function OutputRow({row, onClick}) {
         
         <span className="row__fav">💔</span>
     </a>
-</li>
+    </li>
+    
+
 }
