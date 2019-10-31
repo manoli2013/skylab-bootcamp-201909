@@ -89,5 +89,5 @@ describe('logic - register user', () => {
         expect(() => registerUser(name, surname, email, password, null)).toThrowError(TypeError, 'null is not a function')
     })
 
-    // TODO other cases
+    
 })
