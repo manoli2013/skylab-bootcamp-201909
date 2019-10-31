@@ -12,7 +12,7 @@ function Search({onSearch, query, error, output, onOutputRender }) {
 
             <input type="text" className="search__bar--searchTerm" placeholder="What are you looking for?" name = "query" defaultValue = {query}/>
 
-            <button type="submit" className="search__bar--searchButton">
+            <button className="search__bar--searchButton">
             search
             </button>
         </form>
