@@ -44,9 +44,9 @@ function DetailLaunch({ launch, onBack }) {
             </section>
 
 
-            <section className="detail__footer footer">
+            <section className="detail__base base">
 
-                <span className="footer__fav">💔</span>
+                <span className="base__fav">💔</span>
 
                 <a className="detail__back" href="" onClick={event => {
                     event.preventDefault()
