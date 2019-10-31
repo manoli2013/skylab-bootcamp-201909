@@ -352,7 +352,7 @@ br {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding-right: 10.67%;
+  padding-right: 20%;
 }
 
 .row {
