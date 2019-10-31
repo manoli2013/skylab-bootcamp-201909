@@ -1,7 +1,7 @@
 function DetailLaunch({ launch, onBack }) {
 
     const { launch_date_local: date, launch_success: success, mission_name: mission, launch_site: { site_name_long: site }, launch_year: year, links: { flickr_images: images }, details, links: { mission_patch: logo, video_link, youtube_id } } = launch
-    console.log(video_link)
+   
     return <section className="active detail">
 
             <figure className="detail__banner">

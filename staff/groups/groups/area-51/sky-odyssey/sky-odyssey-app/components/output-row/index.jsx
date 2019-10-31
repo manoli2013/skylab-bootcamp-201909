@@ -1,20 +1,25 @@
-function OutputRow({row, onClick}) {
-    
-    const { flight_number: id, mission_name: mission, links: { mission_patch_small: image }, launch_year: year} = row
-    
-    return <li className = "row">
-    <a className = "row__link" onClick = {event => {
-        event.preventDefault()
-        onClick(id)
+function OutputRow({ row, onClick, onFav }) {
 
-    }}>
-        <h2 className = "row__mission">{mission}</h2>
-        <h3 className = "row__year">{year}</h3>
+    const { isFav, flight_number: id, mission_name: mission, links: { mission_patch_small: image }, launch_year: year } = row
 
-        <img className = "row__image" src={image} alt="row"/>
+    return <li className="row">
+        <a className="row__link" onClick={event => {
+            event.preventDefault()
+            onClick(id)
 
-        
-        <span className="row__fav">💔</span>
-    </a>
-</li>
+        }}>
+            <h2 className="row__mission">{mission}</h2>
+            <h3 className="row__year">{year}</h3>
+
+            <img className="row__image" src={image} alt="row" />
+
+            {sessionStorage.id && sessionStorage.token ? <span className="row__fav" onClick={event => {
+                event.preventDefault()
+                event.stopPropagation()
+                onFav(id)
+            }} > {isFav ? 'OK' : '💔'}</span> : ''}
+        </a>
+    </li>
+
+
 }
