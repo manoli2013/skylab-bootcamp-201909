@@ -7,7 +7,7 @@ function Footer() {
       <div className="footer__box">
           <ul className="footer__box--car">
             <li className="footer__box--car__icons"><a href=""><i className="fab fa-twitter-square"></i></a></li>
-            <li className="footer__box--car__icons" ><a href=""><i class="fab fa-facebook-square"></i></a></li>
+            <li className="footer__box--car__icons" ><a href=""><i className="fab fa-facebook-square"></i></a></li>
             <li className="footer__box--car__icons"><a href=""><i className="fab fa-flickr"></i></a></li>
             <li className="footer__box--car__icons"><a href=""><i className="fab fa-youtube-square"></i></a></li>
             <li className="footer__box--car__icons" ><a href=""><i className="fab fa-github-square"></i></a></li>
