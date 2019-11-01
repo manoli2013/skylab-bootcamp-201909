@@ -128,10 +128,12 @@ class App extends Component {
     }
 
 
-    handleDetail = (id) => {
-        console.log('ha entrado en handleDetail')
+    handleDetail = (idLaunch) => {
+        
+        
+
         try {
-            retrieveLaunch(id, (error, launch) => {
+            retrieveLaunch(id, token, idLaunch , (error, launch) => {
                 if (error) this.setState({ error: error.message })
                 else this.setState({ view: 'detail', launch})
             })
