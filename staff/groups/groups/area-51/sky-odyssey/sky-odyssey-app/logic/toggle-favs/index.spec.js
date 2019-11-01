@@ -1,7 +1,6 @@
-describe('logic - toggleFav', () => {
+fdescribe('logic - toggleFav', () => {
 
     let name, surname, email, password, id, token
-    const idLa
 
     beforeEach(done => {
         name = `name-${Math.random()}`
@@ -28,24 +27,99 @@ describe('logic - toggleFav', () => {
     })
 
     describe('user without favorite news', () => {
+        const idLaunch = 53
+        const arrFavs = [53]
 
-        let idLaunch = 53
 
         it('it should create favorite array inside of user account', done => {
-            toggleFav(id, token, idLaunch, call)
+
+            toggleFav(id, token, idLaunch, (error) => {
+
+                expect(error).toBeUndefined()
+
+                call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
+                    if (result.error) done(new Error(result.error))
+                    else {
+                        const { data: user } = result
+
+                        expect(user).toBeDefined()
+                        expect(user.favs).toBeDefined()
+                        expect(user.favs).toEqual(arrFavs)
+                        done()
+
+                    }
+                })
+            })
+
         })
 
     })
 
     describe('user add favorite news', () => {
 
-        
+        const idLaunch = 53
+        const addFavs = [40, 45]
+        const resultFavs = [40, 45, 53]
+
+        it('it should add favorite news', done => {
+
+            call('PUT', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, { favs: addFavs }, () => {
+
+                toggleFav(id, token, idLaunch, (error) => {
+
+                    expect(error).toBeUndefined()
+
+                    call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
+                        if (result.error) done(new Error(result.error))
+                        else {
+                            const { data: user } = result
+
+                            expect(user).toBeDefined()
+                            expect(user.favs).toBeDefined()
+                            expect(user.favs).toEqual(resultFavs)
+                            done()
+
+                        }
+                    })
+
+                })
+            })
+
+        })
 
     })
 
     describe('user remove favorite news', () => {
 
-        
+        const idLaunch = 53
+        const addFavs = [40, 45, 53]
+        const resultFavs = [40, 45]
+
+        it('it should delete favorite news', done => {
+
+            call('PUT', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, { favs: addFavs }, () => {
+
+                toggleFav(id, token, idLaunch, (error) => {
+
+                    expect(error).toBeUndefined()
+
+                    call('GET', token, `https://skylabcoders.herokuapp.com/api/user/${id}`, undefined, result => {
+                        if (result.error) done(new Error(result.error))
+                        else {
+                            const { data: user } = result
+
+                            expect(user).toBeDefined()
+                            expect(user.favs).toBeDefined()
+                            expect(user.favs).toEqual(resultFavs)
+                            done()
+
+                        }
+                    })
+
+                })
+            })
+
+        })
 
     })
 

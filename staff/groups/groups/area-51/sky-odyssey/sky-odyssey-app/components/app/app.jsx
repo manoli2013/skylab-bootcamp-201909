@@ -2,7 +2,6 @@ const { Component } = React
 
 const { query } = location
 
-const { id, token } = sessionStorage
 
 let credentials;
 
@@ -11,6 +10,7 @@ class App extends Component {
     state = { view: 'landing', credentials, error: undefined, result: undefined}
 
     componentWillMount() {
+        const { id, token } = sessionStorage
        
         if (id && token) {
             try {
@@ -108,7 +108,9 @@ class App extends Component {
         console.log('ha entrado a Profile')
     }
 
-    handleSearch = (query) => {
+    handleSearch = (query) => {  
+        debugger
+        const { id, token } = sessionStorage
         location.query = query
         
         try {
@@ -133,10 +135,10 @@ class App extends Component {
 
 
     handleDetail = (idLaunch) => {
-
+        debugger
+        const { id, token } = sessionStorage
+        
         try {
-            
-            const { id, token } = sessionStorage
             retrieveLaunch(idLaunch, id, token , (error, launch) => {
                 if (error){this.setState({ error: error.message })
                 console.log(launch)
@@ -151,6 +153,8 @@ class App extends Component {
 
 
     handleFav = (idLaunch) => {
+        debugger
+        const { id, token } = sessionStorage
         try {
             toggleFav(id, token, idLaunch, (error) => {
                 error && this.setState({ error: error.message })
@@ -165,6 +169,7 @@ class App extends Component {
     }
 
     handleFavDetail = (idLaunch) => {
+        const { id, token } = sessionStorage
         try {
             toggleFav(id, token, idLaunch, (error) => {
                 error && this.setState({ error: error.message })
