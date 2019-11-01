@@ -17,7 +17,7 @@ function OutputRow({ row, onClick, onFav }) {
                 event.preventDefault()
                 event.stopPropagation()
                 onFav(id)
-            }} > {isFav ? 'OK' : '💔'}</span> : ''}
+            }} > {isFav ? 'OK' : 'KO'}</span> : ''}
         </a>
     </li>
 

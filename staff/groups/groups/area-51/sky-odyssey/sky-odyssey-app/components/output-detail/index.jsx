@@ -1,6 +1,8 @@
-function DetailLaunch({ launch, onBack }) {
+function DetailLaunch({ launch, onBack, onFav }) {
 
-    const { launch_date_local: date, launch_success: success, mission_name: mission, launch_site: { site_name_long: site }, launch_year: year, links: { flickr_images: images }, details, links: { mission_patch: logo, video_link, youtube_id } } = launch
+    const { isFav,flight_number: idLaunch, launch_date_local: date, mission_name: mission, launch_site: { site_name_long: site }, launch_year: year, links: { flickr_images: images }, details, links: { mission_patch: logo, video_link }} = launch
+
+    let count = 0
    
     return <section className="active detail">
 
@@ -26,11 +28,11 @@ function DetailLaunch({ launch, onBack }) {
 
             <section className="main__media media">
 
-                <ul className="media__gallery">
+                <ul className="media__gallery" >
 
                     {
                         images.splice(0, 3).map(img =>
-                            <li className="media__item"> <img className="media__image" src={img} /> </li>
+                            <li className="media__item" key = {count++}> <img className="media__image" src={img}  /> </li>
                         )
                     }
 
@@ -46,13 +48,17 @@ function DetailLaunch({ launch, onBack }) {
 
             <section className="detail__base base">
 
-                <span className="base__fav">💔</span>
+            {sessionStorage.id && sessionStorage.token ? <span className="row__fav" onClick={event => {
+                event.preventDefault()
+                event.stopPropagation()
+                onFav(idLaunch)
+            }} > {isFav ? 'OK' : 'KO'}</span> : ''}
 
-                <a className="detail__back" href="" onClick={event => {
-                    event.preventDefault()
+            <a className="detail__back" href="" onClick={event => {
+                event.preventDefault()
 
-                    onBack()
-                }}>Go back</a>
+                onBack()
+            }}>Go back</a>
 
             </section>
 

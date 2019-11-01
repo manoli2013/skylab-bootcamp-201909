@@ -2,7 +2,6 @@ const { Component } = React
 
 const { query } = location
 
-const { id, token } = sessionStorage
 
 let credentials;
 
@@ -11,6 +10,7 @@ class App extends Component {
     state = { view: 'landing', credentials, error: undefined, result: undefined}
 
     componentWillMount() {
+        const { id, token } = sessionStorage
        
         if (id && token) {
             try {
@@ -33,11 +33,11 @@ class App extends Component {
     }
 
     handleGoToRegistration = () => {
-        this.setState({view: 'register'})
+        this.setState({view: 'register', error: undefined})
     }
 
     handleGoToLogin = () => {
-        this.setState({view: 'login'})
+        this.setState({view: 'login', error: undefined})
     }
 
     handleRegister = (name, surname, email, password) => {
@@ -88,14 +88,16 @@ class App extends Component {
     }
 
     handleLogout = () => {
-    
-    
+
             delete sessionStorage.id
             delete sessionStorage.token
     
             this.setState({ credentials: undefined })
-        
-        
+
+    }
+
+    handleBackToLanding = () => {
+        this.setState({view: 'landing', error: undefined})
     }
 
     handleFavCar = () => {
@@ -106,16 +108,20 @@ class App extends Component {
         console.log('ha entrado a Profile')
     }
 
-    handleSearch = (query) => {
+    handleSearch = (query) => {  
+        
+        const { id, token } = sessionStorage
         location.query = query
         
         try {
             searchLaunches(id, token, query, (error, launches) => {
-                if(error) {
+                if(error || !launches.length) {
                     
-                    this.setState({error: error.message})
+                    error && this.setState({error: error.message})
+                    !launches.length && this.setState({error: 'not found', launches: undefined})
                 }
                 else {
+                    
                     this.setState({error: undefined, launches })
                    
                 }
@@ -124,16 +130,19 @@ class App extends Component {
         } catch (error) {
             this.setState({error: error.message})
         }
-        //ToDo
+        
     }
 
 
-    handleDetail = (id) => {
-        console.log('ha entrado en handleDetail')
+    handleDetail = (idLaunch) => {
+        
+        const { id, token } = sessionStorage
+        
         try {
-            retrieveLaunch(id, (error, launch) => {
-                if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'detail', launch})
+            retrieveLaunch(idLaunch, id, token , (error, launch) => {
+                if (error){this.setState({ error: error.message })
+                console.log(launch)
+                 } else{ this.setState({ view   : 'detail', launch})}
             })
         } catch (error) {
             this.setState({ error: error.message })
@@ -141,19 +150,32 @@ class App extends Component {
     }
 
 
-    handleBackToLanding = () => {
-        this.setState({view: 'landing'})
-    }
 
-    handleLogOut = () =>{
-        console.log('ha entrado en handleLogOut')
-    }
 
     handleFav = (idLaunch) => {
+        
+        const { id, token } = sessionStorage
         try {
             toggleFav(id, token, idLaunch, (error) => {
                 error && this.setState({ error: error.message })
                 this.handleSearch(location.query)
+                
+            })
+
+        } catch (error) {
+
+            this.setState({ error: error.message })
+        }
+    }
+
+    handleFavDetail = (idLaunch) => {
+        const { id, token } = sessionStorage
+        try {
+            toggleFav(id, token, idLaunch, (error) => {
+                error && this.setState({ error: error.message })
+                this.handleSearch(location.query)
+                this.handleDetail(idLaunch)
+                
             })
 
         } catch (error) {
@@ -165,14 +187,14 @@ class App extends Component {
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut, handleFav} = this
+        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut, handleFav, handleFavDetail} = this
     
         return <>
             
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} user = {user} />}
 
             
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow row = {row} key = {row.mission_name} onClick = {handleDetail} onFav = {handleFav} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
+            {view === 'landing' && <Search onSearch = {handleSearch} error = {error} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow row = {row} key = {row.mission_name} onClick = {handleDetail} onFav = {handleFav} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
 
             {view === 'landing' && <Footer />}
             
@@ -180,8 +202,7 @@ class App extends Component {
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} onBack = {handleBackToLanding}/>}
 
-            {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToLanding} />}
+            {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToLanding} onFav = {handleFavDetail}  />}
         </>
     }
-
 }
