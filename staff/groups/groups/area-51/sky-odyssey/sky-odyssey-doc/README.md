@@ -1,18 +1,26 @@
-# SKYLAB ODYSSEY
+# SKY ODYSSEY
 
-## Intro
+## Introduction
 
-Bla Bla
+Sky Odyssey is a web application that uses SpaceX API to get information about past launches of the company.
+
+### Features
+
+- Register users
+- Sign in, sign out
+- Search launches by year
+- Click favourites when logged in
+- Get detail information about one launch
+
+<br>
 
 <center>
 
-
-![Roadstar](https://media.giphy.com/media/l4pTfBQTLOecArqSs/giphy.gif)
-
-
-</center>
+![Roadstar](https://media.giphy.com/media/l4pTfBQTLOecArqSs/giphy.gif) </center>
 
 ## Functional Description
+
+<center>
 
 ### User Cases
 
@@ -29,7 +37,11 @@ Bla Bla
 
 ![components](./components.jpg)
 
-### Block
+### Data Model
 
 ![block](./block.jpg)
+
+</center>
+
+### Screenshots
 
