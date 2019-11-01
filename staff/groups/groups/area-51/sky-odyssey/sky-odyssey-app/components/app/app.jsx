@@ -33,11 +33,11 @@ class App extends Component {
     }
 
     handleGoToRegistration = () => {
-        this.setState({view: 'register'})
+        this.setState({view: 'register', error: undefined})
     }
 
     handleGoToLogin = () => {
-        this.setState({view: 'login'})
+        this.setState({view: 'login', error: undefined})
     }
 
     handleRegister = (name, surname, email, password) => {
@@ -97,7 +97,7 @@ class App extends Component {
     }
 
     handleBackToLanding = () => {
-        this.setState({view: 'landing'})
+        this.setState({view: 'landing', error: undefined})
     }
 
     handleFavCar = () => {
@@ -113,11 +113,13 @@ class App extends Component {
         
         try {
             searchLaunches(id, token, query, (error, launches) => {
-                if(error) {
+                if(error || !launches.length) {
                     
-                    this.setState({error: error.message})
+                    error && this.setState({error: error.message})
+                    !launches.length && this.setState({error: 'not found', launches: undefined})
                 }
                 else {
+                    
                     this.setState({error: undefined, launches })
                    
                 }
@@ -187,7 +189,7 @@ class App extends Component {
             {view === 'landing' && <Header onRegister={handleGoToRegistration} onLogin = {handleGoToLogin} result = {result} onLogout = {handleLogout} onFavCar = {handleFavCar} onProfile = {handleProfile} user = {user} />}
 
             
-            {view === 'landing' && <Search onSearch = {handleSearch} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow row = {row} key = {row.mission_name} onClick = {handleDetail} onFav = {handleFav} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
+            {view === 'landing' && <Search onSearch = {handleSearch} error = {error} query = {query} output = {launches} onOutputRender = {output => <Output rows = {output} onRowsRender = {row => <OutputRow row = {row} key = {row.mission_name} onClick = {handleDetail} onFav = {handleFav} /> }/>} user = {user} onLogOut = {handleLogOut} />}        
 
             {view === 'landing' && <Footer />}
             

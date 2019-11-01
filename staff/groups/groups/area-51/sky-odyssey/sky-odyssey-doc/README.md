@@ -47,3 +47,12 @@ Sky Odyssey is a web application that uses SpaceX API to get information about p
 ![block](./block.jpg)
 
 </center>
+
+## Todo
+
+- favorite-page
+- personal-profile
+- improvement of style
+- comments
+- Test
+
