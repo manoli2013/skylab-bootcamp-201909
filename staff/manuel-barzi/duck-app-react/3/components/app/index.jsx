@@ -94,8 +94,9 @@ const App = (() => {
                 const { id, token } = sessionStorage
 
                 searchDucks(id, token, query, (error, ducks) => {
+                    console.log(error)
                     if (error) return this.setState({ error: error.message })
-
+                    
                     location.query = query
 
                     this.setState({ query, error: undefined, ducks })
