@@ -16,7 +16,9 @@ Sky Odyssey is a web application that uses SpaceX API to get information about p
 
 <center>
 
-![Roadstar](https://media.giphy.com/media/l4pTfBQTLOecArqSs/giphy.gif) </center>
+![Roadstar](https://media.giphy.com/media/l4pTfBQTLOecArqSs/giphy.gif) 
+
+</center>
 
 ## Functional Description
 
@@ -45,6 +47,3 @@ Sky Odyssey is a web application that uses SpaceX API to get information about p
 ![block](./block.jpg)
 
 </center>
-
-### Screenshots
-
