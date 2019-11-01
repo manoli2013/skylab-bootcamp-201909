@@ -88,14 +88,16 @@ class App extends Component {
     }
 
     handleLogout = () => {
-    
-    
+
             delete sessionStorage.id
             delete sessionStorage.token
     
             this.setState({ credentials: undefined })
-        
-        
+
+    }
+
+    handleBackToLanding = () => {
+        this.setState({view: 'landing'})
     }
 
     handleFavCar = () => {
@@ -124,18 +126,19 @@ class App extends Component {
         } catch (error) {
             this.setState({error: error.message})
         }
-        //ToDo
+        
     }
 
 
     handleDetail = (idLaunch) => {
-        
-        
 
         try {
-            retrieveLaunch(id, token, idLaunch , (error, launch) => {
-                if (error) this.setState({ error: error.message })
-                else this.setState({ view: 'detail', launch})
+            
+            const { id, token } = sessionStorage
+            retrieveLaunch(idLaunch, id, token , (error, launch) => {
+                if (error){this.setState({ error: error.message })
+                console.log(launch)
+                 } else{ this.setState({ view   : 'detail', launch})}
             })
         } catch (error) {
             this.setState({ error: error.message })
@@ -143,19 +146,29 @@ class App extends Component {
     }
 
 
-    handleBackToLanding = () => {
-        this.setState({view: 'landing'})
-    }
 
-    handleLogOut = () =>{
-        console.log('ha entrado en handleLogOut')
-    }
 
     handleFav = (idLaunch) => {
         try {
             toggleFav(id, token, idLaunch, (error) => {
                 error && this.setState({ error: error.message })
                 this.handleSearch(location.query)
+                
+            })
+
+        } catch (error) {
+
+            this.setState({ error: error.message })
+        }
+    }
+
+    handleFavDetail = (idLaunch) => {
+        try {
+            toggleFav(id, token, idLaunch, (error) => {
+                error && this.setState({ error: error.message })
+                this.handleSearch(location.query)
+                this.handleDetail(idLaunch)
+                
             })
 
         } catch (error) {
@@ -167,7 +180,7 @@ class App extends Component {
     render() {
         //declaramos las variables y asignamos a scope de App
 
-        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut, handleFav} = this
+        const {state: {view, error, result, query, launches, launch, user}, handleGoToRegistration, handleGoToLogin, handleRegister, handleLogin, handleLogout, handleFavCar, handleProfile, handleSearch, handleDetail, handleBackToLanding, handleLogOut, handleFav, handleFavDetail} = this
     
         return <>
             
@@ -182,8 +195,7 @@ class App extends Component {
             
             {view === 'login' && <Login onLogin = {handleLogin} error = {error} onBack = {handleBackToLanding}/>}
 
-            {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToLanding} />}
+            {view === 'detail' && <DetailLaunch launch={launch} onBack={handleBackToLanding} onFav = {handleFavDetail}  />}
         </>
     }
-
 }

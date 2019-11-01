@@ -1,6 +1,8 @@
 function DetailLaunch({ launch, onBack, onFav }) {
 
-    const { isFav, launch_date_local: date, mission_name: mission, launch_site: { site_name_long: site }, launch_year: year, links: { flickr_images: images }, details, links: { mission_patch: logo, video_link }} = launch
+    const { isFav,flight_number: idLaunch, launch_date_local: date, mission_name: mission, launch_site: { site_name_long: site }, launch_year: year, links: { flickr_images: images }, details, links: { mission_patch: logo, video_link }} = launch
+
+    let count = 0
    
     return <section className="active detail">
 
@@ -26,11 +28,11 @@ function DetailLaunch({ launch, onBack, onFav }) {
 
             <section className="main__media media">
 
-                <ul className="media__gallery">
+                <ul className="media__gallery" >
 
                     {
                         images.splice(0, 3).map(img =>
-                            <li className="media__item"> <img className="media__image" src={img} /> </li>
+                            <li className="media__item" key = {count++}> <img className="media__image" src={img}  /> </li>
                         )
                     }
 
@@ -46,12 +48,11 @@ function DetailLaunch({ launch, onBack, onFav }) {
 
             <section className="detail__base base">
 
-            {sessionStorage.id && sessionStorage.token ? <span className="detail__fav" onClick={event => {
+            {sessionStorage.id && sessionStorage.token ? <span className="row__fav" onClick={event => {
                 event.preventDefault()
                 event.stopPropagation()
-                onFav(id)
+                onFav(idLaunch)
             }} > {isFav ? 'OK' : 'KO'}</span> : ''}
-
 
             <a className="detail__back" href="" onClick={event => {
                 event.preventDefault()
