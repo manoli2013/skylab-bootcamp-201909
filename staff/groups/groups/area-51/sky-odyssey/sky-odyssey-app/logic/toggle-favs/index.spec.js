@@ -1,5 +1,7 @@
-describe('logic - retrieve user', () => {
+describe('logic - toggleFav', () => {
+
     let name, surname, email, password, id, token
+    const idLa
 
     beforeEach(done => {
         name = `name-${Math.random()}`
@@ -25,17 +27,26 @@ describe('logic - retrieve user', () => {
         })
     })
 
-    it('should succeed on correct user data', done => {
-        retrieveUser(id, token, (error, data) => {
-            expect(error).toBeUndefined()
+    describe('user without favorite news', () => {
 
-            expect(data).toBeDefined()
-            expect(data.name).toBe(name)
-            expect(data.surname).toBe(surname)
-            expect(data.username).toBe(email)
-            expect(data.password).toBeUndefined()
+        let idLaunch = 53
 
-            done()
+        it('it should create favorite array inside of user account', done => {
+            toggleFav(id, token, idLaunch, call)
         })
+
     })
+
+    describe('user add favorite news', () => {
+
+        
+
+    })
+
+    describe('user remove favorite news', () => {
+
+        
+
+    })
+
 })
