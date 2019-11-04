@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Desigual - Cart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/80c46885ed.js"></script>  
+    <link href="https://fonts.googleapis.com/css?family=Voltaire&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://www.desigual.com//on/demandware.static/Sites-dsglcom_prod_es-Site/-/default/dw5e1d62f1/images/favicons/favicon-196x196.png" sizes="196x196">
+</head>
+<body>
+    <header class="header__container header">
+        <nav class="header__nav navbar">
+            <div class="navbar__menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="navbar__icons">
+                <ul class="icon__list">
+                    <li class="icon__item heart">
+                        <i class="far fa-heart"></i>
+                    </li>
+                    <li class="icon__item">
+                        <i class="fas fa-shopping-bag"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar__logo">
+                <img src="https://www.ecestaticos.com/image/clipping/654/d1fa7df951538e5fea617d564fdfb140/el-nuevo-logo-de-la-marca.jpg" class="logo" alt="Desigual">
+            </div>
+            <form class="navbar__form">
+                <input type="search" class="search" placeholder="Buscar" name="" id="">
+                <button class="search__button"><i class="fas fa-search"></i></button>
+            </form>
+        </nav>
+    </header>
+    <main class="main__container main">
+        <section class="cart__container cart">
+            <h1 class="cart__title">
+                MI BOLSA
+            </h1>
+            <div class="cart__product-card">
+                <div class="item-card card">
+                    <div class="card__img">
+                        <picture>
+                            <img src="https://www.desigual.com/dw/image/v2/BCVV_PRD/on/demandware.static/-/Sites-desigual-m-catalog/default/dwb9341e46/images/B2C/19WWJF20_2000_X.jpg" class="img" alt="product">
+                        </picture>
+                    </div>
+                    <div class="card__info">
+                        <p class="product__name">
+                            Chaqueta abierta con cinturón<br>
+                            <span class="product-code">19WWJF202000L</span>
+                        </p>
+                        <p class="product-size">
+                            Talla L
+                        </p>
+                        <p class="small-text">Editar<br>Mover a favoritos</p>
+                        <p class="produnt-count">Cantidad</p>
+                        <div class="divide">
+                            <select name="count" id="">
+                                <option value="1" selected>1</option>
+                            </select>
+                            <p class="product-pricing">€ 119,95</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cart__total">
+                <p class="cart__code">
+                    <i class="fas fa-ticket-alt"></i>
+                    <span>¿Tienes un código promocional?</span>
+                </p>
+                <div class="cart__expenses">
+                    <p class="cart__shipping">
+                        Gastos de envío<br>
+                        <span>(Envío a domicilio y recogida)</span>
+                    </p>
+                    <p class="cart__free-shipping">Gratis</p>
+                </div>
+                <div class="cart__expenses">
+                    <p class="cart__total">
+                        <strong>Total estimado</strong><br>
+                        <span>(Impuesto incluído)</span>
+                    </p>
+                    <p class="cart__total-price">€ 119,95</p>
+                </div>
+            </div>
+            <a href="#" class="cart__button">Comprar</a>
+        </section>
+    </main>
+    <footer class="footer__container footer">
+        <div class="footer__top">
+            <ul class="costumer-service__menu">
+                <li class="costumer-service__item">
+                    <a href="#" class="link">
+                        <i class="fas fa-truck-moving"></i> Envíos gratis
+                    </a>
+                </li>
+                <li class="costumer-service__item">
+                    <a href="#" class="link">
+                        <i class="fas fa-undo-alt"></i> Devoluciones gratis
+                    </a>
+                </li>
+                <li class="costumer-service__item">
+                    <a href="#" class="link">
+                        <i class="fas fa-box"></i> Sigue tu pedido
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer__banner banner">
+            <h1 class="banner__title">Magic.</h1>
+            <p class="banner__text">
+                Disfruta al máximo de la experiencia Desigual!
+            </p>
+            <a href="#" class="banner__button">
+                Registrarse
+            </a>
+        </div>
+        <div class="footer__bottom">
+            <div class="footer__menu">
+                <ul class="collapse__menu">
+                    <li class="collapse__item"><a href="#" class="link">Guía de compra</a></li>
+                    <li class="collapse__item"><a href="#" class="link">Contacto y Ayuda</a></li>
+                    <li class="collapse__item"><a href="#" class="link">Desigual</a></li>
+                    <li class="collapse__item"><a href="#" class="link">Legal y Cookies</a></li>
+                </ul>
+            </div>
+            <div class="footer__location">
+                <div class="form-control">
+                    <label for="countrySelector" class="form-control-label label">País</label> 
+                    <div class="form-control-select">
+                        <select name="countrySelector" id="countrySelector" class="country-selector">
+                            <option value="España" selected>
+                                España
+                            </option> 
+                            <option value="Canada">
+                                Canada
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <label for="countrySelector" class="form-control-label label">Idioma</label> 
+                    <div class="form-control-select">
+                        <select name="languageSelector" class="language-selector">
+                            <option value="España" selected>
+                                Español
+                            </option> 
+                            <option value="Catala">
+                                Català
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__social">
+                <ul class="social__icons">
+                    <li><a href="#" class="link gray"><i class="fab fa-twitter-square"></i></a></li>
+                    <li><a href="#" class="link gray"><i class="fab fa-facebook-square"></i></a></li>
+                    <li><a href="#" class="link gray"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#" class="link gray"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+                <div class="social__logo">
+                    <img src="https://www.ecestaticos.com/image/clipping/654/d1fa7df951538e5fea617d564fdfb140/el-nuevo-logo-de-la-marca.jpg" class="logo" alt="Desigual">
+                    <p class="copyright">© 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

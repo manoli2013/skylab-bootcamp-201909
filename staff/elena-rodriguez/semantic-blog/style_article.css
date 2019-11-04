@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+ }
+ 
+ body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: lighter;
+  display: grid;
+  grid-template-rows: 15% 78% 7%;
+  grid-template-columns: 100%;
+  grid-template-areas: 
+ "header"
+ "main"
+ "footer";
+ }
+
+.header {
+  grid-area: header;
+  padding: 20px;
+ }
+ 
+ a {
+   text-decoration: none;
+   color: black;
+ }
+ 
+ .navegador { 
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-bottom: 1px solid black;
+  padding: 0 1rem;
+ }
+
+ form {
+  width: 25vw;
+  display: flex;
+  justify-content: flex-end;
+ }
+ 
+.header__ul {
+  display: flex;
+  justify-content: flex-start;
+}
+ 
+ .header__li {
+   margin-right: 10px;
+   font-size: 12px;
+   list-style: none;
+   color: black;
+   
+ }
+ 
+ .header__link {
+   text-decoration: none;
+   color: rgb(0, 0, 0);
+ }
+ 
+ .header__input {
+   
+   justify-content: flex-end;  
+
+ }
+
+  main {
+    grid-area: main;
+    
+  }
+
+ .section-title {
+  font-size: 30px;
+  margin-left: 2%;
+  grid-area: title;
+  
+ }
+ 
+ .comentarios {
+  margin-top: 0px;
+  margin-bottom: 1%;
+  font-size: 15px;
+  margin-left: 1%;
+  margin-right: 1%;
+  grid-area: comentarios;
+ }
+
+ .comentarios__title {
+   margin: 1% 0;
+ }
+
+.comentarios__content {
+  margin: 1% 0;
+}
+
+.comentarios__box {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0.1rem;
+}
+ 
+ .article {
+  margin: 1%;
+   display: grid;
+   grid-area: article;
+   grid-template-rows: 100%;
+   grid-template-columns: minmax(20vw, 30vw) auto;
+   grid-template-areas: 
+     "imagen contenido";
+   
+ }
+ 
+ .article__image {
+   grid-area: imagen;
+   margin-left: 5%;
+
+ }
+ 
+ .content {
+  align-content: center;
+  display: grid;
+   grid-area: contenido;
+   grid-template-rows: 10% 10% 10% 70%;
+   grid-template-columns: auto;
+   grid-template-areas: 
+     "titulo"
+      "date"
+     "signature"
+     "texto";
+   
+ }
+ 
+ .content__title {
+   grid-area: titulo;
+   font-size: 25px;
+    
+ }
+ 
+ .content__date {
+   font-size: 15px;
+   margin-top: 1%;
+   grid-area: date;
+ }
+ 
+ .content__signature {
+  font-size: 15px;
+   grid-area: signature;
+ }
+ 
+ .content__text {
+   margin-right: 8%;
+   font-size: 16px;
+   grid-area: texto;
+ }
+ 
+ footer {
+  margin: 1vw;
+   grid-area: footer;
+   border-top: 1px solid black;
+   display: flex;
+   justify-content: center;
+   align-items: flex-end;
+ }
+ 

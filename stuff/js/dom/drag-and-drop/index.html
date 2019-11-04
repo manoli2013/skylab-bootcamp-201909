@@ -1,0 +1,91 @@
+<div class="dropzone">
+  <!-- Pondremos el atributo draggable con valor true en el elemento que queramos hacer drag and drop -->
+    <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+      This div is draggable
+    </div>
+  </div>
+  <div class="dropzone"></div>
+  <div class="dropzone"></div>
+  <div class="dropzone" id="select"></div>
+  
+  <style>
+    #draggable {
+      width: 200px;
+      height: 20px;
+      text-align: center;
+      background: white;
+    }
+  
+    .dropzone {
+      width: 200px;
+      height: 20px;
+      background: blueviolet;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+  </style>
+  
+  <script>
+    var dragged;
+    var dropzone = document.getElementsByClassName('dropzone')
+
+    /* Se dispara cada pocos cientos de milisegundos a medida que el usuario arrastra un elemento o selección de texto */
+    document.addEventListener("drag", function( event ) {
+    }, false);
+  /*Se activa cuando el usuario comienza a rrastrar 	un elemento o selección de texto.*/
+    document.addEventListener("dragstart", function( event ) {
+        // store a ref. on the dragged elem
+        dragged = event.target;
+        document.getElementById('draggable').textContent = 'Todo bien'
+
+     }, false);
+  /*Se dispara cuando finaliza una operación de arrastre(soltando el botón del mouse o presionado la tecla de escape)*/
+    document.addEventListener("dragend", function( event ) {
+        event.target.style.opacity = 0.4;
+        var dropzone = document.getElementsByClassName('dropzone')
+        for (let i =0; i<dropzone.length; i++ )
+        dropzone.item(i).style.backgroundColor = 'blueviolet';
+    }, false);
+  
+    /* Se activa cuando un elemento o selección de texto se arrastra sobre un destino válido(tras unos pocos cientos de milisegundos) */
+    document.addEventListener("dragover", function( event ) {
+        event.preventDefault();
+        document.getElementById('draggable').textContent = 'Todo mal'
+        for (let i =0; i<dropzone.length; i++ )
+        dropzone.item(i).style.backgroundColor = 'salmon';
+
+    }, false);
+  /*Se dispara cuando un elemento arrastrado o una seleccion de texto ingresa a un objetivo de colocación válido. El objeto de destino es la selección inmediata del usuario(el elemetno diretamente indicado por el usuario como destino de colocación ), o el <body>*/
+    document.addEventListener("dragenter", function( event ) {
+        if ( event.target.className == "dropzone" ) {
+          if(document.getElementById('select')){debugger
+            document.getElementById('draggable').textContent = 'Todo mal'
+          }
+            event.target.style.borderRadius = '20%';
+
+        }
+  
+    }, false);
+  /*Se dispara cuando un elemento arrastrado o una selección de texto deja un objetivo de caida válido*/
+    document.addEventListener("dragleave", function( event ) {
+        // reset background of potential drop target when the draggable element leaves it
+          var dropzone = document.getElementsByClassName('dropzone')
+        if ( event.target.className == "dropzone" ) {
+          event.target.style.background = "";
+          event.target.style.borderRadius = '0%';
+        }
+  
+    }, false);
+  /* Se dispara cuando un elemento o una seleccion de texto se suelta en un destino de caída, válido*/
+    document.addEventListener("drop", function( event ) {
+        // prevent default action (open as link for some elements)
+        event.preventDefault();
+        // move dragged elem to the selected drop target
+        if ( event.target.className == "dropzone" ) {
+            event.target.style.background = "";
+            dragged.parentNode.removeChild( dragged );
+            event.target.appendChild( dragged );
+        }
+      
+    }, false);
+  </script>

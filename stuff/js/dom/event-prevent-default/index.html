@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eventPreventDefault</title>
+</head>
+
+<body>
+
+  <form class="form1">
+    <p>ejemplo: aquí se puede ver como por una milésima de segundo pinta hola en la consola luego recarga la página.</p>
+    <input type="text">
+    <button>enviar form1</button>
+  </form>
+
+  <form class="form2">
+    <p>ejemplo: aquí se puede ver como imprime hola</p>
+    <input type="text">
+    <button>enviar form2</button>
+  </form>
+
+  <form class="form">
+    <p>ejemplo: aquí se puede ver qué integra el object event. lo mostramos en consola</p>
+    <input type="text">
+    <button>enviar form</button>
+  </form>
+
+  <div>
+    <p>ejemplo: elementos que su evento que no recargan página</p>
+    <div class="test__div">test div</div>
+    <p class="test__p">test p</p>
+    <i class="test__p">test p</i>
+  </div>
+
+  <div>
+    <p>ejemplo: otro ejemplo que su evento que sí recargan la página</p>
+    <a href="" class="test__a-1">test a con preventDefault</a>
+    <br />
+    <a href="" class="test__a-2">test a sin preventDefault</a>
+  </div>
+
+  <!-- link script -->
+  <script src="index.js"></script>
+
+</body>
+
+</html>

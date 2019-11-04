@@ -1,0 +1,17 @@
+/**
+ * Checks if every element of the array comply the expression
+ * @param {function} expression The expression to evaluate the values
+ * 
+ * @returns {boolean} True if every element comply, false if not
+ */
+Hooray.prototype.every = function (expression) {
+    if (typeof expression !== 'function') throw TypeError(expression + ' is not a function');
+
+    for (let i = 0; i < this.length; i++) {
+        if (!expression(this[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+

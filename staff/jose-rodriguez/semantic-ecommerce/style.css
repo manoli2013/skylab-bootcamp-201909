@@ -1,0 +1,141 @@
+.body__content {
+    font-family: fantasy;
+    font-size: 0.8rem;
+    margin: 2rem;
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 30vw;
+    height: 30vh;
+}
+
+.banner {
+    /* border: rgba(235, 234, 232, 0.753) solid 0.2rem; */
+    border-radius: 0.3rem;
+    width: 50vw;
+    height: 30vh;
+}
+
+.image_banner {
+    width: 45vw;
+    height: 30vh;
+}
+
+.navigation__content {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.header__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom,#fff 0,#f1f1f1 100%);
+    border-radius: 0.2rem;
+    box-shadow:  0 1px 0 rgba(255, 255, 255, 0.767), 0 1px 5px rgba(0,0,0,.075);
+    width: 95%;
+}
+
+.menu__options {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+.menu__options .menu__options-button a {
+    text-decoration: none; 
+    background-color: rgba(0, 0, 0, 0);
+    color:black; 
+}
+
+.menu__options .menu__options-button a:hover { 
+    box-shadow:10px 10px 20px #000000; 
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 10px;
+}
+
+.navigation__search {
+    margin-right: 1rem;
+}
+
+.search__input{
+    width: 20rem;
+    height: 2rem;
+    background: #d1d2d46c;
+    border: 0.1rem;
+    font-size: 10pt;
+    color: #63717f;
+    border-radius: 0.2rem;
+    margin-left: 0.1rem;
+  }
+
+.menu__options-button{
+    margin-left: 0.5rem;
+    font-size: 1rem;
+
+}
+
+.article__content {
+    display: flex;
+    flex-wrap: wrap;
+    border: solid 0.1rem #dcdddf;
+    border-radius: 0.2rem;
+    background: linear-gradient(to bottom,#fff 0,#f1f1f1 100%);
+    margin-bottom: 1rem;
+}
+
+
+
+.information__text {
+    margin: 0;
+}
+
+.article__container {
+    box-sizing: content-box;
+    
+}
+.article__image {
+    box-sizing: content-box;
+    width: 15rem;
+    height: 14rem;
+}
+
+.article__image:hover {
+filter: brightness(1.1);
+}
+
+.article__description {
+    width: 20vw;
+    margin: 1rem;
+}
+
+.article {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 5vh;
+    border-top: 0.1rem solid rgba(235, 234, 232, 0.753);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.2rem;
+    margin: 0;
+}
+
+.information__text {
+    text-decoration: underline;
+    text-shadow: #63717f;
+}
+

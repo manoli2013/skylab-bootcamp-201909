@@ -1,0 +1,105 @@
+.link {
+  text-decoration: none;
+  color: #f1f1f1;
+  cursor: pointer; }
+  .link:hover {
+    text-decoration: underline;
+    color: #fa7000; }
+
+.header {
+  padding: 1rem;
+  height: 35vh;
+  background: linear-gradient(to right, rgba(235, 252, 0, 0.855), #f56702);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  .header__tittle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    font-size: 4rem;
+    color: whitesmoke;
+    text-shadow: 0.1rem 0.1rem 0.2rem #15c924;
+    margin-bottom: 2rem; }
+  .header__search-bar {
+    height: 10%; }
+
+.main {
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to bottom, rgba(255, 234, 42, 0.829), rgba(241, 136, 60, 0.822));
+  background-size: 100%;
+  background-repeat: no-repeat; }
+  .main__duck-detail, .main__search-list {
+    width: 80vw; }
+
+.entry__tittle {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 90%;
+  font-weight: bold;
+  width: 60%;
+  margin-left: 2%;
+  margin-right: 5%; }
+.entry__img {
+  width: 3rem;
+  height: 3rem; }
+.entry__price {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1rem; }
+
+.search-list {
+  margin: 0;
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+  .search-list__entry {
+    margin: 0.5rem;
+    width: 45vw;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 1rem;
+    border: 0.1rem solid #dbd833;
+    padding-left: 1%;
+    box-shadow: 0.2rem 0.2rem 0.1rem tomato;
+    background: linear-gradient(to bottom right, #36f73f, #55bd00); }
+  .search-list__entry:hover {
+    background: linear-gradient(to bottom right, rgba(255, 94, 0, 0.847), rgba(148, 54, 0, 0.847));
+    color: whitesmoke; }
+
+.duck-detail {
+  display: none;
+  flex-direction: column;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 70vw; }
+  .duck-detail__title {
+    margin-top: 2rem;
+    margin-bottom: 2rem; }
+  .duck-detail__description {
+    font-size: 0.9rem; }
+  .duck-detail__image {
+    align-self: center;
+    max-width: 99vw; }
+  .duck-detail__back {
+    width: 3rem;
+    color: whitesmoke;
+    background-color: #44af46;
+    border-radius: 0.1rem;
+    outline: none;
+    border: 1px solid white; }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Blog_landing_html</title>
+</head>
+<body>
+    <header>
+        <h1 class="landing_title">THE BOOKWORMS</h1>
+        <div class="header_bottom">
+            <nav id="nav">
+                <ul id="nav_menu">
+                    <li>
+                        <a href="#">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#">BOOK REVIEWS</a>
+                    </li>
+                    <li>
+                        <a href="#">ECHANGE COMMUNITY</a>
+                    </li>
+                    <li>
+                        <a href="#">RELATED</a>
+                    </li>
+                    <li>
+                        <a href="#">ABOUT US</a>
+                    </li>
+                </ul>
+            </nav>
+            <form name="busqueda">
+                <input type="searc" value="buscar">
+            </form>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="section_header">
+            <h1 class="section_title">Últimas entradas: </h1>
+        </div>
+        <div class="articulos_tres_columnas">
+            <article class="last_reviews1">
+                <header class="header_article">
+                    <figure class="image">
+                        <img class="img" src="data:image/jpeg;base64,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" alt="Imagen portada libro principito" width="350">
+                    </figure>
+                </header> 
+                <div class="article_content">
+                    <h2>
+                        <a class="title" href="enlace a articulo completo">El principito: un clásico para niños y no tan niños.</a>
+                    </h2>
+                    <h3 class="signature">By: la lectora</h3>
+                    <p class="cut_review">Podría cometerse el error de pensar que "El Principito" es un libro para niños, 
+                        un cuento corto, sin más. Cierto es, que si leemos el cuento de forma literal no 
+                        es más que la historia de un niño solitario...</p>
+                
+                    <footer>
+                        <p class="posted_date">02/10/2019</p>
+                    </footer>
+                    
+                </div>
+            </article>
+        
+            <article class="last_reviews2">
+                
+                    <header class="header_article">
+                        <figure class="image">
+                            <img class="img" src="https://images-eu.ssl-images-amazon.com/images/I/416zcHBGxHL._SX195_.jpg" alt="portada lirbo alguien volo sobre el nido del cuco" width="300">
+                        </figure>
+                    </header> 
+    
+                    <div class="article_content">
+                        <h2>
+                            <a class="title" href="enlace a articulo completo">Alguien voló sobre el nido del cuco.</a>
+                        </h2>
+                        <h3 class="signature">By: la lectora</h3>
+                        <p class="cut_review">Alguien voló sobre el nido del cuco es una denuncia a los manicomios 
+                                e instituciones mentales, una denuncia a cómo se ha tratado a los «locos» a lo largo de 
+                                la historia, un grito de guerra en el lugar de los eternos olvidados. Pero, además, es 
+                                un despertar a la libertad de todos los individuos.</p>
+                        <footer>
+                            <p class="posted_date">02/10/2019</p>
+                        </footer>
+                    </div>
+                </article>
+                <article class="last_reviews3">
+                    <header class="header_article">
+                        <figure class="image">
+                            <img class="img" src="https://images-na.ssl-images-amazon.com/images/I/51nRxbvh5iL._SX327_BO1,204,203,200_.jpg" alt= "portada el nombre del viento" width="300">
+                        </figure>
+                    </header> 
+                    <div class="article_content">
+                        <h2>
+                            <a class="title" href="enlace a articulo completo">El nombre del viento: la historia inacabada.</a>
+                        </h2>
+                        <h3 class="signature">By: la lectora</h3>
+                        <p class="cut_review">Podría cometerse el error de pensar que "El Principito" es un libro para niños, 
+                            un cuento corto, sin más. Cierto es, que si leemos el cuento de forma literal no 
+                            es más que la historia de un niño solitario...</p>
+                        <footer>
+                            <p class="posted_date">02/10/2019</p>
+                        </footer>
+                    </div>
+                </article>
+        </div>
+    </main>
+    <footer>
+        <p class="copyright">© Elena Rodríguez</p>
+    </footer>
+</body>
+</html>

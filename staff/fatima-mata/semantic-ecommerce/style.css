@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin: 20px auto;
+  font-size: 16px;
+  padding: 10px;
+  background-color: RGB(199, 21, 133);
+}
+
+.header__title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: RGB(75, 0, 130);
+  color: RGB(106, 90, 205);
+  text-align: center;
+  font-family: Arial;
+  font-size: 40px;
+}
+
+.nav {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  background-color: RGB(106, 90, 205);
+}
+.nav__item {
+  padding: 10px;
+  text-align: center;
+  font-family: Arial;
+  font-size: 25px;
+}
+.nav__form {
+  display: block;
+  padding: 10px;
+  width: 110px;
+  margin: 30px 20px 30px 40px;
+  text-align: center;
+}
+
+.main {
+  margin: 30px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.main__section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px;
+  background-color: RGB(75, 0, 130);
+  text-align: center;
+  font-family: Arial;
+}
+.main__title {
+  text-align: center;
+  font-family: Arial;
+  font-size: 30px;
+  color: RGB(106, 90, 205);
+}
+
+.article {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-bottom: 15px;
+  border: 1px solid;
+  font-family: Arial;
+  background-color: white;
+  text-align: left;
+}
+.article__img {
+  width: 20%;
+  height: 20%;
+}
+
+.div {
+  font-family: Arial;
+  color: RGB(106, 90, 205);
+  background-color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  height: 50px;
+  background-color: RGB(75, 0, 130);
+  font-size: 1.25rem;
+  font-family: Arial;
+  color: RGB(106, 90, 205);
+}
+
+/*# sourceMappingURL=style.css.map */

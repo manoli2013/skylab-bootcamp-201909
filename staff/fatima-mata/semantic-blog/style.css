@@ -1,0 +1,137 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin: 20px auto;
+  font-size: 16px;
+  padding: 10px;
+  background-color: RGB(95, 158, 160);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: strech;
+  background-color: RGB(176, 224, 230);
+}
+.header__title1 {
+  text-align: center;
+  font-family: Tahoma;
+  color: RGB(95, 158, 160);
+}
+.header__nav-list {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+}
+.header__nav-item {
+  padding: 10px;
+  text-align: center;
+  font-family: Tahoma;
+}
+.header__form {
+  display: block;
+  padding: 10px;
+  width: 110px;
+  margin: 30px 10px 30px 40px;
+  text-align: center;
+}
+
+.main {
+  margin: 30px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.main__section {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  padding: 5px;
+}
+.main__aside {
+  width: 28%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: RGB(176, 224, 230);
+  text-align: center;
+  font-family: Tahoma;
+}
+.main__aside > * {
+  height: 100%;
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: RGB(95, 158, 160);
+}
+.main__aside-title {
+  text-align: center;
+  font-family: Tahoma;
+  color: RGB(176, 224, 230);
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+  border: 1px solid;
+}
+.article__title {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid RGB(95, 158, 160);
+  width: 99%;
+  height: 30px;
+  font-family: Tahoma;
+  font-size: 0.75rem;
+  background-color: RGB(176, 224, 230);
+}
+.article__time {
+  padding: 10px;
+  margin-bottom: 1px;
+  border-left: 5px solid RGB(95, 158, 160);
+  width: 99%;
+  height: 30px;
+  font-family: Tahoma;
+  font-size: 0.75rem;
+  background-color: white;
+}
+.article__content {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid RGB(95, 158, 160);
+  width: 99%;
+  height: 70px;
+  background-color: RGB(176, 224, 230);
+  font-size: 0.75rem;
+  font-family: Tahoma;
+}
+.article__div {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid RGB(95, 158, 160);
+  width: 99%;
+  height: 30px;
+  font-family: Tahoma;
+  font-size: 0.75rem;
+  background-color: white;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  height: 50px;
+  background-color: RGB(95, 158, 160);
+  font-size: 1.25rem;
+  font-family: Tahoma;
+  color: RGB(176, 224, 230);
+}
+
+/*# sourceMappingURL=style.css.map */

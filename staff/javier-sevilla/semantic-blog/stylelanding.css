@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif; 
+    
+}
+
+.container {
+    margin: 0px auto;
+    width: 100%;  
+    height: 100%;
+    /* border: 5px solid red;   */
+}
+
+.boxhead {
+    background-color: rgb(158, 14, 14);
+    height: 7rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    margin-left: 2.5rem;
+}
+
+.menu {
+    display: flex;
+    width: 30vw;
+    justify-content: space-around;
+    font-size: 15px;
+}
+
+.item1,
+.item2,
+.item3,
+.item4 {
+    display: flex;
+    height: 5vw;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.separador {
+    border: 1px dotted;
+    width: 1090px;
+    margin-left: 15%;
+    margin-bottom: 2%;
+}
+
+.boxtextprin {
+    margin-left: 25%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    width: 47rem;
+    /* height: 20rem;   */
+}
+
+.mainparrilla {
+    margin-left: 15%;
+    margin-right: 17%;
+    /* height: 120rem; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 55px;
+    /* border: 5px solid red;   */
+    
+}
+
+.itemparrilla {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.descripcionparrilla {
+    font-size: 12px;
+    padding: 3%;
+}
+
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top:10%;
+    /* border: 5px solid red;   */
+    background-color: rgb(131, 36, 36);
+    color: white;
+    border-radius: 10px;
+}
+
+.footer__logo {
+    display: flex;
+    flex-direction: column;
+    margin-left:5%;
+    width: 30%
+    /* border: 5px solid red;   */
+}
+
+.footer__menu {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    /* border: 5px solid red;   */
+}
+
+.footer__menu-item2,
+.footer__menu-item1,
+.footer__menu-item3,
+.footer__menu-item4
+ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer__mapa {
+    padding: 2%;
+
+}
+
+.footer__mapa-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60%;
+
+}
+
+.footer__logo-social {
+    display: flex;
+    font-size: 20px; 
+}
