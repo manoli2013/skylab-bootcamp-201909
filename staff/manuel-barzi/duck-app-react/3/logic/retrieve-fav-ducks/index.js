@@ -24,7 +24,8 @@ function retrieveFavDucks(id, token, callback) {
 
                     favs[i] = result2
 
-                    if (++counter === favs.length) callback(undefined, favs)
+                    //if (++counter === favs.length) callback(undefined, favs)
+                    ++counter === favs.length && callback(undefined, favs)
                 })
             }
         else callback(undefined, favs)
