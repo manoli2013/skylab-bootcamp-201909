@@ -9,9 +9,6 @@ const request = http.get(url, response => {
 
     response.on('data', chunk => console.log(chunk))
 
-    // let counter = 0
-    // response.on('data', chunk => {console.log(chunk); counter++})
-    // response.on('end', () => console.log(counter))
 })
 
 request.on('error', error => { throw error })

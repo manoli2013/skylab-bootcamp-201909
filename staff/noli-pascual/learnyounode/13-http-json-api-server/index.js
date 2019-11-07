@@ -1,12 +1,11 @@
 const http = require('http'),
-    url = require('url'),
-    { argv: [, , port = 8080] } = process
+url = require('url'),
+{ argv: [, , port = 8080] } = process
 
 const server = http.createServer((req, res) => {
     const { method } = req
 
     if (method === 'GET') {
-        debugger
 
         const { pathname, query: { iso } } = url.parse(req.url, true)
 
@@ -24,6 +23,7 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'application/json' })
 
             res.end(json)
+
         } else if (pathname === '/api/unixtime') {
             if (!iso) return res.end('Sorry, buddy, you have forgotten to send me the ISO date .P')
 
@@ -34,6 +34,7 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'application/json' })
 
             res.end(json)
+            
         } else res.end('Sorry, buddy, I do not have this endpoint .P')
 
     } else res.end('I only work with GET, buddy .P')

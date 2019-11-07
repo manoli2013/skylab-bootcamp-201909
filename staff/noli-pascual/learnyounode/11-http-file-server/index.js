@@ -7,11 +7,7 @@ const server = http.createServer((request, response) => {
     const rs = fs.createReadStream(file)
 
     response.writeHead(200, { 'content-type': 'text/plain' })
-    // response.writeHead(200, {
-    //     'content-type': 'text/html',
-    //     'Access-Control-Allow-Origin': '*'
-    // })
-
+    
     rs.pipe(response)
 })
 
