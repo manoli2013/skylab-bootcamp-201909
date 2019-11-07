@@ -27,13 +27,13 @@ describe('logic - retrieve user', () => {
 
     it('should succeed on correct user data', done => {
         retrieveUser(id, token, (error, data) => {
-            expect(error).toBeUndefined()
+            expect(error).not.to.exist
 
-            expect(data).toBeDefined()
+            expect(data).to.exist
             expect(data.name).toBe(name)
             expect(data.surname).toBe(surname)
             expect(data.username).toBe(email)
-            expect(data.password).toBeUndefined()
+            expect(data.password).to.not.exist
 
             done()
         })

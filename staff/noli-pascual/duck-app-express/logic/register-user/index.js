@@ -12,7 +12,11 @@ module.exports = function(name, surname, email, password, callback) {
     if (!password.trim().length) throw new ContentError('password is empty or blank')
     if (typeof callback !== 'function') throw new TypeError(callback + ' is not a function')
 
-    call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/user', { name, surname, username: email, password }, result => {
-        result.error ? callback(new Error(result.error)) : callback();
+    return new Promise ((resolve, reject) => {
+
+        call('POST', undefined, 'https://skylabcoders.herokuapp.com/api/user', { name, surname, username: email, password }, result => {
+            result.error ? reject(new Error(result.error)) : resolve();
+        })
+
     })
 }
