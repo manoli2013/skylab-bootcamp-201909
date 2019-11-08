@@ -1,20 +1,11 @@
 const express = require('express')
-const templateHead = require('./helpers/template-head.js')
-const Landing = require('./components/landing')
-const Register = require('./components/register')
-const Login = require('./components/login')
-const querystring = require('querystring')
-const registerUser = require('./logic/register-user')
-const Feedback = require('./components/feedback')
-const authenticateUser = require('./logic/authenticate-user')
-const Search = require('./components/search')
-const searchDucks = require('./logic/search-ducks')
-const retrieveUser= require('./logic/retrieve-user')
-
-
+const { Landing, Register, Login, Search } = require('./components')
+const { registerUser, authenticateUser, retrieveUser, searchDucks } = require('./logic')
+// const logic = require('./logic')
+const { bodyParser, cookieParser } = require('./utils/middlewares')
+const templateHead = require('./helpers/template-head')
 const { argv: [, , port = 8080] } = process
 
-//aquí guardaremos mediante asignación de propiedades las sesiones de usuarios
 const sessions = {}
 
 const app = express()
@@ -22,101 +13,102 @@ const app = express()
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.send( templateHead(Landing({ register: '/register', login: '/login', })) )
+    res.send(templateHead( Landing({ register: '/register', login: '/login' }) ))
 })
 
 app.get('/register', (req, res) => {
-    res.send( templateHead(Register()) )
+    res.send(templateHead( Register({ path: '/register' }) ))
+})
+
+app.post('/register', bodyParser, (req, res) => {
+    const { body: { name, surname, email, password } } = req
+
+    try {
+        registerUser(name, surname, email, password)
+            .then(() => res.redirect('/'))
+            .catch(({ message }) => res.send(templateHead( Register({ path: '/register' }), Feedback() )))
+    } catch (error) {
+        res.send(templateHead( Register({ path: '/register', error: error.message }) ))
+    }
 })
 
 app.get('/login', (req, res) => {
-    res.send( templateHead(Login({path: '/login'})) )
+    res.send(templateHead( Login({ path: '/login' }) ))
 })
 
-app.get('/search', (req, res) => {
-    res.send( templateHead(Search()) )
-})
+app.post('/login', bodyParser, (req, res) => {
+    const { body: { email, password } } = req
 
-app.post('/register', (req, res) => {
-    
-    let content = ''
-
-    req.on('data', chunk => content += chunk)
-
-    req.on('end', () => {
-        
-        const { name, surname, email, password } = querystring.parse(content)
-
-        try {
-            registerUser(name, surname, email, password, (error => {
-                if(error) res.send( templateHead(Feedback()))
-                else res.redirect('/login')
-            }))
-        } catch (error) {
-            res.send( templateHead(Feedback()))
-        }  
-    })
-})
-
-app.post('/login', (req, res) => {
-    
-    let content = ''
-
-    req.on('data', chunk => content += chunk)
-
-    req.on('end', () => {
-        
-        const { email, password } = querystring.parse(content)
-
-        try {
-            authenticateUser(email, password, (error,credentials) => {
-                
-                if(error) return res.send( templateHead(Feedback()))
-
-                const {id, token} = credentials
-
-                //agregamos a sesiones el usuario
-
-                sessions.id = token
-
-                //agregamos a cookie mediante headers, con el identificador del id
-
-                res.setHeader('set-cookie', `id = ${id}`)
-
-                res.redirect('/search')     
-        
-            })
-
-        } catch (error) {
-            res.send( templateHead(Feedback()))
-        }  
-    })
-})
-
-app.get('/search', (req, res) => {
-    
     try {
-        
-    } catch (error) {
-        
-    }
+        authenticateUser(email, password, (error, credentials) => {
+            if (error) return res.send('TODO error handling')
 
+            const { id, token } = credentials
+
+            sessions[id] = token
+
+            //console.dir(sessions)
+
+            res.setHeader('set-cookie', `id=${id}`)
+
+            res.redirect('/search')
+        })
+    } catch (error) {
+        // TODO handling
+    }
 })
 
-try {
-                    
-    const { id, token } = credentials
-    retrieveUser(id, token, (error, userData) =>{
-        
-        if(error) return res.send(templateHead(Feedback()))
-        const {name, surname} = userData
-        
-        res.redirect('/search')
-        res.send(templateHead(Search({ name, surname }) ))
-        
+app.get('/search', cookieParser, (req, res) => {
+    try {
+        const { cookies: { id } } = req
 
-})} catch (error) {
-    res.send( templateHead(Feedback()))
-}
+        if (!id) return res.redirect('/')
+
+        const token = sessions[id]
+
+        if (!token) return res.redirect('/')
+
+        retrieveUser(id, token, (error, user) => {
+            if (error) return res.send('TODO error handling')
+
+            const { name } = user
+
+            // const query = req.query.q
+            
+            const { query: { q: query } } = req
+
+            if (!query) res.send(templateHead(Search({ path: '/search', name, logout: '/logout' }) ))
+            else {
+                try {
+                    searchDucks(id, token, query, (error, ducks) => {
+                        if (error) return res.send('TODO error handling')
+
+                        console.log(ducks)
+
+                        res.send(templateHead(`${Search({ path: '/search', query, name, logout: '/logout' })} ` )) // TODO ${Results({items: ducks})}
+                    })
+                } catch (error) {
+                    // TODO handling
+                    debugger
+                }
+            }
+        })
+    } catch (error) {
+        // TODO handling
+        res.send(':P')
+    }
+})
+
+app.post('/logout', cookieParser, (req, res) => {
+    res.setHeader('set-cookie', 'id=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
+
+    const { cookies: { id } } = req
+
+    if (!id) return res.redirect('/')
+
+    delete sessions[id]
+
+    res.redirect('/')
+})
 
 app.listen(port, () => console.log(`server running on port ${port}`))
