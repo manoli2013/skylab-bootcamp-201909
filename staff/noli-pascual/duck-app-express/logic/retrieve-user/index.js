@@ -1,7 +1,7 @@
 const call = require('../../helpers/call')
-const {ContentError} = require('../../utils/errors')
+const { ContentError } = require('../../utils/errors')
 
-module.exports = function retrieveUser(id, token, callback) {
+module.exports = function(id, token, callback) {
     if (typeof id !== 'string') throw new TypeError(id + ' is not a string')
     if (!id.trim().length) throw new ContentError('id is empty or blank')
     if (typeof token !== 'string') throw new TypeError(token + ' is not a string')

@@ -1,3 +1,7 @@
+const { expect } = require('chai')
+const call = require('../../helpers/call')
+const retrieveUser = require('../retrieve-user')
+
 describe('logic - retrieve user', () => {
     let name, surname, email, password, id, token
 
@@ -30,10 +34,10 @@ describe('logic - retrieve user', () => {
             expect(error).not.to.exist
 
             expect(data).to.exist
-            expect(data.name).toBe(name)
-            expect(data.surname).toBe(surname)
-            expect(data.username).toBe(email)
-            expect(data.password).to.not.exist
+            expect(data.name).to.equal(name)
+            expect(data.surname).to.equal(surname)
+            expect(data.username).to.equal(email)
+            expect(data.password).not.to.exist
 
             done()
         })

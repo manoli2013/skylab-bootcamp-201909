@@ -1,3 +1,5 @@
+const Feedback = require('../feedback')
+
 module.exports = function ({ path, query, name, logout }) {
     return `<section class="view search">
     <h1 class="search__title">Search</h1>
@@ -7,6 +9,7 @@ module.exports = function ({ path, query, name, logout }) {
         <input class="search__criteria" type="text" name="q" placeholder="criteria" ${query? `value=${query}` : '' }>
         <button class="search__submit">🔍</button>
     </form>
-    
+
+    ${Feedback({})}
 </section>`
 }
