@@ -32,6 +32,15 @@ app.get('/', (req, res) => {
 
 //GET para visualizar la página del registro desde el navegador
 app.get('/register', (req, res) => {
+
+    console.log('GET register')
+        console.log(req.params)
+        console.log(req.param.name)
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req.headers)
+        console.log(req.xhr)
+        console.log(req.url)
     res.send(View({ body: Register({ path: '/register' }) }))
 })
 
@@ -66,7 +75,14 @@ app.get('/login', (req, res) => {
 
 //post para enviar datos a la api en una req 
 app.post('/login', bodyParser, (req, res) => {
-
+    console.log('POST Login')
+        console.log(req.params)
+        console.log(req.param.name)
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req.headers)
+        console.log(req.xhr)
+        console.log(req.url)
     // en la req va el mail y password. Aun no hay respuesta
 
     const { body: { email, password } } = req
@@ -105,10 +121,19 @@ app.post('/login', bodyParser, (req, res) => {
 //get para visualizar en el navegador la ruta search
 
 app.get('/search', cookieParser, (req, res) => {
-
+    console.log('GET SEARCH')
+    console.log(req.params)
+    console.log(req.param.name)
+    console.log(req.query)
+    console.log(req.body)
+    console.log(req.headers)
+    console.log(req.xhr)
+    console.log(req.url)
     try {
 
-       
+        console.log(req.query)
+        console.log(req.cookies)
+        console.log(req.body)
         const { cookies: { id }, query: { q: query } } = req
         
         //cuando vayas a search, si no estás logeado, te devuelve a landing.
@@ -145,7 +170,10 @@ app.get('/search', cookieParser, (req, res) => {
                 return searchDucks(id, token, query) //para q era? q forzaba el return? que devuelva la promise?
 
                     //ahora result q llega es ducks
-                    .then(ducks => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
+                    .then(ducks => {
+                        res.setHeader('set-cookie', `path=/search`)
+                        res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout',results: ducks, favPath: '/fav', detailPath: '/ducks' }) }))
+                    })
                     
             })
             .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
@@ -155,7 +183,14 @@ app.get('/search', cookieParser, (req, res) => {
 })
 
 app.post('/logout', cookieParser, (req, res) => {
-   
+    console.log('POST LOGOUT')
+    console.log(req.params)
+    console.log(req.param.name)
+    console.log(req.query)
+    console.log(req.body)
+    console.log(req.headers)
+    console.log(req.xhr)
+    console.log(req.url)
     //cuando clicamos logout le pone a la id del header, vacía. La caduca
     res.setHeader('set-cookie', 'id=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
 
@@ -171,8 +206,8 @@ app.post('/logout', cookieParser, (req, res) => {
 
 app.post('/fav', cookieParser, bodyParser, (req, res) => {
     try {
-        const { cookies: { id }, body: { id: duckId } } = req
-
+        const { cookies: { id, path }, body: { id: duckId } } = req
+        
         if (!id) return res.redirect('/')
 
         const session = sessions[id]
@@ -184,22 +219,30 @@ app.post('/fav', cookieParser, bodyParser, (req, res) => {
         if (!token) return res.redirect('/')
 
         toggleFavDuck(id, token, duckId)
-            .then(() => res.redirect(`/search?q=${query}`))
+            .then(() =>{path === '/search' ? res.redirect(`/search?q=${query}`) : res.redirect(`/ducks/${duckId}`)})
             .catch(({ message }) => {
-                res.send('TODO error handling')
+                res.send('TODO error handling1')
             })
     } catch ({ message }) {
-        res.send('TODO error handling')
+        res.send('TODO error handling2')
     }
 })
 
 app.get('/ducks/:duckId', cookieParser, bodyParser, (req, res) => {
-    
+    //cualquier cosa que esté dp de los : se accede mediante req.params
     try {
-        
+        console.log('GET DUCKS/DUCKID')
         console.log(req.params)
+        console.log(req.param.name)
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req.headers)
+        console.log(req.xhr)
+        console.log(req.url)
         const { params: { duckId } } = req
-        const { cookies: {id} } = req
+        const { cookies: {id, path} } = req
+
+        if(path) res.clearCookie('path') 
 
         if(!id) return res.redirect('/')
 
@@ -210,20 +253,36 @@ app.get('/ducks/:duckId', cookieParser, bodyParser, (req, res) => {
         const { token } = session
 
         if (!token) return res.redirect('/')
-   
-    // TODO control session, etc
         
         retrieveDuck(id, token, duckId)
-        .then(duck => res.send(View({ body: Detail({ item: duck }) })))
-        .catch(({ message }) => {
-            res.send({error: message})
-        })
+            .then(duck => { 
+                res.setHeader('set-cookie', `path=/ducks/${duckId}`)
+                res.send(View({ body: Detail( { item: duck, favPath: '/fav', back: '/back' })}))
+            })
+            .catch(({ error }) => res.send(error))
 
     } catch ({ message }) {
         res.send('TODO error handling2222')
     }
     
    
+})
+
+app.post('/back', cookieParser, (req, res) => {
+   
+    const { cookies: { id } } = req
+    
+    if (!id) return res.redirect('/')
+
+    const session = sessions[id]
+
+    if (!session) return res.redirect('/')
+
+    const { token, query } = session
+
+    if (!token) return res.redirect('/')
+
+    res.redirect(`/search?q=${query}`)
 })
 
 app.listen(port, () => console.log(`server running on port ${port}`))
