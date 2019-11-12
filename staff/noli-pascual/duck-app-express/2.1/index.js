@@ -7,23 +7,36 @@ const express = require('express')
 const { View, Landing, Register, Login, Search, Detail } = require('./components')
 const { registerUser, authenticateUser, retrieveUser, searchDucks, retrieveDuck, toggleFavDuck } = require('./logic')
 // const logic = require('./logic')
-const { bodyParser, cookieParser } = require('./utils/middlewares')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const FileStore = require('session-file-store')(session)
 
 //???
 const { argv: [, , port = 8080] } = process
 
 
-//para agregar sesiones de los usuarios
-const sessions = {}
-
 //llamamos a express
 const app = express()
+
+app.set('view engine', 'pug')
+app.set('views', 'components')
+
 
 //para estilos lo ponemos en la carpeta estática public
 app.use(express.static('public'))
 
 
-//RUTAS
+///sesiones
+
+app.use(session({
+    store: new FileStore({
+    }),
+    secret: 'a super secret thing',
+    saveUninitialized: true,
+    resave: true
+}))
+
+const formBodyParser = bodyParser.urlencoded({ extended: false })
 
 //GET para visualizar la home desde el navegador
 app.get('/', (req, res) => {
@@ -41,13 +54,15 @@ app.get('/register', (req, res) => {
         console.log(req.headers)
         console.log(req.xhr)
         console.log(req.url)
-    res.send(View({ body: Register({ path: '/register' }) }))
+    // res.send(View({ body: Register({ path: '/register' }) }))
+    //NOVEDAD
+    res.render('register', {path: '/register'})
 })
 
 //POST para enviar datos a la api de usuarios
 //bodyparser transforma lo que nos ponene en el form de registro a json
 //el compo register tendrá como método también 'post'
-app.post('/register', bodyParser, (req, res) => {
+app.post('/register', formBodyParser, (req, res) => {
     const { body: { name, surname, email, password } } = req
 
     try {
@@ -74,41 +89,18 @@ app.get('/login', (req, res) => {
 })
 
 //post para enviar datos a la api en una req 
-app.post('/login', bodyParser, (req, res) => {
-    console.log('POST Login')
-        console.log(req.params)
-        console.log(req.param.name)
-        console.log(req.query)
-        console.log(req.body)
-        console.log(req.headers)
-        console.log(req.xhr)
-        console.log(req.url)
-    // en la req va el mail y password. Aun no hay respuesta
-
-    const { body: { email, password } } = req
-
+app.post('/login', formBodyParser, (req, res) => {
+    const { session, body: { email, password } } = req
 
     try {
-        // al destructurar podemos usar estos parámetros para autenticarnos
-
         authenticateUser(email, password)
-
-            //usuario autenticado: devuelve id y token
             .then(credentials => {
-
-                //extraemoss id y token de la res
                 const { id, token } = credentials
 
-                //añadimos una prop al objeto sessions que sea el id del user, cuyo valor sea el token.
-                sessions[id] = { token }
+                session.userId = id
+                session.token = token
 
-
-                //????????????????? dónde lo veo
-                res.setHeader('set-cookie', `id=${id}`)
-
-                res.redirect('/search')
-               
-                
+                session.save(() => res.redirect('/search'))
             })
             .catch(({ message }) => {
                 res.send(View({ body: Login({ path: '/login', error: message }) }))
@@ -120,34 +112,20 @@ app.post('/login', bodyParser, (req, res) => {
 
 //get para visualizar en el navegador la ruta search
 
-app.get('/search', cookieParser, (req, res) => {
+app.get('/search', (req, res) => {
     console.log('GET SEARCH')
-    console.log(req.params)
-    console.log(req.param.name)
-    console.log(req.query)
-    console.log(req.body)
-    console.log(req.headers)
-    console.log(req.xhr)
-    console.log(req.url)
+   
     try {
 
         console.log(req.query)
-        console.log(req.cookies)
-        console.log(req.body)
-        const { cookies: { id }, query: { q: query } } = req
+   
+        const { session, query: { q: query } } = req
         
         //cuando vayas a search, si no estás logeado, te devuelve a landing.
        
-        if (!id) return res.redirect('/')
-
-        const session = sessions[id]
-        
-
-        //si no tiene sessión, reenvía a landing
         if (!session) return res.redirect('/')
-
-        //extrae el token de la session
-        const { token } = session
+        
+        const { userId: id, token } = session
 
         if (!token) return res.redirect('/')
 
@@ -162,8 +140,6 @@ app.get('/search', cookieParser, (req, res) => {
 
                 if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
 
-                session.query = query //añadimos otra prop a session (query)
-               
                 
                 //con la info del user y la query busca patitos
                 //pinta el search, con la query, el name, logout, ducks (mirar compo)
@@ -171,8 +147,10 @@ app.get('/search', cookieParser, (req, res) => {
 
                     //ahora result q llega es ducks
                     .then(ducks => {
-                        res.setHeader('set-cookie', `path=/search`)
-                        res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout',results: ducks, favPath: '/fav', detailPath: '/ducks' }) }))
+                        session.query = query
+                        session.view = 'search'
+
+                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
                     })
                     
             })
@@ -182,100 +160,63 @@ app.get('/search', cookieParser, (req, res) => {
     }
 })
 
-app.post('/logout', cookieParser, (req, res) => {
-    console.log('POST LOGOUT')
-    console.log(req.params)
-    console.log(req.param.name)
-    console.log(req.query)
-    console.log(req.body)
-    console.log(req.headers)
-    console.log(req.xhr)
-    console.log(req.url)
-    //cuando clicamos logout le pone a la id del header, vacía. La caduca
-    res.setHeader('set-cookie', 'id=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
+app.post('/logout', (req, res) => {
+    const { session } = req
 
-    
-    const { cookies: { id } } = req
+    session.destroy(() => {
+        res.clearCookie('connect.sid', { path: '/' })
+        // res.setHeader('set-cookie', 'connect.sid=""; expires=Thu, 01 Jan 1970 00:00:00 GMT')
 
-    if (!id) return res.redirect('/')
-
-    delete sessions[id]
-
-    res.redirect('/')
+        res.redirect('/')
+    })
 })
 
-app.post('/fav', cookieParser, bodyParser, (req, res) => {
+app.post('/fav', formBodyParser, (req, res) => {
     try {
-        const { cookies: { id, path }, body: { id: duckId } } = req
-        
-        if (!id) return res.redirect('/')
-
-        const session = sessions[id]
+        const { session, body: { id: duckId }, headers: { referer } } = req
 
         if (!session) return res.redirect('/')
 
-        const { token, query } = session
+        const { userId: id, token } = session
 
         if (!token) return res.redirect('/')
 
         toggleFavDuck(id, token, duckId)
-            .then(() =>{path === '/search' ? res.redirect(`/search?q=${query}`) : res.redirect(`/ducks/${duckId}`)})
+            .then(() => res.redirect(referer))
             .catch(({ message }) => {
-                res.send('TODO error handling1')
+                res.send('TODO error handling')
             })
     } catch ({ message }) {
-        res.send('TODO error handling2')
+        res.send('TODO error handling')
     }
 })
 
-app.get('/ducks/:duckId', cookieParser, bodyParser, (req, res) => {
-    //cualquier cosa que esté dp de los : se accede mediante req.params
+app.get('/ducks/:id', (req, res) => {
     try {
-        console.log('GET DUCKS/DUCKID')
-        console.log(req.params)
-        console.log(req.param.name)
-        console.log(req.query)
-        console.log(req.body)
-        console.log(req.headers)
-        console.log(req.xhr)
-        console.log(req.url)
-        const { params: { duckId } } = req
-        const { cookies: {id, path} } = req
+        const { session, params: { id: duckId } } = req
 
-        if(path) res.clearCookie('path') 
+        if (!session) return res.redirect('/')
 
-        if(!id) return res.redirect('/')
-
-        const session = sessions[id]
-
-        if(!session) return res.redirect('/')
-
-        const { token } = session
+        const { userId: id, token, view, query } = session
 
         if (!token) return res.redirect('/')
-        
-        retrieveDuck(id, token, duckId)
-            .then(duck => { 
-                res.setHeader('set-cookie', `path=/ducks/${duckId}`)
-                res.send(View({ body: Detail( { item: duck, favPath: '/fav', back: '/back' })}))
-            })
-            .catch(({ error }) => res.send(error))
 
+        retrieveDuck(id, token, duckId)
+            .then(duck =>
+                res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/', favPath: '/fav' }) }))
+            )
+            .catch(({ message }) =>
+                res.send('TODO error handling')
+            )
     } catch ({ message }) {
-        res.send('TODO error handling2222')
+        res.send('TODO error handling')
     }
-    
-   
 })
 
-app.post('/back', cookieParser, (req, res) => {
+app.post('/back', formBodyParser, (req, res) => {
    
-    const { cookies: { id } } = req
+    const { session } = req
     
-    if (!id) return res.redirect('/')
-
-    const session = sessions[id]
-
     if (!session) return res.redirect('/')
 
     const { token, query } = session
