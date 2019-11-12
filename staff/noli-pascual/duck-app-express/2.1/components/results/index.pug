@@ -1,9 +1,6 @@
-extends ../view/index
+include ../result-item/index
 
-include ../feedback/index 
-
-block body
+mixin results(results, favPath, detailPath)
     ul.results
-        items.map(item => onItemRender(item)).join('')}
-}
-
+        each item in results
+            +result-item(item, favPath, detailPath)
