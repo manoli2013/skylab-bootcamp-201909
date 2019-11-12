@@ -4,4 +4,3 @@ module.exports = function ({ items, onItemRender }) {
     </ul>`
 }
 
-// ?????????? onItemRender()

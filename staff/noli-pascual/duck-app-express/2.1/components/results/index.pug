@@ -1,0 +1,9 @@
+extends ../view/index
+
+include ../feedback/index 
+
+block body
+    ul.results
+        items.map(item => onItemRender(item)).join('')}
+}
+

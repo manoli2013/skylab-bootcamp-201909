@@ -1,0 +1,18 @@
+extends ../view/index
+include ../feedback/index
+
+block body
+
+li.results__item
+    a.item(href=`${detailPath/id}`)
+      h2.item__title= title
+      img.item__image(src=image)
+      span.item__price= price
+      span.item__fav
+        form(method='post', action=favPath)
+          input(type='hidden', name='id', value= id)
+          button(type='submit')
+          if isFav  '🧡' 
+          else '💔'
+
+          

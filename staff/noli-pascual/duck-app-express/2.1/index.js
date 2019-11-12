@@ -5,11 +5,13 @@ const express = require('express')
 //aquí destructuring para llamarlos a todos
 
 const { View, Landing, Register, Login, Search, Detail } = require('./components')
-const { registerUser, authenticateUser, retrieveUser, searchDucks, retrieveDuck, toggleFavDuck } = require('./logic')
+const { registerUser, authenticateUser, retrieveUser, searchDucks, retrieveDuck, retrieveFavDucks, toggleFavDuck } = require('./logic')
 // const logic = require('./logic')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
+
+const pug = require('pug')
 
 //???
 const { argv: [, , port = 8080] } = process
@@ -138,7 +140,7 @@ app.get('/search', (req, res) => {
                 
                 name = user.name //convertimos en global a name
 
-                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
+                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout', favsPath: '/favs'}) }))
 
                 
                 //con la info del user y la query busca patitos
@@ -150,7 +152,7 @@ app.get('/search', (req, res) => {
                         session.query = query
                         session.view = 'search'
 
-                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
+                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', favsPath: '/favs', detailPath: '/ducks' }) })))
                     })
                     
             })
@@ -211,6 +213,46 @@ app.get('/ducks/:id', (req, res) => {
     } catch ({ message }) {
         res.send('TODO error handling')
     }
+})
+
+app.get('/favs', (req, res) => {
+    console.log('GET FAVS')
+   
+    try {
+
+const { session, query: { q: query } } = req
+// ​
+//         if (!session) return res.redirect('/login')
+        
+        const { userId: id, token } = session
+        
+        if (!token) return res.redirect('/login')
+        
+        let name
+
+
+        retrieveUser(id, token)
+        .then(user => {
+            name = user.name
+
+            return retrieveFavDucks(id, token)
+            
+            .then(favList => {
+                console.log(favList)
+
+                session.query = query
+                session.view = 'favs'
+                session.save(() => res.send(View({ body: Search({ FavsPath: '/favs', query, name, logout: '/logout', results: favList, favPath: '/fav'}) })))
+                
+            })
+                
+            .catch(({ message }) => res.send('TODO error handling retrieve'))
+
+        })
+                
+    } catch ({ message }) {
+        res.send('TODO error handling try')
+    } 
 })
 
 app.post('/back', formBodyParser, (req, res) => {
