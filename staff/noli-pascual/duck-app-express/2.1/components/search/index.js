@@ -5,7 +5,7 @@ const ResultItem = require('../result-item')
 
 module.exports = function ({ path, query, name, logout, error, results, favPath, favsPath, detailPath }) {
     return `<section class="view search">
-    <h1 class="search__title">Search</h1>
+   
     <h2 class="search__user">${name}</h2>
     <form method="post" action="${logout}">
     <button class="search__logout">Logout</button></form>

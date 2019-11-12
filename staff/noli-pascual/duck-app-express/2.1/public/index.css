@@ -8,10 +8,7 @@ body {
 }
 
 .view {
-  border: 0.3rem solid orange;
   border-radius: 1rem;
-  border-style: dotted;
-  background-color: yellow;
   width: 100vw;
   height: 100%;
   padding: 3vw;
@@ -19,12 +16,9 @@ body {
 }
 
 .feedback {
-  border: 0.3rem solid orange;
-  border-radius: 1rem;
-  border-style: dotted;
   padding: 1rem;
   margin: 1rem;
-  background-color: olive;
+  background-color: black;
 }
 .feedback__icon {
   font-size: 1.5rem;
@@ -37,36 +31,35 @@ body {
 }
 
 .landing {
-  background-color: deeppink;
-  border: 0.3rem solid darkviolet;
-  border-radius: 1rem;
-  border-style: dotted;
+  background-color: olive;
   text-decoration: none;
+  height: 100vh;
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .landing__title {
-  color: darkviolet;
+  color: #ffffff;
   font-size: 2rem;
   margin: 0.5rem auto 0.5rem auto;
 }
 .landing__options {
-  color: darkviolet;
+  color: #ffffff;
   font-size: 1.2rem;
   margin: 0.5rem auto 0.5rem auto;
 }
 
 .register {
-  background-color: yellowgreen;
-  border: 0.3rem solid green;
+  background-color: black;
+  width: 50%;
+  margin: 20% auto;
+  border: 0.3rem solid #ffffff;
   border-radius: 1rem;
-  border-style: dotted;
   text-decoration: none;
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .register__title {
-  color: green;
+  color: #ffffff;
   font-size: 2rem;
   margin: 0.5rem auto 0.5rem auto;
 }
@@ -81,16 +74,17 @@ body {
 }
 
 .login {
-  background-color: tomato;
-  border: 0.3rem solid firebrick;
+  background-color: black;
+  width: 50%;
+  margin: 20% auto;
+  border: 0.3rem solid #ffffff;
   border-radius: 1rem;
-  border-style: dotted;
   text-decoration: none;
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .login__title {
-  color: firebrick;
+  color: #ffffff;
   font-size: 2rem;
   margin: 0.5rem auto 0.5rem auto;
 }
@@ -105,9 +99,7 @@ body {
 }
 
 .search {
-  border: 0.3rem solid orange;
   border-radius: 1rem;
-  border-style: dotted;
   text-decoration: none;
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -116,13 +108,13 @@ body {
   margin: 0.5rem;
 }
 .search__title {
-  color: orange;
+  color: black;
   font-size: 2rem;
   margin: 0.5rem auto 0.5rem auto;
 }
 .search__user {
-  display: inline-block;
-  color: gold;
+  display: block;
+  color: red;
   font-size: 1.5rem;
   margin: 0.5rem auto 0.5rem auto;
 }
@@ -145,11 +137,12 @@ body {
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
+.search__favs {
+  width: 100%;
+}
 
 .results {
-  border: 0.3rem solid orange;
   border-radius: 1rem;
-  border-style: dotted;
   padding: 1rem;
   margin: 0.5rem;
   list-style: none;
@@ -157,25 +150,22 @@ body {
 }
 .results__item {
   display: inline-block;
-  border: 0.3rem solid orange;
   border-radius: 1rem;
-  border-style: dotted;
   margin: 1rem;
 }
 
 .item {
   display: inline-block;
-  background-color: pink;
-  border: 0.3rem solid fuchsia;
+  background-color: olive;
+  border: 0.3rem solid black;
   border-radius: 1rem;
-  border-style: dotted;
   text-decoration: none;
   cursor: pointer;
   padding: 0.5rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .item__title {
-  color: fuchsia;
+  color: #ffffff;
 }
 .item__image {
   display: block;
@@ -187,7 +177,6 @@ body {
   display: inline-block;
   border: 0.3rem solid white;
   border-radius: 1rem;
-  border-style: dotted;
   color: white;
   background-color: red;
   padding: 0.5rem;
@@ -241,6 +230,53 @@ body {
   margin: 0.5rem;
   font-size: 2rem;
   cursor: pointer;
+}
+
+.detail {
+  text-decoration: none;
+  padding: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.detail__title {
+  color: black;
+  font-size: 2rem;
+  margin: 0.5rem auto 0.5rem auto;
+}
+.detail__image {
+  display: block;
+  border-radius: 1rem;
+  margin: 0.5rem auto 0.5rem auto;
+  max-width: 80vw;
+}
+.detail__description {
+  color: black;
+  width: 70%;
+  margin: 0 auto;
+}
+.detail__price {
+  display: inline-block;
+  border: 0.3rem solid white;
+  border-radius: 1rem;
+  color: white;
+  background-color: red;
+  padding: 0.5rem;
+  font-size: 2rem;
+  margin: 0.5rem;
+}
+.detail__fav {
+  display: inline-block;
+  margin: 0.5rem;
+  font-size: 2rem;
+}
+.detail__fav button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+.detail__back {
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */

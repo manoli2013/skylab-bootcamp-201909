@@ -49,16 +49,14 @@ app.get('/', (req, res) => {
 app.get('/register', (req, res) => {
 
     console.log('GET register')
-        console.log(req.params)
-        console.log(req.param.name)
-        console.log(req.query)
-        console.log(req.body)
-        console.log(req.headers)
-        console.log(req.xhr)
-        console.log(req.url)
+    console.log(req.params)
+    console.log(req.param.name)
+    console.log(req.query)
+    console.log(req.headers)
+
     // res.send(View({ body: Register({ path: '/register' }) }))
     //NOVEDAD
-    res.render('register', {path: '/register'})
+    res.render('register', { path: '/register' })
 })
 
 //POST para enviar datos a la api de usuarios
@@ -76,27 +74,30 @@ app.post('/register', formBodyParser, (req, res) => {
 
             //si la llamada va bien pero devuelve un error (ej el usuario ya existe)
             .catch(({ message }) => res.send(View({ body: Register({ path: '/register', error: message }) })),
-            console.log('el usuario ya existe'))
-    
+                console.log('el usuario ya existe'))
+
     }   //si ha ido algo mal en la llamada a la API
-        catch ({ message }) {
-        res.send(View({ body: Register({ path: '/register', error: message }) }), console.log('formulario mal rellenado'))
+    catch ({ message }) {
+        res.render('register', { path: '/register', error: message })
+        /*res.send(View({ body: Register({ path: '/register', error: message})}))*/
     }
 })
+
 
 //get para visualizar la pantalla de login
 
 app.get('/login', (req, res) => {
-    res.send(View({ body: Login({ path: '/login' }) }))
+    // res.send(View({ body: Login({ path: '/login' }) }))
+    res.render('login', { path: '/login' })
 })
 
 //post para enviar datos a la api en una req 
 app.post('/login', formBodyParser, (req, res) => {
-    const { session, body: { email, password } } = req
 
+    const { session, body: { email, password } } = req
     try {
         authenticateUser(email, password)
-            .then(credentials => {
+            .then((credentials) => {
                 const { id, token } = credentials
 
                 session.userId = id
@@ -105,60 +106,51 @@ app.post('/login', formBodyParser, (req, res) => {
                 session.save(() => res.redirect('/search'))
             })
             .catch(({ message }) => {
-                res.send(View({ body: Login({ path: '/login', error: message }) }))
+                res.render('login', { path: '/login', error: message })
+                //res.send(View({ body: Login({ path: '/login', error: message }) }))
             })
     } catch ({ message }) {
-        res.send(View({ body: Login({ path: '/login', error: message }) }))
+        res.render('login', { path: '/login', error: message })
+        //res.send(View({ body: Login({ path: '/login', error: error.message})}))
     }
 })
+
 
 //get para visualizar en el navegador la ruta search
 
 app.get('/search', (req, res) => {
-    console.log('GET SEARCH')
-   
     try {
-
-        console.log(req.query)
-   
         const { session, query: { q: query } } = req
-        
-        //cuando vayas a search, si no estás logeado, te devuelve a landing.
-       
+
         if (!session) return res.redirect('/')
-        
+
         const { userId: id, token } = session
 
         if (!token) return res.redirect('/')
 
         let name
 
-        //va a la API a buscar el usuario con el id y el token. Nos devuelve sus datos. Name, surname, email, 
         retrieveUser(id, token)
-            .then(user => { //los englobamos todos en user
+            .then(user => {
+                name = user.name
 
-                
-                name = user.name //convertimos en global a name
+                // if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout' }) }))
+                if (!query) return res.render('search', { path: '/search', name, logout: '/logout', favsPath: '/favs' })
 
-                if (!query) return res.send(View({ body: Search({ path: '/search', name, logout: '/logout', favsPath: '/favs'}) }))
-
-                
-                //con la info del user y la query busca patitos
-                //pinta el search, con la query, el name, logout, ducks (mirar compo)
-                return searchDucks(id, token, query) //para q era? q forzaba el return? que devuelva la promise?
-
-                    //ahora result q llega es ducks
+                return searchDucks(id, token, query)
                     .then(ducks => {
                         session.query = query
                         session.view = 'search'
 
-                        session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', favsPath: '/favs', detailPath: '/ducks' }) })))
+                        //session.save(() => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks' }) })))
+                        session.save(() => res.render('search', { path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks', favsPath: '/favs' }))
                     })
-                    
             })
-            .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
+            // .catch(({ message }) => res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) })))
+            .catch(({ message }) => res.render('search', { path: '/search', query, name, logout: '/logout', favsPath: '/favs', error: message }))
     } catch ({ message }) {
-        res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))
+        //res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))
+        res.render('search', { path: '/search', query, name, logout: '/logout', favsPath: '/favs', error: message })
     }
 })
 
@@ -216,49 +208,40 @@ app.get('/ducks/:id', (req, res) => {
 })
 
 app.get('/favs', (req, res) => {
-    console.log('GET FAVS')
-   
     try {
+        const { session, query: { q: query } } = req
 
-const { session, query: { q: query } } = req
-// ​
-//         if (!session) return res.redirect('/login')
+        if (!session) return res.render('landing', {register: '/register', login: '/login'} ) /*res.redirect('/')*/
         
         const { userId: id, token } = session
         
-        if (!token) return res.redirect('/login')
+        if (!token) return res.render('landing', {register: '/register', login: '/login'} ) /*res.redirect('/')*/
         
         let name
 
-
         retrieveUser(id, token)
-        .then(user => {
-            name = user.name
+            .then(user => {
+                name = user.name
 
-            return retrieveFavDucks(id, token)
-            
-            .then(favList => {
-                console.log(favList)
+                return retrieveFavDucks(id, token)
+                .then(favsList => {
+                    
+                    session.view = 'favs'
 
-                session.query = query
-                session.view = 'favs'
-                session.save(() => res.send(View({ body: Search({ FavsPath: '/favs', query, name, logout: '/logout', results: favList, favPath: '/fav', detailPath: '/ducks'}) })))
-                
+                    session.save(() => res.render('search', { path: '/search', query, name, logout: '/logout', results: favsList, favPath: '/fav', detailPath: '/ducks', favsPath: '/favs' }) /*res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', results: ducks, favPath: '/fav', detailPath: '/ducks', myfavs: '/myfavs' }) }))*/)
+                })
             })
-                
-            .catch(({ message }) => res.send('TODO error handling retrieve'))
-
-        })
-                
+            .catch(({ message }) => res.render('search', { path: '/search', query, name, logout: '/logout', error: message }) /*res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))*/)
     } catch ({ message }) {
-        res.send('TODO error handling try')
-    } 
+        res.render('search', { path: '/search', query, name, logout: '/logout', error: message })
+        /*res.send(View({ body: Search({ path: '/search', query, name, logout: '/logout', error: message }) }))*/
+    }
 })
 
 app.post('/back', formBodyParser, (req, res) => {
-   
+
     const { session } = req
-    
+
     if (!session) return res.redirect('/')
 
     const { token, query } = session
