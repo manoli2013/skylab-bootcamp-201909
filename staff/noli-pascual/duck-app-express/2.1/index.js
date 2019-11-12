@@ -205,7 +205,7 @@ app.get('/ducks/:id', (req, res) => {
 
         retrieveDuck(id, token, duckId)
             .then(duck =>
-                res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/', favPath: '/fav' }) }))
+                res.send(View({ body: Detail({ item: duck, backPath: view === 'search' ? `/search?q=${query}` : '/favs', favPath: '/fav' }) }))
             )
             .catch(({ message }) =>
                 res.send('TODO error handling')
@@ -242,7 +242,7 @@ const { session, query: { q: query } } = req
 
                 session.query = query
                 session.view = 'favs'
-                session.save(() => res.send(View({ body: Search({ FavsPath: '/favs', query, name, logout: '/logout', results: favList, favPath: '/fav'}) })))
+                session.save(() => res.send(View({ body: Search({ FavsPath: '/favs', query, name, logout: '/logout', results: favList, favPath: '/fav', detailPath: '/ducks'}) })))
                 
             })
                 
