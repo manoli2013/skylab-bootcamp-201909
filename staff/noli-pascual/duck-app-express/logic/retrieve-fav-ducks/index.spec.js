@@ -1,3 +1,7 @@
+const { expect } = require('chai')
+const call = require('../../helpers/call')
+const retrieveFavDucks = require('.')
+
 describe('logic - retrieve fav ducks', () => {
     let name, surname, email, password, id, token, duckIds = ['5c3853aebd1bde8520e66e1b', '5c3853aebd1bde8520e66e5f', '5c3853aebd1bde8520e66eaa']
 
@@ -25,16 +29,13 @@ describe('logic - retrieve fav ducks', () => {
         })
     })
 
-    it('should succeed on correct user data and return not ducks on no favs', done => {
-        retrieveFavDucks(id, token, (error, ducks) => {
-            expect(error).toBeUndefined()
-
-            expect(ducks).toBeDefined()
-            expect(ducks.length).toBe(0)
-
-            done()
-        })
-    })
+    it('should succeed on correct user data and return not ducks on no favs', () =>
+        retrieveFavDucks(id, token)
+            .then(ducks => {
+                expect(ducks).to.exist
+                expect(ducks.length).to.equal(0)
+            })
+    )
 
     describe('when favs already exists', () => {
         beforeEach(done => {
@@ -43,59 +44,51 @@ describe('logic - retrieve fav ducks', () => {
             })
         })
 
-        it('should succeed on correct user data', done => {
-            retrieveFavDucks(id, token, (error, ducks) => {
-                expect(error).toBeUndefined()
+        it('should succeed on correct user data', () =>
+            retrieveFavDucks(id, token)
+                .then(ducks => {
+                    expect(ducks).to.exist
+                    expect(ducks.length).to.equal(duckIds.length)
 
-                expect(ducks).toBeDefined()
-                expect(ducks.length).toBe(duckIds.length)
+                    ducks.forEach(duck => {
+                        expect(duck).to.exist
+                        expect(typeof duck.id).to.equal('string')
+                        expect(duck.id.length).to.be.greaterThan(0)
 
-                ducks.forEach(duck => {
-                    expect(duck).toBeDefined()
-                    expect(typeof duck.id).toBe('string')
-                    expect(duck.id.length).toBeGreaterThan(0)
+                        expect(duck.title).to.exist
+                        expect(typeof duck.title).to.equal('string')
+                        expect(duck.title.length).to.be.greaterThan(0)
 
-                    expect(duck.title).toBeDefined()
-                    expect(typeof duck.title).toBe('string')
-                    expect(duck.title.length).toBeGreaterThan(0)
+                        expect(duck.image).to.exist
+                        expect(typeof duck.image).to.equal('string')
+                        expect(duck.image.length).to.be.greaterThan(0)
 
-                    expect(duck.image).toBeDefined()
-                    expect(typeof duck.image).toBe('string')
-                    expect(duck.image.length).toBeGreaterThan(0)
+                        expect(duck.price).to.exist
+                        expect(typeof duck.price).to.equal('string')
+                        expect(duck.price.length).to.be.greaterThan(0)
 
-                    expect(duck.price).toBeDefined()
-                    expect(typeof duck.price).toBe('string')
-                    expect(duck.price.length).toBeGreaterThan(0)
+                        const isFav = duckIds.includes(duck.id)
+                        expect(isFav).to.be.true
 
-                    const isFav = duckIds.includes(duck.id)
-                    expect(isFav).toBeTruthy()
+                        expect(duck.isFav).to.be.true
+                    })
                 })
-
-                done()
-            })
-        })
+        )
     })
 
-    it('should fail on incorrect user data or expression types', () => {    
-        expect(() => { retrieveFavDucks(1) }).toThrowError(TypeError, '1 is not a string')
-        expect(() => { retrieveFavDucks(true) }).toThrowError(TypeError, 'true is not a string')
-        expect(() => { retrieveFavDucks([]) }).toThrowError(TypeError, ' is not a string')
-        expect(() => { retrieveFavDucks({}) }).toThrowError(TypeError, '[object Object] is not a string')
-        expect(() => { retrieveFavDucks(undefined) }).toThrowError(TypeError, 'undefined is not a string')
-        expect(() => { retrieveFavDucks(null) }).toThrowError(TypeError, 'null is not a string')
+    it('should fail on incorrect user data or expression types', () => {
+        expect(() => { retrieveFavDucks(1) }).to.throw(TypeError, '1 is not a string')
+        expect(() => { retrieveFavDucks(true) }).to.throw(TypeError, 'true is not a string')
+        expect(() => { retrieveFavDucks([]) }).to.throw(TypeError, ' is not a string')
+        expect(() => { retrieveFavDucks({}) }).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => { retrieveFavDucks(undefined) }).to.throw(TypeError, 'undefined is not a string')
+        expect(() => { retrieveFavDucks(null) }).to.throw(TypeError, 'null is not a string')
 
-        expect(() => { retrieveFavDucks(id, 1) }).toThrowError(TypeError, '1 is not a string')
-        expect(() => { retrieveFavDucks(id, true) }).toThrowError(TypeError, 'true is not a string')
-        expect(() => { retrieveFavDucks(id, []) }).toThrowError(TypeError, ' is not a string')
-        expect(() => { retrieveFavDucks(id, {}) }).toThrowError(TypeError, '[object Object] is not a string')
-        expect(() => { retrieveFavDucks(id, undefined) }).toThrowError(TypeError, 'undefined is not a string')
-        expect(() => { retrieveFavDucks(id, null) }).toThrowError(TypeError, 'null is not a string')
-
-        expect(() => { retrieveFavDucks(id, token, 1) }).toThrowError(TypeError, '1 is not a function')
-        expect(() => { retrieveFavDucks(id, token, true) }).toThrowError(TypeError, 'true is not a function')
-        expect(() => { retrieveFavDucks(id, token, []) }).toThrowError(TypeError, ' is not a function')
-        expect(() => { retrieveFavDucks(id, token, {}) }).toThrowError(TypeError, '[object Object] is not a function')
-        expect(() => { retrieveFavDucks(id, token, undefined) }).toThrowError(TypeError, 'undefined is not a function')
-        expect(() => { retrieveFavDucks(id, token, null) }).toThrowError(TypeError, 'null is not a function')
+        expect(() => { retrieveFavDucks(id, 1) }).to.throw(TypeError, '1 is not a string')
+        expect(() => { retrieveFavDucks(id, true) }).to.throw(TypeError, 'true is not a string')
+        expect(() => { retrieveFavDucks(id, []) }).to.throw(TypeError, ' is not a string')
+        expect(() => { retrieveFavDucks(id, {}) }).to.throw(TypeError, '[object Object] is not a string')
+        expect(() => { retrieveFavDucks(id, undefined) }).to.throw(TypeError, 'undefined is not a string')
+        expect(() => { retrieveFavDucks(id, null) }).to.throw(TypeError, 'null is not a string')
     })
 })
