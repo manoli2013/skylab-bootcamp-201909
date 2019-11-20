@@ -1,28 +1,14 @@
 require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
-const database = require('../../utils/database')
+const { ObjectId, database, models: { User, Task } } = require('../../data')
 const modifyTask = require('.')
 const { random } = Math
 require('../../utils/array-random')
 const { NotFoundError, ConflictError, ContentError } = require('../../utils/errors')
 
-const { ObjectId } = database
-
-describe('logic - modify task', () => {
-    let client, users, tasks
-
-    before(() => {
-        client = database(DB_URL_TEST)
-
-        return client.connect()
-            .then(connection => {
-                const db = connection.db()
-
-                users = db.collection('users')
-                tasks = db.collection('tasks')
-            })
-    })
+describe.only('logic - modify task', () => {
+    before(() => database.connect(DB_URL_TEST))
 
     const statuses = ['TODO', 'DOING', 'REVIEW', 'DONE']
     let id, name, surname, email, username, password, taskIds, titles, descriptions
@@ -34,8 +20,9 @@ describe('logic - modify task', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
-            .then(({ insertedId }) => id = insertedId.toString())
+        return Promise.all([User.deleteMany(), Task.deleteMany()])
+            .then(() => User.create({ name, surname, email, username, password }))
+            .then(user => id = user.id)
             .then(() => {
                 taskIds = []
                 titles = []
@@ -52,15 +39,15 @@ describe('logic - modify task', () => {
                         date: new Date
                     }
 
-                    insertions.push(tasks.insertOne(task)
-                        .then(result => taskIds.push(result.insertedId.toString())))
+                    insertions.push(Task.create(task)
+                        .then(task => taskIds.push(task.id)))
 
                     titles.push(task.title)
                     descriptions.push(task.description)
                 }
 
                 for (let i = 0; i < 10; i++)
-                    insertions.push(tasks.insertOne({
+                    insertions.push(Task.create({
                         user: ObjectId(),
                         title: `title-${random()}`,
                         description: `description-${random()}`,
@@ -82,7 +69,7 @@ describe('logic - modify task', () => {
             .then(response => {
                 expect(response).to.not.exist
 
-                return tasks.findOne({ _id: ObjectId(taskId) })
+                return Task.findById(taskId)
             })
             .then(task => {
                 expect(task.user.toString()).to.equal(id)
@@ -115,13 +102,13 @@ describe('logic - modify task', () => {
         const newDescription = `new-description-${random()}`
         const newStatus = statuses.random()
 
-        return tasks.findOne({ _id: ObjectId(taskId) })
+        return Task.findById(taskId)
             .then(({ title }) => {
                 return modifyTask(id, taskId, undefined, newDescription, newStatus)
                     .then(response => {
                         expect(response).to.not.exist
 
-                        return tasks.findOne({ _id: ObjectId(taskId) })
+                        return Task.findById(taskId)
                     })
                     .then(task => {
                         expect(task.user.toString()).to.equal(id)
@@ -155,13 +142,13 @@ describe('logic - modify task', () => {
         const newTitle = `new-title-${random()}`
         const newStatus = statuses.random()
 
-        return tasks.findOne({ _id: ObjectId(taskId) })
+        return Task.findById(taskId)
             .then(({ description }) => {
                 return modifyTask(id, taskId, newTitle, undefined, newStatus)
                     .then(response => {
                         expect(response).to.not.exist
 
-                        return tasks.findOne({ _id: ObjectId(taskId) })
+                        return Task.findById(taskId)
                     })
                     .then(task => {
                         expect(task.user.toString()).to.equal(id)
@@ -195,13 +182,13 @@ describe('logic - modify task', () => {
         const newTitle = `new-title-${random()}`
         const newDescription = `new-description-${random()}`
 
-        return tasks.findOne({ _id: ObjectId(taskId) })
+        return Task.findById(taskId)
             .then(({ status }) => {
                 return modifyTask(id, taskId, newTitle, newDescription, undefined)
                     .then(response => {
                         expect(response).to.not.exist
 
-                        return tasks.findOne({ _id: ObjectId(taskId) })
+                        return Task.findById(taskId)
                     })
                     .then(task => {
                         expect(task.user.toString()).to.equal(id)
@@ -262,7 +249,7 @@ describe('logic - modify task', () => {
     })
 
     it('should fail on correct user and wrong task data', () => {
-        return tasks.findOne({ _id: { $nin: taskIds } })
+        return Task.findOne({ _id: { $nin: taskIds.map(taskId => ObjectId(taskId)) } })
             .then(({ _id }) => {
                 const taskId = _id.toString()
                 const newTitle = `new-title-${random()}`
@@ -290,11 +277,8 @@ describe('logic - modify task', () => {
 
     // TODO other test cases
 
-    after(() => client.close())
+    after(() => Promise.all([User.deleteMany(), Task.deleteMany()]).then(database.disconnect))
 })
-
-
-
 // describe('logic - modify task', () => {
 //     before(() => {
 

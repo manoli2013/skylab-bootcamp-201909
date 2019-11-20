@@ -1,74 +1,61 @@
 const validate = require('../../utils/validate')
-const database = require('../../utils/database')
+// const database = require('../../utils/database')
 const { NotFoundError } = require('../../utils/errors')
+const { models: { User } } = require('../../data')
+const { ObjectId } = require('mongodb')
 
-const { ObjectId } = database
 
 module.exports = function (id) {
     validate.string(id)
     validate.string.notVoid('id', id)
     if (!ObjectId.isValid(id)) throw new ContentError(`${id} is not a valid id`)
 
-    const client = database()
+    return User.findById( id )
+        .then(user => {debugger
+            if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-    return client.connect()
-        .then(connection => {
-            const users = connection.db().collection('users')
+            user.lastAccess = new Date
 
-            return users.findOne({ _id: ObjectId(id) })
-                .then(user => {
-                    if (!user) throw new NotFoundError(`user with id ${id} not found`)
-
-                    //return users.updateOne({ _id: ObjectId(id) }, { $set: { lastAccess: new Date } })
-
-                    const lastAccess = new Date
-
-                    return users.updateOne({ _id: ObjectId(id) }, { $set: { lastAccess }})
-                        .then(result => {
-                            if (!result.modifiedCount) throw Error('failed to update user')
-
-                            user.id = user._id.toString()
-                            user.lastAccess = lastAccess
-
-                            delete user._id
-                            delete user.password
-
-                            return user
-                        })
-                })
+            return user.save()
+            
         })
+        .then( user => {
+            console.log(user)
+            user = user.toObject()
+            console.log(user)
+            
+            //sanitation
+            user.id = user._id.toString()
+            delete user._id
+            //seguridad
+            delete user.password
+
+            return user
+        })
+
 }
-
-
-// const validate = require('../../utils/validate')
-// const database = require('../../utils/database')
-// const { ObjectId } = database
-// const { NotFoundError } = require('../../utils/errors')
 
 // module.exports = function (id) {
 //     validate.string(id)
 //     validate.string.notVoid('id', id)
+//     if (!ObjectId.isValid(id)) throw new ContentError(`${id} is not a valid id`)
 
-//     const client = database()
+//     return User.findById(id)
+//         .then(user => {
+//             if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-//     return client.connect()
-//         .then(connection => {
-//             const db = connection.db()
+//             user.lastAccess = new Date
 
-//             users = db.collection('users')
-//             tasks = db.collection('tasks')
+//             return user.save()
+//         })
+//         .then(user => {
+//             user = user.toObject()
 
+//             user.id = user._id.toString()
+//             delete user._id
 
-//             return users.findOne({ _id: ObjectId(id) })
+//             delete user.password
 
-//                 .then(user => {debugger
-//                     if (!user) throw new NotFoundError(`user with id ${id} not found`)
-
-//                     users.updateOne({ _id: ObjectId(id) }, { $set: { lastAccess: new Date } })
-
-//                     const {name, surname, email, username} = user
-//                     return {id, name, surname, email, username}
-//                 })
-
+//             return user
 //         })
 // }

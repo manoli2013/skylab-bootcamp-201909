@@ -4,19 +4,13 @@ const { expect } = require('chai')
 const authenticateUser = require('.')
 const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
-const database = require('../../utils/database')
+const { models: { User }, database } = require('../../data')
 
 describe('logic - authenticate user', () => {
-    let client, users
 
-    before(() => {
-        client = database(DB_URL_TEST)
+    before(() => database.connect(DB_URL_TEST))
 
-        return client.connect()
-            .then(connection => users = connection.db().collection('users'))
-    })
-
-    let id, name, surname, email, username, password
+    let resultId, name, surname, email, username, password
 
     beforeEach(() => {
         name = `name-${random()}`
@@ -25,8 +19,9 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        return users.insertOne({ name, surname, email, username, password })
-            .then(({ insertedId }) => id = insertedId.toString())
+        return User.deleteMany()
+            .then(() => User.create({ name, surname, email, username, password }))
+            .then(({ id }) => resultId = id)
     })
 
     it('should succeed on correct credentials', () =>
@@ -36,7 +31,7 @@ describe('logic - authenticate user', () => {
                 expect(typeof userId).to.equal('string')
                 expect(userId.length).to.be.greaterThan(0)
 
-                expect(userId).to.equal(id)
+               expect(userId).to.equal(resultId)
             })
     )
 
@@ -94,5 +89,5 @@ describe('logic - authenticate user', () => {
 
     // TODO other cases
 
-    after(() => client.close())
+    after(() => User.deleteMany().then(database.disconnect))
 })
