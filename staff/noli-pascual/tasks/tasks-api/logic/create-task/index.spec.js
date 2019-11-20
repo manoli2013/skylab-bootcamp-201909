@@ -3,7 +3,7 @@ const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const createTask = require('.')
 const { random } = Math
-const { database, models: { User, Task } } = require('../../data')
+const { database, models: { User, Task } } = require('tasks-data')
 
 describe('logic - create task', () => {
     before(() => database.connect(DB_URL_TEST))
@@ -18,25 +18,24 @@ describe('logic - create task', () => {
         password = `password-${random()}`
 
         await Promise.all([User.deleteMany(), Task.deleteMany()])
-        const user = User.create({ name, surname, email, username, password }))
 
-    id = user.id
+        const user = await User.create({ name, surname, email, username, password })
 
-    title = `title-${random()}`
-    description = `description-${random()}`
+        id = user.id
 
-})
+        title = `title-${random()}`
+        description = `description-${random()}`
+    })
 
-it('should succeed on correct user and task data', async () {
+    it('should succeed on correct user and task data', async () => {
+        const taskId = await createTask(id, title, description)
 
-    const taskId = await createTask(id, title, description)
-    expect(taskId).to.exist
-    expect(taskId).to.be.a('string')
-    expect(taskId).to.have.length.greaterThan(0)
+        expect(taskId).to.exist
+        expect(taskId).to.be.a('string')
+        expect(taskId).to.have.length.greaterThan(0)
 
-    const task = await Task.findById(taskId)
+        const task = await Task.findById(taskId)
 
-    .then(task => {
         expect(task).to.exist
         expect(task.user.toString()).to.equal(id)
         expect(task.title).to.equal(title)
@@ -45,9 +44,8 @@ it('should succeed on correct user and task data', async () {
         expect(task.date).to.exist
         expect(task.date).to.be.instanceOf(Date)
     })
-})
 
-// TODO other test cases
+    // TODO other test cases
 
-after(() => Promise.all([User.deleteMany(), Task.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Task.deleteMany()]).then(database.disconnect))
 })

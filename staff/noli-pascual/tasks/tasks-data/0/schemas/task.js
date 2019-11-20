@@ -1,11 +1,10 @@
 const { Schema, ObjectId } = require('mongoose')
 
-// const user = require('./user')
-
 module.exports =  new Schema({
     user: {
         type: ObjectId,
-        required: true
+        required: true,
+        ref: 'User'
     },
     title: {
         type: String,

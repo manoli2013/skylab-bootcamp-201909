@@ -4,12 +4,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const { name, version } = require('./package.json')
 const { registerUser, authenticateUser, retrieveUser, createTask, listTasks, modifyTask, removeTask } = require('./logic')
-const { ConflictError, CredentialsError, NotFoundError } = require('./utils/errors')
 const jwt = require('jsonwebtoken')
 const { argv: [, , port], env: { SECRET, PORT = port || 8080, DB_URL } } = process
 const tokenVerifier = require('./helpers/token-verifier')(SECRET)
-const database = require('./utils/database')
 const cors = require('./utils/cors')
+const { errors: { NotFoundError, ConflictError, CredentialsError } } = require('tasks-util')
+const { database } = require('tasks-data')
+
 
 const api = express()
 
@@ -40,7 +41,7 @@ api.post('/users', jsonBodyParser, (req, res) => {
     }
 })
 
-api.post('/auth', jsonBodyParser, (req, res) => {debugger
+api.post('/auth', jsonBodyParser, (req, res) => {
     const { body: { username, password } } = req
 
     try {
@@ -168,6 +169,7 @@ api.delete('/tasks/:taskId', tokenVerifier, (req, res) => {
     }
 })
 
-database(DB_URL)
-    .connect()
+database
+    .connect(DB_URL)
     .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
+

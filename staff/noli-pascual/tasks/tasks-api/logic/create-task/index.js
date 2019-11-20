@@ -1,6 +1,5 @@
-const validate = require('../../utils/validate')
-const { NotFoundError } = require('../../utils/errors')
-const { ObjectId, models: { User, Task } } = require('../../data')
+const { validate, errors: { NotFoundError } } = require('tasks-util')
+const { ObjectId, models: { User, Task } } = require('tasks-data')
 
 module.exports = function (id, title, description) {
     validate.string(id)
@@ -14,7 +13,6 @@ module.exports = function (id, title, description) {
     validate.string.notVoid('description', description)
 
     return (async () => {
-
         const user = await User.findById(id)
 
         if (!user) throw new NotFoundError(`user with id ${id} not found`)

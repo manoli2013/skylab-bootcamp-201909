@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose')
-const { isEmail } = require('../../utils/validators')
+const { validators: { isEmail } } = require('tasks-util')
 
-module.exports =  new Schema({
+module.exports = new Schema({
     name: {
         type: String,
         required: true
@@ -23,5 +23,8 @@ module.exports =  new Schema({
     password: {
         type: String,
         required: true
+    },
+    lastAccess: {
+        type: Date
     }
 })
