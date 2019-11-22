@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Duck App</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+</head>
+
+<body>
+    <section class="view landing hide">
+        <h1 class="landing__title">Welcome to Tasks App</h1>
+        <p class="landing__options">Please, proceed to <a href="#">Register</a> or <a href="#">Login</a>.</p>
+    </section>
+
+    <section class="view register hide">
+        <form>
+            <h1 class="register__title">Register</h1>
+            <input class="register__field" type="text" name="name" placeholder="name">
+            <input class="register__field" type="text" name="surname" placeholder="surname">
+            <input class="register__field" type="email" name="email" placeholder="e-mail">
+            <input class="register__field" type="password" name="password" placeholder="password">
+            <button class="register__submit">📨</button>
+        </form>
+
+        <section class="feedback hide">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+    </section>
+
+    <section class="view login hide">
+        <form>
+            <h1 class="login__title">Login</h1>
+            <input class="login__field" type="email" name="email" placeholder="e-mail">
+            <input class="login__field" type="password" name="password" placeholder="password">
+            <button class="login__submit">🗝</button>
+        </form>
+
+        <section class="feedback hide">
+            <span class="feedback__icon">🤡</span>
+            <p class="feedback__message">Come with me...</p>
+            <span class="feedback__icon">🎈</span>
+        </section>
+    </section>
+
+
+    <section class="tasks-list">
+
+        <h1 class="tasks-list__title">MY TASKS</h1>
+
+        <section class="tasks-list__status todo">
+            <h2 class="tasks-list__subtitle">TO DO</h2>
+            <ul class="tasks-list__results">
+
+                <li class="tasks-list__item item item--todo">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__options">
+                       <select name="" id="">
+                           <option value="todo">ToDo</option>
+                           <option value="pending">Pending</option>
+                           <option value="review">Review</option>
+                           <option value="done">Done</option>
+                       </select>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--todo">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--todo">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+            </ul>
+
+        </section>
+        <section class="tasks-list__status pending">
+            <h2 class="tasks-list__subtitle">PENDING</h2>
+            <ul class="tasks-list__results">
+
+                <li class="tasks-list__item item item--pending">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--pending">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--pending">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+            </ul>
+
+        </section>
+
+        <section class="tasks-list__status review">
+            <h2 class="tasks-list__subtitle">REVIEW</h2>
+            <ul class="tasks-list__results">
+
+                <li class="tasks-list__item item item--review">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--review">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--review">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+            </ul>
+
+        </section>
+
+        <section class="tasks-list__status done">
+            <h2 class="tasks-list__subtitle">DONE</h2>
+            <ul class="tasks-list__results">
+
+                <li class="tasks-list__item item item--done">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--done">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+                <li class="tasks-list__item item item--done">
+                    <h2 class="item__title">Task Title</h2>
+                    <p class="item__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi, aut
+                        quis? A, velit inventore saepe amet consectetur nesciunt atque id doloremque minima similique
+                        unde quidem molestias labore sequi facere consequatur!</p>
+                    <p class="item__status">STATUS</p>
+
+                    <div class="item__icons-container">
+                        <i class="item__icon">T</i>
+                        <i class="item__icon">P</i>
+                        <i class="item__icon">R</i>
+                        <i class="item__icon">D</i>
+                    </div>
+                    <button type="button" class="item__delete"> Delete </button>
+                </li>
+
+            </ul>
+
+        </section>
+
+
+    </section>
+
+
+
+    <!-- <script src="main.js"></script> -->
+</body>
+
+</html>

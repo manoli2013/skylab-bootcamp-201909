@@ -1,6 +1,9 @@
 const call = require('../../utils/call')
 const { validate } = require('tasks-util')
-const { env: { REACT_APP_API_URL: API_URL } } = process
+//el destructuring falla
+//const { env: { REACT_APP_API_URL: API_URL } } = process
+
+const API_URL = process.env.REACT_APP_API_URL
 
 module.exports = function (name, surname, email, username, password) {
     validate.string(name)

@@ -1,11 +1,48 @@
+const call = require('../../utils/call')
+const { validate, errors: { NotFoundError} } = require('tasks-util')
+//el destructuring falla
+//const { env: { REACT_APP_API_URL: API_URL } } = process
+
+const API_URL = process.env.REACT_APP_API_URL
+
+
+module.exports = function (token, title, description) {
+    validate.string(token)
+    validate.string.notVoid('token', token)
+    // if (!ObjectId.isValid(token)) throw new ContentError(`${id} is not a valid id`)
+
+    validate.string(title)
+    validate.string.notVoid('title', title)
+
+    validate.string(description)
+	validate.string.notVoid('description', description)
+	
+return (async () => {
+
+	const res = await call(`${API_URL}/tasks`, {
+		method: 'POST',
+		headers: { 
+			'Content-Type': 'application/json',
+			'Authorization': `Bearer ${token}`
+		},
+		body: JSON.stringify({ title, description })
+	})
+
+	if (res.status === 201) return JSON.parse(res.body).id
+
+	if (res.status === 404) throw new NotFoundError(JSON.parse(res.body).message)
+	if (res.status === 400) throw new NotFoundError(JSON.parse(res.body).message)
+	// if (res.status === 500) throw new NotFoundError(JSON.parse(res.body).message)
+
+
+	throw new Error(JSON.parse(res.body).message)
+
+})()
+
+}
 /*
 fetch('http://192.168.0.41:8000/tasks', {
-	method: 'POST',
-	headers: { 
-		'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZGQyYjhlMTllYWQ1ZWFiNDllYzRjZTIiLCJpYXQiOjE1NzQwOTEwMzIsImV4cCI6MTU3NDE3NzQzMn0.Q574vZOvPhAjB6yBtjAhKeCe2MUwDmdE6CRoQdP9Oog',
-		'Content-Type': 'application/json' 
-	},
-	body: JSON.stringify({ title: 'hello world', description: 'blah blah blah' })
+	
 })
 	.then(res => res.json())
 	.then(res => { debugger })

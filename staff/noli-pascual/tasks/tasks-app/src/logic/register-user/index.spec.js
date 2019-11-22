@@ -1,4 +1,3 @@
-//require('dotenv').config()
 const { env: { REACT_APP_DB_URL_TEST: DB_URL_TEST } } = process
 const registerUser = require('.')
 const { random } = Math
@@ -28,7 +27,6 @@ describe('logic - register user', () => {
         const user = await User.findOne({ username })
 
         expect(user).toBeDefined()
-
         expect(user.name).toBe(name)
         expect(user.surname).toBe(surname)
         expect(user.email).toBe(email)

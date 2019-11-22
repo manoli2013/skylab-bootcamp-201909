@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  padding: 0.1rem;
+}
+
+.hide {
+  display: none;
+}
+
+.landing {
+  background-color: skyblue;
+}
+.landing__title {
+  text-align: center;
+}
+
+.register {
+  background-color: yellow;
+}
+
+.login {
+  background-color: brown;
+}
+
+.tasks-list {
+  text-align: center;
+}
+.tasks-list__title {
+  text-align: center;
+  background-color: green;
+}
+.tasks-list__results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 80%;
+  margin: 2em auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10%;
+}
+.item--todo {
+  background-color: red;
+}
+.item--pending {
+  background-color: skyblue;
+}
+.item--review {
+  background-color: orange;
+}
+.item--done {
+  background-color: green;
+}
+.item__title {
+  text-align: center;
+}
+.item__description {
+  width: 70%;
+  margin: 0 auto;
+}
+.item__status {
+  width: 20%;
+  margin: 0 auto;
+}
+.item__delete {
+  text-align: right;
+}
+.item__icons-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.item__icon {
+  width: 15%;
+  height: auto;
+}
+.item__delete {
+  width: 20%;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,70 @@
+*
+    box-sizing: border-box
+    padding: 0.1rem
+
+.hide
+
+    display: none
+
+.landing
+    background-color: skyblue
+
+    &__title
+        text-align: center
+
+.register
+    background-color: yellow
+
+.login
+    background-color: brown
+
+.tasks-list
+
+    text-align: center
+
+    &__title
+        text-align: center
+        background-color: green
+    &__results
+        display: flex
+        flex-wrap: wrap
+.item
+    
+    width: 80%
+    margin: 2em auto
+    display: flex
+    flex-direction: column
+    border-radius: 10%
+
+    &--todo
+        background-color: red
+    &--pending
+        background-color: skyblue
+    &--review
+        background-color: orange
+    &--done
+        background-color: green
+
+    &__title
+        text-align: center
+
+    &__description
+        width: 70%
+        margin: 0 auto
+    &__status
+        width: 20%
+        margin: 0 auto
+    &__delete
+        text-align: right
+    &__icons-container
+        width: 100%
+        display: flex
+        justify-content: space-evenly
+    &__icon
+        width: 15%
+        height: auto
+    &__delete
+        width: 20%
+        margin: 0 auto
+
+   
