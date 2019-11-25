@@ -40,7 +40,9 @@ The main features included in this application are:
 
 ## Technical Description
 
+![Agent Workflow](agent-flow.jpg)
 
+![Admin Workflow](admin-flow.jpg)
 
 
 ## Installation

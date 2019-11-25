@@ -6,7 +6,7 @@
   align-content: center;
 }
 
-.report, .daily-visits, .current-call, .list, .results-clients, .detail-client, .grid__item, .routes, .logo, .header {
+.report, .list, .results-clients, .detail-client, .grid__item, .routes, .logo, .header, .daily-visits, .current-call {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,11 +30,11 @@
   margin: 0.9rem auto;
 }
 
-.report__title, .daily-visits, .current-call__result, .current-call, .results-clients, .detail-client, .routes, .header, .form5, .form4, .form1, .form, .form3 {
+.report__title, .current-call__result, .results-clients, .detail-client, .routes__title, .routes, .header, .daily-visits, .current-call, .form5, .form4, .form1, .form, .form3 {
   text-align: center;
 }
 
-.report, .daily-visits, .current-call, .list, .results-clients, .detail-client, .grid__item, .routes, .logo, .header {
+.report, .list, .results-clients, .detail-client, .grid__item, .routes, .logo, .header, .daily-visits, .current-call {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,7 +58,7 @@
   margin: 0 auto;
 }
 
-.report__title, .daily-visits, .current-call__result, .current-call, .results-clients, .detail-client, .routes, .header, .form5, .form4, .form1, .form, .form3 {
+.report__title, .current-call__result, .results-clients, .detail-client, .routes__title, .routes, .header, .daily-visits, .current-call, .form5, .form4, .form1, .form, .form3 {
   text-align: center;
 }
 
@@ -71,6 +71,29 @@
   overflow: auto;
   background-color: #ffc34d;
   border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.report, .list, .results-clients, .detail-client, .grid__item, .routes, .logo, .header, .daily-visits, .current-call {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.report__title, .current-call__result, .results-clients, .detail-client, .routes__title, .routes, .header, .daily-visits, .current-call, .form5, .form4, .form1, .form, .form3 {
+  text-align: center;
+}
+
+.daily-visits, .current-call {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0.2rem 0.2rem black;
+  overflow: auto;
+  background-color: #ebebe0;
+  border: #ffc34d;
   border-radius: 15%;
 }
 
@@ -114,7 +137,8 @@ body {
 }
 
 .register {
-  height: 50%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .form3__title {
@@ -122,7 +146,8 @@ body {
   color: #ffffff;
 }
 .login {
-  height: 50%;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .form__title {
@@ -130,12 +155,11 @@ body {
   color: #ffffff;
 }
 .routes {
-  height: 65%;
+  width: 80%;
+  margin: 0 auto;
 }
-
 .grid {
   width: 100%;
-  height: 60%;
   justify-content: space-evenly;
   margin-top: 2rem;
 }
@@ -150,8 +174,8 @@ body {
 }
 
 .detail-client {
-  width: 100%;
-  height: 80%;
+  width: 85%;
+  margin: 0 auto;
 }
 .detail-client__form-container {
   width: 100%;
@@ -161,12 +185,13 @@ body {
   background-color: #ffc34d;
 }
 .list {
+  width: 80%;
+  margin: 0 auto;
   list-style: none;
 }
 
 .item {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
 }
 .item__link {
   background-color: #ebebe0;
@@ -182,11 +207,6 @@ body {
   height: 2rem;
 }
 
-.current-call {
-  background-color: #ebebe0;
-  border: 0.3rem solid #ffc34d;
-  border-radius: 10%;
-}
 .current-call__title {
   color: tomato;
   padding-bottom: 1.5rem;
@@ -199,14 +219,6 @@ body {
 }
 .current-call__instruction2 {
   color: red;
-}
-.daily-visits {
-  background-color: #ebebe0;
-  border: 0.3rem solid #ffc34d;
-  border-radius: 10%;
-  width: 50%;
-  height: 40%;
-  margin: 0 auto;
 }
 .daily-visits__title {
   color: green;
