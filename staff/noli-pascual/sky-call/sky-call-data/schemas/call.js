@@ -5,7 +5,8 @@ module.exports = new Schema({
 
     agent: {
         type: ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
 
     client: {
@@ -20,8 +21,9 @@ module.exports = new Schema({
     },
 
     finished: {
-      
+        
         type: Date,
+        default: false,
         
     },
 
