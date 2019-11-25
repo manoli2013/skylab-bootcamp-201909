@@ -209,3 +209,38 @@ body
 
 .data__list
     list-style: none
+
+.agents
+    
+    @extend %flex-column
+
+    &__list-container
+        @extend %flex-column
+        @extend %text-center
+        width: 95%
+        margin: 0 auto
+.list1
+    @extend %box-info 
+   
+    list-style: none
+
+.item1
+    @extend %flex-row
+    flex-wrap: nowrap
+    
+    border: 1px 2px solid
+
+    &__input-field
+        @extend %input-field
+        width: 20%
+        height: 1.2rem
+    &__button
+        @extend %button
+        height: 1.2rem
+
+.form7
+    width: 85%
+    @extend %form 
+
+    &__input-field
+        @extend %input-field
