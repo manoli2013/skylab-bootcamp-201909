@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class='header'>
+
+        <section class="header_logo-container logo">
+            <a class='logo__link' href="#"><img class='logo__image' src="logo.png" alt="logo"></a>
+            <div class='logo__slogan-container'>
+                <h2 class='header__slogan'>Slogan de SkyCall</h2>
+            </div>
+        </section>
+
+        <section class='header__nav-container nav'>
+            <div class='nav__user-area'>
+                <h4 class='nav__username'>Username</h4>
+            </div>
+            <nav class='nav__bar'>
+                <ul class='nav__list'>
+                    <li class='nav__item'>Logout</li>
+                </ul>
+            </nav>
+
+        </section>
+
+    </header>
+
+
+
+    <section class="view register">
+        <form class='register__form form3'>
+            <h1 class="form3__title">Register Agent</h1>
+            <input class="form3__field" type="text" name="name" placeholder="name">
+            <input class="form3__field" type="text" name="surname" placeholder="surname">
+            <input class="form3__field" type="text" name="username" placeholder="username">
+            <input class="form3__field" type="password" name="password" placeholder="password">
+            <br></br>
+
+            <button class="form3__submit">Submit</button>
+        </form>
+
+    </section>
+
+    <section class="view home">
+
+
+    </section>
+
+
+    <section class="view login">
+        <form class='login__form form'>
+            <h1 class="form__title">Login</h1>
+            <input class="form__field" type="text" name="username" placeholder="username">
+            <input class="form__field" type="password" name="password" placeholder="password">
+            <br></br>
+            <button class="form__field" type="button" name="admin">ADMIN USER </button>
+            <button class="form__field" type="button" name="agent">AGENT USER </button>
+            <button class="form__submit">Submit</button>
+        </form>
+
+    </section>
+
+
+    <section class='view routes'>
+        <h1 class='routes__title'>PICK UP YOUR ROUTE</h1>
+        <section class='routes__grid grid'>
+
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 1</h3>
+                <h4 class='grid__route-name'>Barcelona</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 2</h3>
+                <h4 class='grid__route-name'>Girona</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 3</h3>
+                <h4 class='grid__route-name'>Tarragona</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 4</h3>
+                <h4 class='grid__route-name'>Lleida</h4>
+
+            </div>
+
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 5</h3>
+                <h4 class='grid__route-name'>Madrid</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 6</h3>
+                <h4 class='grid__route-name'>Bilbao</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 7</h3>
+                <h4 class='grid__route-name'>Valencia</h4>
+
+            </div>
+            <div class="grid__item">
+
+                <h3 class='grid__route-number'>Route 8</h3>
+                <h4 class='grid__route-name'>Asturias</h4>
+
+            </div>
+
+        </section>
+    </section>
+
+    <section class="view detail-client">
+        <h2 class="detail-client__title">Client Details</h2>
+
+        <section class='detail-client__form-container'>
+
+            <form class='detail-client__form form1'>
+
+                <input class='form1__input-field' type="text" name='name' value='name'>
+                <input class='form1__input-field' type="text" name='surname' value='surname'>
+                <input class='form1__input-field' type="text" name='surname2' value='surname2'>
+                <br></br>
+                <input class='form1__input-field' type="text" name='tel1' value='Tel1'>
+                <input class='form1__input-field' type="text" name='tel1' value='Tel2'>
+                <br></br>
+                <input class='form1__input-field' type="text" name='street' value='street name'>
+                <input class='form1__input-field' type="text" name='num' value='street-number'>
+                <input class='form1__input-field' type="text" name='location' value='location'>
+
+                <br></br>
+                <input class='form1__input-field' type="text" name='marital' value='marital-status'>
+                <input class='form1__input-field' type="text" name='age' value='age'>
+                <br></br>
+                <input class='form1__input-field' type="text" name='products' value='products-array'>
+
+            </form>
+        </section>
+
+    </section>
+
+
+    <section class='view results-clients clients'>
+
+        <section class='clients__search search'>
+            <h2 class='search__title'>Search</h2>
+            <form class='search__form form' action="">
+
+                <input class='form__input' type="text" name='name' value='name'>
+                <button class="search__submit">🔍</button>
+            </form>
+        </section>
+
+        <ul class="clients__list list">
+            <li class="list__item item">
+                <a href="#" class="item__link">
+                    <input class='item__input' type="text" name='name' value='name'>
+                    <input class='item__input' type="text" name='surnname' value='surname'>
+                    <input class='item__input' type="text" name='surname2' value='surname2'>
+                    <input class='item__input' type="text" name='tel1' value='tel1'>
+                    <input class='item__input' type="text" name='tel2' value='tel1'>
+                    <input class='item__input' type="text" name='status' value='pending'>
+                </a>
+            </li>
+            <li class="list__item item">
+                <a href="#" class="item__link">
+                    <input class='item__input' type="text" name='name' value='name'>
+                    <input class='item__input' type="text" name='surnname' value='surname'>
+                    <input class='item__input' type="text" name='surname2' value='surname2'>
+                    <input class='item__input' type="text" name='tel1' value='tel1'>
+                    <input class='item__input' type="text" name='tel2' value='tel1'>
+                    <input class='item__input' type="text" name='status' value='pending'>
+
+                </a>
+            </li>
+            <li class="list__item item">
+                <a href="#" class="item__link">
+                    <input class='item__input' type="text" name='name' value='name'>
+                    <input class='item__input' type="text" name='surnname' value='surname'>
+                    <input class='item__input' type="text" name='surname2' value='surname2'>
+                    <input class='item__input' type="text" name='tel1' value='tel1'>
+                    <input class='item__input' type="text" name='tel2' value='tel1'>
+                    <input class='item__input' type="text" name='status' value='pending'>
+
+                </a>
+            </li>
+            <li class="list__item item">
+                <a href="#" class="item__link">
+                    <input class='item__input' type="text" name='name' value='name'>
+                    <input class='item__input' type="text" name='surnname' value='surname'>
+                    <input class='item__input' type="text" name='surname2' value='surname2'>
+                    <input class='item__input' type="text" name='tel1' value='tel1'>
+                    <input class='item__input' type="text" name='tel2' value='tel1'>
+                    <input class='item__input' type="text" name='status' value='pending'>
+
+                </a>
+            </li>
+            <li class="list__item item">
+                <a href="#" class="item__link">
+                    <input class='item__input' type="text" name='name' value='name'>
+                    <input class='item__input' type="text" name='surnname' value='surname'>
+                    <input class='item__input' type="text" name='surname2' value='surname2'>
+                    <input class='item__input' type="text" name='tel1' value='tel1'>
+                    <input class='item__input' type="text" name='tel2' value='tel1'>
+                    <input class='item__input' type="text" name='status' value='pending'>
+
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <aside>
+
+        <section class='view current-call'>
+            <h2 class='current-call__title'>Current Call</h2>
+
+            <section class='current-call__actions'>
+
+                <div class='current-call__option'>
+                    <i class='current-call__icon'>Icon</i>
+                    <h3 class='current-call__instruction1'>Call</h3>
+                </div>
+
+                <div class='current-call__option'>
+                    <i class='current-call__icon'>Icon</i>
+                    <h3 class='current-call__instruction2'>Hangout</h3>
+                </div>
+
+            </section>
+
+            <section class='current-call__result'>
+
+                <form class='current-call__form' action="">
+                    <label class='current-call__label' for="status">Result</label>
+                    <input class='current-call__result' name='status' type="text" value='resultado llamada'>
+                </form>
+            </section>
+
+        </section>
+
+
+
+
+        <section class='view current-visit'>
+
+            <form class='current-visit__form form4' action="">
+                <label class='form4__label' for="date">Date</label>
+                <input class='form4__input' type="text" name='date' value='date of visit'>
+
+                <label class='form4__label' for="time">Time</label>
+                <input class='form4__input' type="text" name='time' value='time of visit'>
+
+                <label class='form4__label' for="visitor">Visitor</label>
+                <input class='form4__input' type="text" name='visitor' value='visitor name'>
+            </form>
+
+        </section>
+
+
+    </aside>
+
+
+    <section class='view daily-visits'>
+        <h2 class='daily-visits__title'>My daily Visits</h2>
+        <section class='daily-visits__counter'>
+            <button class='daily-visits__total'> total: 34</button>
+        </section>
+    </section>
+
+
+
+    <section class='view report'>
+
+        <h2 class='report__title'>AGENTS REPORTS</h2>
+
+        <form class='report__figures form5' action="">
+
+            <label class='form5__label' for="calling">Agents Calling</label>
+            <input class='form5__input' type="text" name='calling' value='24'>
+
+            <label class='form5__label' for="not-calling">TAgents not calling</label>
+            <input class='form5__input' type="text" name='not-calling' value='4'>
+
+            <label class='form5__label' for="total-visits">Total Visits today</label>
+            <input class='form5__input' type="text" name='total-visits' value='154'>
+
+        </form>
+
+
+
+        <section class='report__data data'>
+            <ul class="data__list">
+                <li class="data__item item">
+                    <a href="#" class="item__link">
+                        <input class='item__input' type="text" name='agent' value='agentname'>
+                        <input class='item__input' type="text" name='active' value='true'>
+                        <input class='item__input' type="text" name='calls' value='124'>
+                        <input class='item__input' type="text" name='duration' value='time-calling'>
+                        <input class='item__input' type="text" name='success' value='13'>
+                        <input class='item__input' type="text" name='fail' value='35'>
+                        <input class='item__input' type="text" name='NA' value='134'>
+                    </a>
+                </li>
+                <li class="data__item item">
+                    <a href="#" class="item__link">
+                        <input class='item__input' type="text" name='agent' value='agentname'>
+                        <input class='item__input' type="text" name='active' value='true'>
+                        <input class='item__input' type="text" name='calls' value='124'>
+                        <input class='item__input' type="text" name='duration' value='time-calling'>
+                        <input class='item__input' type="text" name='success' value='13'>
+                        <input class='item__input' type="text" name='fail' value='35'>
+                        <input class='item__input' type="text" name='NA' value='134'>
+                    </a>
+                </li>
+                <li class="data__item item">
+                    <a href="#" class="item__link">
+                        <input class='item__input' type="text" name='agent' value='agentname'>
+                        <input class='item__input' type="text" name='active' value='true'>
+                        <input class='item__input' type="text" name='calls' value='124'>
+                        <input class='item__input' type="text" name='duration' value='time-calling'>
+                        <input class='item__input' type="text" name='success' value='13'>
+                        <input class='item__input' type="text" name='fail' value='35'>
+                        <input class='item__input' type="text" name='NA' value='134'>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </section>
+
+</body>
+
+</html>

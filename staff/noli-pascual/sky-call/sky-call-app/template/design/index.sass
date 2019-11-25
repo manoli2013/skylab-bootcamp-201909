@@ -1,0 +1,211 @@
+@import config
+@import flex-row
+@import flex-column
+@import button
+@import input-field
+@import text-center
+@import form
+@import box-info
+
+*
+    margin: 0
+    box-sizing: border-box
+body
+    height: 100vh
+    width: 100vw
+
+.header
+    @extend %flex-column
+    @extend %text-center
+    height: 30%
+    background-color: $main
+    color: $header-color
+
+.logo
+    @extend %flex-column
+    height: 85%
+    width: auto
+
+    &__link
+        height: 83%
+        width: auto
+    &__image
+        height: 100%
+        width: auto
+
+    &__slogan-container
+        height: 15%
+
+.nav
+    @extend %flex-row
+    height: 15%
+
+    &__list
+        list-style: none
+
+//register
+
+.register
+    width: 80%
+    margin: 0 auto
+
+.form3
+    @extend %form
+
+    &__title
+        margin-bottom: 1.5rem
+        color: $header-color
+
+    &__field
+        @extend %input-field
+
+    &__submit
+        @extend %button
+    
+
+//login
+
+.login
+    width: 80%
+    margin: 0 auto
+
+.form
+    @extend %form
+
+    &__title
+        margin-bottom: 1.5rem
+        color: $header-color
+
+    &__field
+        @extend %input-field
+
+    &__submit
+        @extend %button
+    //routes
+
+.routes
+    @extend %flex-column
+    @extend %text-center
+    width: 80%
+    margin: 0 auto
+
+    &__title
+        @extend %text-center
+
+.grid
+
+    @extend %flex-row
+    width: 100%
+    
+    justify-content: space-evenly
+    margin-top: 2rem
+
+    &__item
+        @extend %flex-column
+        color: $header-color
+        background-color: $secondary
+        padding: 1rem
+        height: 50%
+        margin-top: 2rem
+        border: 0.3rem solid $main
+        border-radius: 10%
+
+//client details
+
+.detail-client
+    width: 85%
+    margin: 0 auto
+  
+    @extend %flex-column
+    @extend %text-center
+
+    &__form-container
+
+        width: 100%
+        
+
+.form1
+    @extend %form
+    @extend %flex-row
+    background-color: $secondary
+
+    &__input-field
+        @extend %input-field
+
+.results-clients
+    @extend %flex-column
+    @extend %text-center
+
+.list
+    @extend %flex-column
+    width: 80%
+    margin: 0 auto
+    list-style: none
+
+.item
+    width: 100%
+
+    &__link
+        @extend %flex-row
+
+        background-color: $box-info-background
+        margin-bottom: 0.2rem
+        border: 0.3rem solid $secondary
+        border-radius: 2rem
+
+    &__input
+        @extend %input-field
+        background-color: transparent
+        margin-bottom: 0.1rem
+        border: none
+        text-decoration: none
+        height: 2rem
+
+.current-call
+    @extend %box-info
+    @extend %text-center
+   
+    &__title
+        color: tomato
+        padding-bottom: 1.5rem
+
+    &__option
+        @extend %flex-row
+        padding-bottom: 1.5rem
+
+    &__instruction1
+        color: green 
+
+    &__instruction2
+        color: red
+    
+    &__result
+        @extend %text-center
+
+.form4
+    @extend %form
+
+
+.daily-visits
+    @extend %box-info
+   
+    @extend %text-center
+
+    &__title
+        color: green
+        padding-bottom: 2rem
+    &__total
+        font-size: 1.5rem
+        background-color: $main 
+        color: $header-color
+
+.report
+    @extend %flex-column
+
+    &__title
+        @extend %text-center
+.form5
+    @extend %form
+
+.data__list
+    list-style: none
