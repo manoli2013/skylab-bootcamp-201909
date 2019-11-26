@@ -1,0 +1,41 @@
+@import ../config
+@import ../flex-row
+@import ../flex-column
+@import ../button
+@import ../input-field
+@import ../text-center
+@import ../form
+@import ../box-info
+
+.data__list
+    list-style: none
+
+    //listado de agents
+
+.agents
+    
+    @extend %flex-column
+
+    &__list-container
+        @extend %flex-column
+        @extend %text-center
+        width: 95%
+        margin: 0 auto
+.list
+    @extend %box-info 
+   
+    list-style: none
+
+.item
+    @extend %flex-row
+    flex-wrap: nowrap
+    border-bottom: 0.1rem solid $secondary
+    height: 1.5rem
+    &__input-field
+        @extend %input-field
+        width: 20%
+        height: 1.2rem
+        margin: auto
+    &__button
+        @extend %button
+        height: 1.2rem

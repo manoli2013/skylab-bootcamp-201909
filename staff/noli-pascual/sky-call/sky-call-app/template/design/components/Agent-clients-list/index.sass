@@ -1,0 +1,36 @@
+@import ../config
+@import ../flex-row
+@import ../flex-column
+
+@import ../input-field
+@import ../text-center
+
+@import ../box-info
+
+.results-clients
+    @extend %flex-column
+    @extend %text-center
+
+.list
+    
+    width: 100%
+    margin: 0 auto
+    list-style: none
+    padding-left: 0
+
+.item8
+    
+    &__link
+        @extend %flex-row
+        @extend %box-info
+        border-bottom: 0.1rem solid $secondary
+        font-size: 0.9rem
+       
+
+    &__input
+        @extend %input-field
+        background-color: transparent
+        margin-bottom: 0.1rem
+        border: none
+        text-decoration: none
+        width: 18%
