@@ -1,0 +1,18 @@
+@import ../config
+
+@import ../text-center
+
+@import ../box-info
+
+.daily-visits
+    @extend %box-info
+   
+    @extend %text-center
+
+    &__title
+        color: green
+        padding-bottom: 2rem
+    &__total
+        font-size: 1.5rem
+        background-color: $main 
+        color: $header-color

@@ -1,0 +1,717 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.nav, .grid, .current-call__option, .item8__link, .form1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.form__field, .item8__input, .form1__input-field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .report__title, .daily-visits, .current-call, .item8__link, .form4, .form {
+  text-align: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .item8__input, .form1__input-field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .report__title, .daily-visits, .current-call, .item8__link, .form4, .form {
+  text-align: center;
+}
+
+.form4, .form {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .report__title, .daily-visits, .current-call, .item8__link, .form4, .form {
+  text-align: center;
+}
+
+.daily-visits, .current-call, .item8__link {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .report__title, .form4, .form, .daily-visits, .current-call, .item8__link {
+  text-align: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .item8__input, .form1__input-field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .report__title, .form4, .form, .daily-visits, .current-call, .item8__link {
+  text-align: center;
+}
+
+.form4, .form {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.nav, .grid, .current-call__option, .item8__link, .form1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .detail-client, .report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .item8__input, .form1__input-field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .detail-client, .form4, .daily-visits, .current-call, .item8__link, .report__title, .form {
+  text-align: center;
+}
+
+.detail-client {
+  width: 95%;
+  margin: 0 auto;
+}
+.detail-client__form-container {
+  width: 100%;
+}
+
+.form1 {
+  background-color: #ffc34d;
+}
+.nav, .grid, .current-call__option, .item8__link, .form1 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .report, .detail-client {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .item8__input, .form1__input-field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .form4, .daily-visits, .current-call, .item8__link, .report__title, .form, .detail-client {
+  text-align: center;
+}
+
+.logo, .header, .grid__item, .routes, .results-clients, .report, .detail-client {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .current-call__result, .results-clients, .form4, .daily-visits, .current-call, .item8__link, .report__title, .form, .detail-client {
+  text-align: center;
+}
+
+.daily-visits, .current-call, .item8__link {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+}
+
+.list {
+  width: 100%;
+  margin: 0 auto;
+  list-style: none;
+  padding-left: 0;
+}
+
+.item8__link {
+  border-bottom: 0.1rem solid #ffc34d;
+  font-size: 0.9rem;
+}
+.item8__input {
+  background-color: transparent;
+  margin-bottom: 0.1rem;
+  border: none;
+  text-decoration: none;
+  width: 18%;
+}
+
+.nav, .grid, .current-call__option, .form1, .item8__link {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .current-call__result, .form4, .daily-visits, .current-call, .report__title, .form, .detail-client, .results-clients, .item8__link {
+  text-align: center;
+}
+
+.logo, .header, .grid__item, .routes, .report, .detail-client, .results-clients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .current-call__result, .form4, .daily-visits, .current-call, .report__title, .form, .detail-client, .results-clients, .item8__link {
+  text-align: center;
+}
+
+.daily-visits, .current-call, .item8__link {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+}
+
+.current-call {
+  border: 0.2rem solid #ffc34d;
+  border-radius: 10%;
+}
+.current-call__title {
+  color: tomato;
+  padding-bottom: 1.5rem;
+}
+.current-call__option {
+  padding-bottom: 1.5rem;
+}
+.current-call__instruction1 {
+  color: green;
+}
+.current-call__instruction2 {
+  color: red;
+}
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.header, .routes__title, .routes, .form4, .daily-visits, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result {
+  text-align: center;
+}
+
+.logo, .header, .grid__item, .routes, .report, .detail-client, .results-clients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.header, .routes__title, .routes, .form4, .daily-visits, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result {
+  text-align: center;
+}
+
+.form4, .form {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.nav, .grid, .form1, .item8__link, .current-call__option {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo, .header, .grid__item, .routes, .report, .detail-client, .results-clients {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .routes__title, .routes, .daily-visits, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4 {
+  text-align: center;
+}
+
+.routes {
+  width: 80%;
+  margin: 0 auto;
+}
+.grid {
+  width: 100%;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+.grid__item {
+  color: #ffffff;
+  background-color: #ffc34d;
+  padding: 1rem;
+  height: 50%;
+  margin-top: 2rem;
+  border: 0.3rem solid #00004d;
+  border-radius: 10%;
+}
+
+.header, .daily-visits, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title {
+  text-align: center;
+}
+
+.logo, .header, .report, .detail-client, .results-clients, .routes, .grid__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .daily-visits, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title {
+  text-align: center;
+}
+
+.daily-visits, .item8__link, .current-call {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+}
+
+.daily-visits__title {
+  color: green;
+  padding-bottom: 2rem;
+}
+.daily-visits__total {
+  font-size: 1.5rem;
+  background-color: #00004d;
+  color: #ffffff;
+}
+
+.nav, .form1, .item8__link, .current-call__option, .grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo, .header, .report, .detail-client, .results-clients, .routes, .grid__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.header, .report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits {
+  text-align: center;
+}
+
+.header {
+  height: 30%;
+  background-color: #00004d;
+  color: #ffffff;
+}
+
+.logo {
+  height: 85%;
+  width: auto;
+}
+.logo__link {
+  height: 83%;
+  width: auto;
+}
+.logo__image {
+  height: 100%;
+  width: auto;
+}
+.logo__slogan-container {
+  height: 15%;
+}
+
+.nav {
+  height: 15%;
+}
+.nav__list {
+  list-style: none;
+}
+
+.form1, .item8__link, .current-call__option, .grid, .nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.report, .detail-client, .results-clients, .routes, .grid__item, .header, .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits, .header {
+  text-align: center;
+}
+
+.report, .detail-client, .results-clients, .routes, .grid__item, .header, .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits, .header {
+  text-align: center;
+}
+
+.form, .form4 {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.report, .detail-client, .results-clients, .routes, .grid__item, .header, .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits, .header {
+  text-align: center;
+}
+
+.item8__link, .current-call, .daily-visits {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.report, .detail-client, .results-clients, .routes, .grid__item, .header, .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form__field, .form1__input-field, .item8__input {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits, .header {
+  text-align: center;
+}
+
+.form, .form4 {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.login {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.form__title {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.form1__input-field, .item8__input, .form__field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.report, .detail-client, .results-clients, .routes, .grid__item, .header, .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.form1__input-field, .item8__input, .form__field {
+  height: 1.2rem;
+  text-align: center;
+  font-size: 1rem;
+  border: transparent;
+  background-color: transparent;
+  border-radius: 5%;
+  margin: 0.9rem auto;
+}
+
+.form__submit {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.report__title, .form, .detail-client, .results-clients, .item8__link, .current-call, .current-call__result, .form4, .routes, .routes__title, .daily-visits, .header {
+  text-align: center;
+}
+
+.form, .form4 {
+  margin: 2% auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0.2rem 0.2rem #00004d;
+  overflow: auto;
+  background-color: #ffc34d;
+  border: 0.3rem solid #ffffff;
+  border-radius: 15%;
+}
+
+.register {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.form__title {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=style.css.map */

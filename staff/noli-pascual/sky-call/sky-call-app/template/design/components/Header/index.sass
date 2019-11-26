@@ -1,0 +1,34 @@
+@import ../config
+@import ../flex-row
+@import ../flex-column
+@import ../text-center
+
+
+.header
+    @extend %flex-column
+    @extend %text-center
+    height: 30%
+    background-color: $main
+    color: $header-color
+
+.logo
+    @extend %flex-column
+    height: 85%
+    width: auto
+
+    &__link
+        height: 83%
+        width: auto
+    &__image
+        height: 100%
+        width: auto
+
+    &__slogan-container
+        height: 15%
+
+.nav
+    @extend %flex-row
+    height: 15%
+
+    &__list
+        list-style: none

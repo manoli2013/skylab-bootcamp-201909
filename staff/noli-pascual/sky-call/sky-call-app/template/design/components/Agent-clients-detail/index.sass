@@ -1,0 +1,30 @@
+
+//client details
+    
+@import ../config
+@import ../flex-row
+@import ../flex-column
+
+@import ../input-field
+@import ../text-center
+
+
+
+.detail-client
+    width: 95%
+    margin: 0 auto
+  
+    @extend %flex-column
+    @extend %text-center
+
+    &__form-container
+
+        width: 100%
+
+.form
+  
+    @extend %flex-row
+    background-color: $secondary
+
+    &__input-field
+        @extend %input-field
