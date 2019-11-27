@@ -44,6 +44,10 @@ The main features included in this application are:
 
 ![Admin Workflow](admin-flow.jpg)
 
+![Blocks](blocks.jpg)
+
+![Components](components.jpg)
+
 
 ## Installation
 
