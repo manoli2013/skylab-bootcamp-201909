@@ -8,7 +8,7 @@ body {
   width: 100vw;
 }
 
-.nav, .grid, .current-call__option, .item8__link, .form1 {
+.nav, .grid, .current-call__option, .item8__link, .form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -31,7 +31,7 @@ body {
   margin: 0 auto;
 }
 
-.form__field, .item8__input, .form1__input-field {
+.form__field, .item8__input, .form__input-field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -52,7 +52,7 @@ body {
   align-content: center;
 }
 
-.form__field, .item8__input, .form1__input-field {
+.form__field, .item8__input, .form__input-field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -122,7 +122,7 @@ body {
   align-content: center;
 }
 
-.form__field, .item8__input, .form1__input-field {
+.form__field, .item8__input, .form__input-field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -155,7 +155,7 @@ body {
   border-radius: 15%;
 }
 
-.nav, .grid, .current-call__option, .item8__link, .form1 {
+.nav, .grid, .current-call__option, .item8__link, .form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -170,7 +170,7 @@ body {
   align-content: center;
 }
 
-.form__field, .item8__input, .form1__input-field {
+.form__field, .item8__input, .form__input-field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -192,10 +192,10 @@ body {
   width: 100%;
 }
 
-.form1 {
+.form {
   background-color: #ffc34d;
 }
-.nav, .grid, .current-call__option, .item8__link, .form1 {
+.nav, .grid, .current-call__option, .item8__link, .form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -210,7 +210,7 @@ body {
   align-content: center;
 }
 
-.form__field, .item8__input, .form1__input-field {
+.form__field, .item8__input, .form__input-field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -262,7 +262,7 @@ body {
   width: 18%;
 }
 
-.nav, .grid, .current-call__option, .form1, .item8__link {
+.nav, .grid, .current-call__option, .form, .item8__link {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -310,7 +310,7 @@ body {
 .current-call__instruction2 {
   color: red;
 }
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -331,7 +331,7 @@ body {
   align-content: center;
 }
 
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -364,7 +364,7 @@ body {
   border-radius: 15%;
 }
 
-.nav, .grid, .form1, .item8__link, .current-call__option {
+.nav, .grid, .form, .item8__link, .current-call__option {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -435,7 +435,7 @@ body {
   color: #ffffff;
 }
 
-.nav, .form1, .item8__link, .current-call__option, .grid {
+.nav, .form, .item8__link, .current-call__option, .grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -483,7 +483,7 @@ body {
   list-style: none;
 }
 
-.form1, .item8__link, .current-call__option, .grid, .nav {
+.form, .item8__link, .current-call__option, .grid, .nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -506,7 +506,7 @@ body {
   margin: 0 auto;
 }
 
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -527,7 +527,7 @@ body {
   align-content: center;
 }
 
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -579,6 +579,23 @@ body {
   overflow: auto;
 }
 
+.landing {
+  width: 100%;
+  height: 100%;
+}
+.landing__image-container {
+  width: 100%;
+  height: 100%;
+}
+.landing__link {
+  width: 100%;
+  height: 100%;
+}
+.landing__image {
+  width: 10%;
+  height: 100%;
+}
+
 .form__submit {
   width: 20%;
   display: flex;
@@ -587,7 +604,7 @@ body {
   margin: 0 auto;
 }
 
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -604,7 +621,7 @@ body {
   align-content: center;
 }
 
-.form__field, .form1__input-field, .item8__input {
+.form__field, .form__input-field, .item8__input {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -654,7 +671,7 @@ body {
   margin: 0 auto;
 }
 
-.form1__input-field, .item8__input, .form__field {
+.form__input-field, .item8__input, .form__field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
@@ -671,7 +688,7 @@ body {
   align-content: center;
 }
 
-.form1__input-field, .item8__input, .form__field {
+.form__input-field, .item8__input, .form__field {
   height: 1.2rem;
   text-align: center;
   font-size: 1rem;
