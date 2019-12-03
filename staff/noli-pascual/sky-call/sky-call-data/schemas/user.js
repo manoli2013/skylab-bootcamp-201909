@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose')
-
+const Agent = require('./agent')
 //USER 
 
 module.exports = new Schema({
@@ -23,12 +23,12 @@ module.exports = new Schema({
     },
     
     role: {
-        type:String,
+        type: String,
         required: true,
         enum: ['admin', 'agent'],
         default: 'admin'
     },
 
-    profile: Object
+    profile: Agent
     
 })

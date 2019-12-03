@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "mongoose": "^5.7.12",
-    "sky-call-util": "file:../../sky-call-util"
+    "sky-call-util": "file:../sky-call-util"
   },
   "devDependencies": {},
   "scripts": {
