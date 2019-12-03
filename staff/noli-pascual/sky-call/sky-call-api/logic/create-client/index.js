@@ -16,7 +16,7 @@ module.exports = function (idAdmin, nameClient, surnameClient, tel, location, ad
 
 
     return (async () => {
-        debugger
+        
         let user = await User.findById(idAdmin)
 
         if (!user) throw new ConflictError(`user with id ${idAdmin} does not exist`)

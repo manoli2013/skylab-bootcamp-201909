@@ -14,13 +14,18 @@ module.exports = function (idUser, idClient, idCall, statusCall) {
         validate.string.notVoid('statusCall', statusCall)
     }
 
-    return (async () => {
+    return (async () => {debugger
         const user = await User.findById(idUser)
 
         if (!user) throw new NotFoundError(`user with id ${idUser} not found`)
 
-        if(statusCall) 
-        await Call.updateOne({_id: ObjectId(idCall), client: idClient}, {$set: {statusCall} })
+        const call = await Call.findById(idCall)
+        if(!call) throw new NotFoundError(`call with id ${idCall} not found`)
+        
+        if(statusCall) call.statusCall = statusCall
+       
+        await call.save()
 
+        return call
     })()
 }

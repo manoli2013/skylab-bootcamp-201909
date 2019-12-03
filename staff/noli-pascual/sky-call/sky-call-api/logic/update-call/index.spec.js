@@ -2,14 +2,14 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
-const updateClient = require('.')
+const updateCall = require('.')
 const { errors: { NotFoundError } } = require('sky-call-util')
-const { database, models: { User, Client, Route }, ObjectId } = require('sky-call-data')
+const { database, models: { User, Client, Route, Call }, ObjectId } = require('sky-call-data')
 
 describe('logic - update call', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
-    let idRoute, location
+    let location, statusRoute
     let idClient, nameClient, surnameClient, tel, address
 
     beforeEach(async () => {
@@ -19,10 +19,12 @@ describe('logic - update call', () => {
         surname = `surname-${random()}`
         username = `username-${random()}`
         password = `password-${random()}`
-        role = 'admin'
+        role = 'agent'
 
         //crear ruta
-        location = 'Barcelona'
+
+        location = '452154854875'
+        statusRoute = 'pasive'
 
         //crear cliente
 
@@ -44,62 +46,50 @@ describe('logic - update call', () => {
 
         await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()])
 
-        const route = await Route.create({ location })
-        idRoute = route.id
+        const user = await User.create( {name, surname, username, password, role} )
+        const id = user.id
 
-        const route2 = await Route.create({ location })
-        idRoute2 = route2.id
+        const route = await Route.create({user: id, location, statusRoute})
 
-        const user = await User.create({ name, surname, username, password, role })
-        id = user.id
-      
-        const client = await Client.create({ creator: id, nameClient, surnameClient, tel, location: idRoute, address })
+        const client = await Client.create({ creator: id, nameClient, surnameClient, tel, location: route.id, address, callIds, visits })
+        
         idClient = client.id
+
+        const call = await Call.create({agent: id, client: idClient, created: new Date(), calling: true, statusCall: 'N.A', })
+        idCall = call.id
         
     })
 
-    it('should succeed on correct client id', async () => {
+    it('should succeed on correct call id', async () => {   
 
-        const newClient = await updateClient(id, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+        const newStatus = 'A'
 
-        expect(newClient).to.exist
+        const newCall = await updateCall(id, idClient, idCall, newStatus)
+
+        expect(newCall).to.exist
         
-        expect(newClient.nameClient).to.equal(newNameClient)
-        expect(newClient.surnameClient).to.equal(newSurnameClient)
-        expect(newClient.tel).to.equal(newTel)
-        expect(newClient.location.toString()).to.equal(idRoute2)
-        expect(newClient.address).to.equal(newAddress)
+        expect(newCall.id).to.equal(idCall)
+        expect(newCall.statusVisit).to.equal(newStatus)
+       
 
     })
-    it('should fail on wrong user id', async () => {
-        const id2 = '251452145858'
+    it('should fail on wrong call id', async () => {debugger
+        const newStatus1 = 'A'
+        const id2 = '253521548758'
 
         try {
-            await updateClient(id2, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+            await updateCall(id, idClient, id2, newStatus1)
 
             throw Error('should not reach this point')
 
         } catch (error) {
             expect(error).to.exist
             expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`user with id ${id2} not found`)
+            expect(error.message).to.equal(`call with id ${id2} not found`)
         }
     })
-    it('should fail on wrong client id', async () => {
-        const wrongClientId = '251452145858'
-
-        try {
-            await updateClient(id, wrongClientId, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
-
-            throw Error('should not reach this point')
-
-        } catch (error) {
-            expect(error).to.exist
-            expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`client with id ${wrongClientId} not found`)
-        }
-    })
+    
 
 
-    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()], Call.deleteMany()).then(database.disconnect))
 })

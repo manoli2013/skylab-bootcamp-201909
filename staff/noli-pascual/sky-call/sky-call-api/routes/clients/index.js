@@ -168,7 +168,7 @@ router.patch('/:idClient/calls/:idCall', tokenVerifier, jsonBodyParser, (req, re
 
 //crear una visita al apretar save
 
-router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {debugger
+router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {
     
     const { id, params: {idClient} , body: { dateVisit, statusVisit } } = req
         try {

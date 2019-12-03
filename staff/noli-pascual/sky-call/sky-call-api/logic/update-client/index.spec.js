@@ -58,7 +58,7 @@ describe('logic - update client', () => {
         
     })
 
-    it('should succeed on correct client id', async () => {
+    it('should succeed on correct client id', async () => {debugger
 
         const newClient = await updateClient(id, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
 

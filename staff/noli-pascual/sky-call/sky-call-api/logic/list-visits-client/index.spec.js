@@ -11,7 +11,7 @@ describe('logic - list visits clients', () => {
     let name, surname, username, password, role
     let idClient, nameClient, surnameClient, tel, address, callIds, visits
     let location
-    let dateRegister, dateVisit, status
+    let dateRegister, dateVisit, statusVisit
 
 
     beforeEach(async () => {
@@ -39,7 +39,7 @@ describe('logic - list visits clients', () => {
         //crear visitas
         dateRegister = new Date
         dateVisit = new Date
-        status = 'PDTE'
+        statusVisit = 'PDTE'
 
         await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Visit.deleteMany()])
 
@@ -59,17 +59,17 @@ describe('logic - list visits clients', () => {
         idClient = client.id
 
         //visitas
-        const visit1 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, status })
+        const visit1 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, statusVisit })
         idVisit = visit1.id
 
-        const visit2 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, status })
+        const visit2 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, statusVisit })
         idVisit = visit2.id
 
-        const visit3 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, status })
+        const visit3 = await Visit.create({ agent: id, client: idClient, dateRegister, dateVisit, statusVisit })
         idVisit = visit3.id
 
         const idClient2 = '125425154875'
-        const visitNotBelonging = await Visit.create({ agent: id, client: idClient2, dateRegister, dateVisit, status })
+        const visitNotBelonging = await Visit.create({ agent: id, client: idClient2, dateRegister, dateVisit, statusVisit })
         idVisit = visitNotBelonging.id
     })
 
@@ -91,8 +91,8 @@ describe('logic - list visits clients', () => {
 
             expect(visit.dateVisit).to.deep.equal(dateVisit)
 
-            expect(visit.status).to.equal(status)
-            expect(typeof visit.status).to.be.a('string')
+            expect(visit.statusVisit).to.equal(statusVisit)
+            expect(typeof visit.statusVisit).to.be.a('string')
 
         })
     })

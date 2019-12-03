@@ -1,10 +1,14 @@
-const { validate, errors: { ConflictError } } = require('sky-call-util')
+const { validate, errors: { ConflictError, NotFoundError } } = require('sky-call-util')
 const { models: { User, Call } } = require('sky-call-data')
 
-module.exports = function (idUser, idCall) {
+module.exports = function (idUser, idClient, idCall) {
 
     validate.string(idUser)
     validate.string.notVoid('idUser', idUser)
+
+    validate.string(idClient)
+    validate.string.notVoid('idClient', idClient)
+
     validate.string(idCall)
     validate.string.notVoid('idClient', idCall)
 
@@ -17,13 +21,11 @@ module.exports = function (idUser, idCall) {
         if (!user) throw new ConflictError(`user with id ${idUser} does not exist`)
 
         let call = await Call.findById(idCall)
-        if (!call) throw new ConflictError(`call with id ${idCall} does not exist`)
+        if (!call) throw new NotFoundError(`call with id ${idCall} does not exist`)
 
         const dateCreation = Math.round(call.created.getTime() / 1000)
         const dateFinish = new Date()
         const now = Math.round(dateFinish.getTime() / 1000)
-
-
 
         const difference = now - dateCreation
 
@@ -38,25 +40,9 @@ module.exports = function (idUser, idCall) {
 
         call.duration = (`${minutes} min : ${seconds} sec`)
 
-        //TO DO
-        // const convertDate = function (date) {
-        //     const year = date.getFullYear();
-        //     month = date.getMonth() + 1;
-        //     dt = date.getDate();
-
-        //     if (dt < 10) {
-        //         dt = '0' + dt;
-        //     }
-        //     if (month < 10) {
-        //         month = '0' + month;
-        //     }
-            
-        //     return (year + '-' + month + '-' + dt);
-
-        // }
-        // dateCreation = convertDate(dateCreation)
-
         await call.save()
+
+        return call
 
     })()
 }
