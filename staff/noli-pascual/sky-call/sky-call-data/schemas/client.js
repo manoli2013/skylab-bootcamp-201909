@@ -1,22 +1,22 @@
-const { Schema } = require('mongoose')
-const { SchemaTypes: { ObjectId } } = mongoose
-
+const { Schema, ObjectId } = require('mongoose')
 
 //CLIENT
 
 module.exports = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    surname: {
+
+    creator: {
+        type: ObjectId,
+        ref: 'User'
+    }, 
+
+    nameClient: {
         type: String,
         required: true
     },
     
-    surname2: {
+    surnameClient: {
         type: String,
-        required: true,
+        required: true
     },
     
     tel: {
@@ -24,21 +24,22 @@ module.exports = new Schema({
         required: true
     },
 
-    location: { type: ObjectId, ref: 'Route' },
+    location: { type: ObjectId, ref: 'Route', required: true},
 
-    address: {
-        type: String,
-        required: true
+    address: { type: String, required: true },
+
+    callIds: {
+        type: Array,
     },
 
-    callIds: [{
-        type: ObjectId,
-        ref: 'Call'
-    }],
+    visits: {
+        type: Array,
+   
+    },
 
-    visits: [{
-        type: ObjectId,
-        ref: 'Visit'
-    }],
+    isActive: {
+        type: Boolean,
+        default: true
+    }
     
 })

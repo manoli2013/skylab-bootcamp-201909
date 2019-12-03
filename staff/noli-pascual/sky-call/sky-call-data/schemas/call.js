@@ -1,4 +1,4 @@
-const { Schema, SchemaTypes: { ObjectId } } = mongoose
+const { Schema, SchemaTypes: { ObjectId } } = require('mongoose')
 //CALL
 
 module.exports = new Schema({
@@ -16,25 +16,26 @@ module.exports = new Schema({
 
     created: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: new Date()
+    },
+
+    statusCall: {
+        type: String,
+        enum: ['A', 'N.A', 'O.S'],
+        
+    },
+
+    calling: {
+        type: Boolean,
+        default: false
     },
 
     finished: {
-        
-        type: Date,
-        default: false,
-        
-    },
-
-    status: {
-        type: String,
-        enum: ['OK', 'NO', 'NC'],
-        required: true
+        type: Date
     },
 
     duration: {
-  //cómo setear y calcular duración
+        type: String
     }
     
 })

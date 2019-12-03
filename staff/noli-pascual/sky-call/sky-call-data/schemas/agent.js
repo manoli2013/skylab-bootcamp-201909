@@ -1,25 +1,31 @@
-const { Schema } = require('mongoose')
-const { SchemaTypes: { ObjectId } } = mongoose
+const { Schema, ObjectId} = require('mongoose')
+// const { SchemaTypes: { ObjectId } } = mongoose
 
 //AGENT 
 
 module.exports = new Schema({
-    callIds: [{
-        type: ObjectId,
-        ref: 'Call'
-    }],
+    
+    //NO HACE FALTA
+    // callIds: [{
+    //     type: ObjectId,
+    //     ref: 'Call'
+    // }],
 
-    visits: [{
-        type: ObjectId,
-        ref: 'Visit'
-    }],
+    //NO HACE FALTA
+    // visits: [{
+    //     type: ObjectId,
+    //     ref: 'Visit'
+    // }],
+
+    pendingVisits: {
+        type: Array
+    },
+    
+    successVisits: {
+        type: Array
+    },
 
     failVisits: {
-        type: Number,
-        default: 0
-    },
-    sucessVisits: {
-        type: Number,
-        default: 0
+        type: Array
     }
 })
