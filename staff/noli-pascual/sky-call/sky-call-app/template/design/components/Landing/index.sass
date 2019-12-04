@@ -8,15 +8,34 @@
 @import ../box-info
 
 .landing
-    width: 100%
-    height: 100%
+    width: 100vw
+    height: 100vh
+    
     &__image-container
         width: 100%
-        height: 100%
+        height: 80%
+        @extend %flex-row
 
-    &__link
+    &__figure
+        
+        display: flex
+        flex-direction: column
+      
+    &__caption
+        width: 80%
+        color: #ffffff
+        margin: 0 auto
+        position: absolute
+        top: 30%
+        left: 20%
+    &__image
         width: 100%
         height: 100%
-    &__image
-        width: 10%
-        height: 100%
+    
+    &__options
+        position: absolute
+        @extend %flex-row
+        width: 100%
+        top: 40%
+        left: 25%
+        background-color: yellow
