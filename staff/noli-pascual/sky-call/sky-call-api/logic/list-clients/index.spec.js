@@ -83,13 +83,9 @@ describe('logic - list clients by idRoute', () => {
         
         clients.forEach(client => {
 
-            expect(client.id).to.exist
-
-            expect(client.id).to.be.a('string')
+            expect(client).to.exist
             
-            expect(client.location.toString()).to.equal(idRoute)
-
-            expect(client.creator.toString()).to.equal(id)
+           
 
         })
     })

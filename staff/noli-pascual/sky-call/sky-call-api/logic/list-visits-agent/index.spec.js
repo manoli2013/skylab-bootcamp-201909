@@ -90,8 +90,8 @@ describe('logic - list visits agents', () => {
 
             expect(visit.dateVisit).to.deep.equal(dateVisit)
 
-            expect(visit.status).to.equal(status)
-            expect(typeof visit.status).to.be.a('string')
+            expect(visit.statusVisit).to.equal(status)
+            expect(typeof visit.statusVisit).to.be.a('string')
 
         })
     })

@@ -2,15 +2,16 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
-const updateClient = require('.')
+const updateVisit = require('.')
 const { errors: { NotFoundError } } = require('sky-call-util')
-const { database, models: { User, Client, Route }, ObjectId } = require('sky-call-data')
+const { database, models: { User, Client, Route, Visit}, ObjectId } = require('sky-call-data')
 
 describe('logic - update visit', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
     let idRoute, location
     let idClient, nameClient, surnameClient, tel, address
+    let dateVisit, statusVisit
 
     beforeEach(async () => {
 
@@ -42,6 +43,9 @@ describe('logic - update visit', () => {
        
         newAddress = 'new-address'
 
+        dateVisit = new Date()
+        statusVisit = 'OK'
+
         await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()])
 
         const route = await Route.create({ location })
@@ -55,51 +59,39 @@ describe('logic - update visit', () => {
       
         const client = await Client.create({ creator: id, nameClient, surnameClient, tel, location: idRoute, address })
         idClient = client.id
+
+        const visit = await Visit.create({agent: id, client: idClient, dateVisit, statusVisit })
+        idVisit = visit.id
         
     })
 
-    it('should succeed on correct client id', async () => {
+    it('should succeed on correct visit id', async () => {
 
-        const newClient = await updateClient(id, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+        const newVisit = await updateVisit(id, idClient, idVisit, dateVisit, statusVisit)
 
-        expect(newClient).to.exist
+        expect(newVisit).to.exist
         
-        expect(newClient.nameClient).to.equal(newNameClient)
-        expect(newClient.surnameClient).to.equal(newSurnameClient)
-        expect(newClient.tel).to.equal(newTel)
-        expect(newClient.location.toString()).to.equal(idRoute2)
-        expect(newClient.address).to.equal(newAddress)
+        expect(newVisit.dateVisit).to.deep.equal(dateVisit)
+        expect(newVisit.statusVisit).to.equal(statusVisit)
+     
 
     })
-    it('should fail on wrong user id', async () => {
+    it('should fail on wrong visit id', async () => {
         const id2 = '251452145858'
 
         try {
-            await updateClient(id2, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+            await await updateVisit(id, idClient, id2, dateVisit, statusVisit)
 
             throw Error('should not reach this point')
 
         } catch (error) {
             expect(error).to.exist
             expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`user with id ${id2} not found`)
+            expect(error.message).to.equal(`visit with id ${id2} not found`)
         }
     })
-    it('should fail on wrong client id', async () => {
-        const wrongClientId = '251452145858'
-
-        try {
-            await updateClient(id, wrongClientId, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
-
-            throw Error('should not reach this point')
-
-        } catch (error) {
-            expect(error).to.exist
-            expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`client with id ${wrongClientId} not found`)
-        }
-    })
+    
 
 
-    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Visit.deleteMany()]).then(database.disconnect))
 })

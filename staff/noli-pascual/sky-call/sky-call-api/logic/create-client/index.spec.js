@@ -46,7 +46,7 @@ describe('logic - createClient', () => {
         
     })
 
-    it('should succeed on correct credentials', async () => {debugger
+    it('should succeed on correct credentials', async () => {
     
         const clientId = await createClient(id, nameClient, surnameClient, tel, idRoute, address, callIds, visits)
 

@@ -18,18 +18,18 @@ module.exports = function (idUser, idClient) {
         if (!user) throw new NotFoundError(`user with id ${idUser} does not exist`)
         
         const client = await Client.findById(idClient)
+        if(!client) throw new NotFoundError(`client with id ${idClient} not found`)
+
         let locationId = client.location
 
+        //extract location string
         const route = await Route.findById(locationId)
 
-        const routeName = route.location
 
-        if(!client) throw new NotFoundError(`client with id ${idClient} not found`)
+        let { id, nameClient, surnameClient, tel, location, address } = client.toObject()
         location = route.location
-        
-        const { id, nameClient, surnameClient, tel, address } = client.toObject()
 
-        return { id, nameClient, surnameClient, tel, address, routeName }
+        return { nameClient, surnameClient, tel, address, location, address }
         
 
     })()

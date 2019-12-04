@@ -45,7 +45,7 @@ describe('logic - remove user', () => {
         const wrongId = '012345678901234567890123'
 
         try {
-            await removeUser(wrongId, idAdmin)
+            await removeUser(idAdmin, wrongId)
 
             throw Error('should not reach this point')
         } catch (error) {

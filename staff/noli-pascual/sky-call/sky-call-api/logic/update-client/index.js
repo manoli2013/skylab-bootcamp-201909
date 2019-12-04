@@ -35,7 +35,7 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
     //     validate.string.notVoid('address', address)
     // }
 
-    return (async () => {
+    return (async () => {debugger
         const user = await User.findById(idUser)
 
         if (!user) throw new NotFoundError(`user with id ${idUser} not found`)
@@ -44,16 +44,15 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
 
         if (!client) throw new NotFoundError(`client with id ${idClient} not found`)
 
-        const modifications = {}
+        if(nameClient) client.nameClient = nameClient
+        if(surnameClient) client.surnameClient = surnameClient
+        if(tel) client.tel = tel
+        if(address) client.address = address
+        if(location) client.location = location
 
-        if(nameClient) modifications.nameClient = nameClient
-        if(surnameClient) modifications.surnameClient = surnameClient
-        if(tel) modifications.tel = tel
-        if(address) modifications.address = address
-        if(location) modifications.location = location
-
-        await Client.updateOne({_id: ObjectId(idClient)}, {$set: modifications} )
         
+        await client.save()
 
+        return client
     })()
 }
