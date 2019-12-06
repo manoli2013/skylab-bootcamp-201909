@@ -29,9 +29,17 @@ export default withRouter(function ({ history }) {
     const [user, setUser] = useState()
     const [role, setRole] = useState()
     const [agentsReport, setAgentsReport] = useState({})
+
     const [agents, setAgents] = useState([])
+    const [agent, setAgent] = useState({})
+
     const [visits, setVisits] = useState([])
     const [calls, setCalls] = useState([])
+
+    const [clients, setClients] = useState([])
+    const [client, setClient] = useState({})
+
+    const [route, setRoute]
 
     useEffect(() => {
         const { token } = sessionStorage;
@@ -43,6 +51,7 @@ export default withRouter(function ({ history }) {
                 setUser(name)
                 setRole(role)
 
+                await retrieveClients(token)
                 await retrieveAgents(token)
                 await retrieveGeneralReport(token)
                 await retrieveCalls(token)
@@ -51,16 +60,19 @@ export default withRouter(function ({ history }) {
         })()
     }, [sessionStorage.token, agentsReport, agents, calls])
 
+    //retrieve collections
     async function retrieveAgents(token) {
         const agents = listAgents(token)
 
         setAgents(agents)
     }
-    async function retrieveGeneralReport(token) {
-        const agentsReport = listGeneralReport(token)
 
-        setAgentsReport(agentsReport)
+    async function retrieveClients(token) {
+        const clients = listAgents(token)
+
+        setAgents(agents)
     }
+
     async function retrieveCalls(token) {
         const calls = listCalls(token)
 
@@ -72,6 +84,19 @@ export default withRouter(function ({ history }) {
         setVisits(visits)
     }
 
+    async function retrieveGeneralReport(token) {
+        const agentsReport = listGeneralReport(token)
+
+        setAgentsReport(agentsReport)
+    }
+
+    //retrieve client actual
+
+    async function retrieveClient(token) {
+        const Client = retrieveClient(token)
+
+        setClient(client)
+    }
 
     function handleGoToRegister() { history.push('/register') }
 
@@ -138,36 +163,36 @@ export default withRouter(function ({ history }) {
 
 
         <Route exact path="/" render={() => <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
-        <Route path="/register" render={() => token? agent? <Redirect to = '/agent' />  <Register onRegister={handleRegister} onBack={handleGoBack} />} />
+        <Route path="/register" render={() => token ? agent ? <Redirect to='/agent' /> <Register onRegister={handleRegister} onBack={handleGoBack} />} />
         <Route path="/login" render={() => <Login onLogin={handleLogin} onBack={handleGoBack} on error />} />
 
 
-        <Route path="/agent" render={() => token ? <> <AgentMain user={name} onLogout={handleLogout} clients ={clients} visits = {visits} calls = {calls}
+        <Route path="/agent" render={() => token ? <> <AgentMain user={name} onLogout={handleLogout} clients={clients} visits={visits} calls={calls}
         
             
         <AgentClientItem onDetail = {handleDetail} />
         <AgentDetailClient />
-        </> 
-        
-        
-       
-
-        <Route path="/admin" render={() => <AdminMain onBack={handleGoBack} onCreateClient={handleGoToCreateClient} onAddRoute={handleGoToAddRoute} onUpdateAgent={handleGoToUpdateAgent} onGeneralReport={handleGoToGeneralReport} onAgentsReport={handleGoToAgentsResults} onCallsReport={handleGoToCallsResults} />} />
-
-        <Route path="/admin/general-report" render={() => <AdminReportFigures agentsReport={agentsReport} /> } />
-
-        <Route path="/admin/agents-results" render={() => <AdminAgentsResults agents = {agents} /> } />
-        <Route path="/admin/calls-results" render={() => <AdminCallsResults calls={calls} /> } />
+        </>
 
 
-        <Route path="/admin/create-client" render={() => <AdminAddClient onCreateClient={handleCreateClient} />} />
 
-        <Route path="/admin/add-route" render={() => <AdminAddRoute onAddRoute={handleAddRoute} />} />
 
-        <Route path="/admin/update-agent" render={() => <AdminUpdateAgent onUpdateAgent={handleUpdateAgent} />} />
+            <Route path="/admin" render={() => <AdminMain onBack={handleGoBack} onCreateClient={handleGoToCreateClient} onAddRoute={handleGoToAddRoute} onUpdateAgent={handleGoToUpdateAgent} onGeneralReport={handleGoToGeneralReport} onAgentsReport={handleGoToAgentsResults} onCallsReport={handleGoToCallsResults} />} />
 
-        <Footer />
+            <Route path="/admin/general-report" render={() => <AdminReportFigures agentsReport={agentsReport} />} />
+
+            <Route path="/admin/agents-results" render={() => <AdminAgentsResults agents={agents} />} />
+            <Route path="/admin/calls-results" render={() => <AdminCallsResults calls={calls} />} />
+
+
+            <Route path="/admin/create-client" render={() => <AdminAddClient onCreateClient={handleCreateClient} />} />
+
+            <Route path="/admin/add-route" render={() => <AdminAddRoute onAddRoute={handleAddRoute} />} />
+
+            <Route path="/admin/update-agent" render={() => <AdminUpdateAgent onUpdateAgent={handleUpdateAgent} />} />
+
+            <Footer />
 
     </div>
-
+    
 })
