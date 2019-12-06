@@ -1,0 +1,14 @@
+@import ../flex-row
+
+.footer
+    height: 10%
+.nav
+    @extend %flex-row
+    height: 100%
+
+    &__list
+        @extend %flex-row
+        justify-content: space-between
+        list-style: none
+        color: $main-border
+        text-shadow: $text-shadow

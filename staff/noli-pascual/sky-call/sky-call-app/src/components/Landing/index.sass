@@ -8,17 +8,18 @@
 @import ../box-info
 
 .landing
-    max-width: 370px
-    height: 100%
+    width: 100%
+    height: 50%
+    
     
     &__image-container
-       
+        
         @extend %flex-row
-        margin-top: 20%
+        
 
     &__figure
         width: 100%
-        height: 80vh
+        height: 60%
         
         @extend %flex-column
       
@@ -27,10 +28,11 @@
         @extend %text-center
         color: $title
         margin: 0 auto
-        
+        position: relative
+        top: 25%
         font-weight: bold
         text-shadow: $text-shadow
-        padding-bottom: 5%
+        
 
     &__image
         width: 100%
@@ -42,15 +44,14 @@
     &__option-container
         @extend %flex-row
         justify-content: space-evenly
-        magin: 20% auto
+       
         position: absolute
         width: 100%
-        
         top: 50%
         left: 2%
         
     &__option
-        width: 200px
+        width: 30%
         @extend %button
         &:hover 
             border: solid 1% rgb(255, 0, 0)

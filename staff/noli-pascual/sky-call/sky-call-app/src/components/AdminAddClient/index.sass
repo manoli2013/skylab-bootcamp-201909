@@ -1,0 +1,31 @@
+@import ../config
+@import ../form
+@import ../button
+@import ../input-field
+@import ../link
+
+
+.register
+    width: 70%
+    height: 73%
+    margin: 0 auto
+
+.form
+    @extend %form
+    width: 60%
+    margin: 0 auto
+
+    &__title
+        margin-bottom: 1.5rem
+        color: $main-font-color
+
+    &__input-field
+        @extend %input-field
+        padding: 3%
+
+    &__submit
+        @extend %button
+
+    &__back
+       @extend %link
+       margin-top: 15%

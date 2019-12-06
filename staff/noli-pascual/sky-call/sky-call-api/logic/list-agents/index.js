@@ -24,6 +24,7 @@ module.exports = function (idAdmin) {
             const calls = await Call.countDocuments({agent: agent.id})
             pendingCalls = await Call.countDocuments({statusCall: 'N.A', agent: agent.id})
             agent = {
+                id: agent.id,
                 name: agent.name,
                 surname: agent.surname,
                 calls,

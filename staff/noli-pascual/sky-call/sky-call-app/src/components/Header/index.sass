@@ -1,0 +1,25 @@
+@import ../config
+@import ../flex-row
+@import ../flex-column
+@import ../text-center
+
+
+.header
+    @extend %flex-column
+    @extend %text-center
+    height: 10%
+   
+.logo
+    @extend %flex-column
+    height: 95%
+    width: auto
+
+    &__link
+        height: 83%
+        width: auto
+    &__image
+        max-height: 100px
+        width: auto
+        
+
+   

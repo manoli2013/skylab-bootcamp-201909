@@ -20,8 +20,7 @@ export default function (onRegister, onLogin) {
 
                     <button class="landing__option" href="" onClick={event => {
                         event.preventDefault()
-                        event.stopPropagation()
-
+                        
                         onRegister()
 
                     }}> Register </button>

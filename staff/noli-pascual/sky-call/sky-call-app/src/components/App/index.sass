@@ -9,12 +9,16 @@
 @import ../text-center
 *
     margin: 0
+    padding: 0
     box-sizing: border-box
 
 
-body
-    width: 100vw
-    height: 100vh
+.app
+    border: 1px solid blue
+    width: 100%
+    min-height: 100vh
+    @extend %flex-column
+
     background-image: $general-background
     background-repeat: no-repeat
     background-size: cover
@@ -29,6 +33,7 @@ body
 @import ../Feedback
 
 @import ../AdminMain
+@import ../AdminMenu
 @import ../AdminAddClient
 @import ../AdminAddRoute
 @import ../AdminAgentsResults

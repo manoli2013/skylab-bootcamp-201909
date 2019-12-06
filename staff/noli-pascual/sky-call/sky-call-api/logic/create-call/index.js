@@ -17,9 +17,9 @@ module.exports = function (idUser, idClient) {
 
         let client = await Client.findById(idClient)
 
-        // cuando apretan a llamar, crear una llamada vacía
+        // cuando apretan a llamar, crear una llamada 
 
-        const call = await Call.create( { agent: idUser, client: client.id, calling: true } )
+        const call = await Call.create( { agent: idUser, client: client.id, statusCall: 'N.A', calling: true } )
 
         return call.id
 
