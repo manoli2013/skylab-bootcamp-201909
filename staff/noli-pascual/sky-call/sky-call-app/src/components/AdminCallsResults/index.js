@@ -11,8 +11,7 @@ export default function ({ calls }) {
 
             <ul className='calls__results results'>
 
-                {calls.map((call) => {
-                    <li className='calls__row' key={call.id}> <AdminCallItem call={call} /></li>
+                {calls.map((call) => { return <li className='calls__row' key={call.id}> <AdminCallItem call={call} /></li>
 
                 })}
 

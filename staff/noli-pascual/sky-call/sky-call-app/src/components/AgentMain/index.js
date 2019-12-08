@@ -1,21 +1,32 @@
-import React from 'react'
-import Feedback from '../Feedback'
+import React from 'react';
+
+
+import AgentClientResults from '../AgentClientResults';
 import AgentSearch from '../AgentSearch'
-import AgentClientResults from '../AgentClientResults'
 
 
-export default function ({ clients, user, onSubmitStatus, onSubmitRoute, visits, calls}) {
+export default (function ({ clients , onSubmitRoute, onBack}) {
 
-    return <section className='agent main'>
-        <h1 className="main__title">AGENT AREA</h1>
-        
-        <h2 className = 'main__user'>{user}</h2>
+    
 
-        <AgentSearch clients = {clients} visits = {visits} calls ={calls} onSubmitStatus = {onSubmitStatus} onSubmitRoute = {onSubmitRoute} />
-        
+    return <>
 
-        
-        {error && <Feedback message={error} />}
+        <h1>Hola main</h1>
 
-    </section>
-}
+        {/* //Barra de busqueda
+        //select de búsqueda
+        //Compo Results */}
+
+        <AgentSearch clients={clients} onSubmitRoute={onSubmitRoute}  />
+        <AgentClientResults clients={clients} />
+
+        <a className="main__back" href="" onClick={event => {
+            event.preventDefault()
+
+            onBack()
+        }}>Go back</a>
+    </>
+
+
+})
+

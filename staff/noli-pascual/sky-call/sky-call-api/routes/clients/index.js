@@ -102,14 +102,14 @@ router.patch('/:idClient', tokenVerifier, jsonBodyParser, (req, res) => {
     }
 })
 
-//pintar clientes con status "X"
+//pintar clientes con select route
 
 router.get('/', tokenVerifier, (req, res) => {
-    const { id , query: {call} } = req
+    const { id , query } = req
 
     try {
 
-        searchClients(id, call)
+        listClientsRoute(id, query)
             .then(clients => res.json(clients))
             .catch(error => {
                 const { message } = error
@@ -168,7 +168,7 @@ router.patch('/:idClient/calls/:idCall', tokenVerifier, jsonBodyParser, (req, re
 
 //crear una visita al apretar save
 
-router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {debugger
+router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {
     
     const { id, params: {idClient} , body: { dateVisit, statusVisit } } = req
         try {

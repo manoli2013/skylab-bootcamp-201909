@@ -3,7 +3,7 @@ import AgentClientItem from '../AgentClientItem'
 
 
 
-export default function ({ clients, visits, calls }) {
+export default function ({ clients }) {
 
     return <section className='clients'>
 
@@ -13,7 +13,7 @@ export default function ({ clients, visits, calls }) {
 
             <ul className='clients__results results'>
                 
-                {clients.map((client => <AgentClientItem client = {client} calls = {client.calls} visits = {client.visits} /> ))}
+                {clients.map((client => <AgentClientItem key = {client.id} client = {client}  /> ))}
 
             </ul>
 

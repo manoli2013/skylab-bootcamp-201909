@@ -1,7 +1,7 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('sky-call-util')
 const { ObjectId, models: { Call, User, Visit } } = require('sky-call-data')
 
-module.exports = function (idUser, idClient, idVisit, dateVisit, statusVisit) {debugger
+module.exports = function (idUser, idClient, idVisit, dateVisit, statusVisit) {
 
     validate.string(idUser)
     validate.string.notVoid('idUser', idUser)

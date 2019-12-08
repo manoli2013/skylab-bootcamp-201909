@@ -20,6 +20,7 @@ module.exports = function (idUser, idClient, idCall, statusCall) {
         if (!user) throw new NotFoundError(`user with id ${idUser} not found`)
 
         if(statusCall) 
+        
         await Call.updateOne({_id: ObjectId(idCall), client: idClient}, {$set: {statusCall} })
 
     })()

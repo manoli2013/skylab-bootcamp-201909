@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function ({ agentsReport }) {
+export default function ({  }) {
 
-    const { calls, answered, pending, visits, fails, calling } = agentsReport
+    // const { calls, answered, pending, visits, fails, calling } = agentsReport
 
 
     return <section className='report'>
@@ -13,12 +13,12 @@ export default function ({ agentsReport }) {
 
             <section className='report__results'>
 
-                    <div className='report-row'>{calls}</div>
-                    <div className='report-row' type="text" name='answered' value={answered} />
-                    <div className='report-row' type="text" name='pendng' value={pending} />
-                    <div className='report-row' type="text" name='visits' value={visits} />
-                    <div className='report-row' type="text" name='fails' value={fails} />
-                    <div className='report-row' type="text" name='calling' value={calling} />
+                    <div className='report-row'>{'calls'}</div>
+                    <div className='report-row' type="text" name='answered' value={'answered'} />
+                    <div className='report-row' type="text" name='pendng' value={'pending'} />
+                    <div className='report-row' type="text" name='visits' value={'visits'} />
+                    <div className='report-row' type="text" name='fails' value={'fails'} />
+                    <div className='report-row' type="text" name='calling' value={'calling'} />
 
             </section>
 

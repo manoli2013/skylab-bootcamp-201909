@@ -17,9 +17,7 @@ module.exports = function (idUser, idRoute) {
        
         if(!activeRoute) throw new NotFoundError(`route with id ${idRoute} not found`)
         
-        activeRoute.statusRoute = 'active'
-
-        activeRoute.save()
+     
 
         const clients = await Client.find({location: idRoute})
 
@@ -27,10 +25,11 @@ module.exports = function (idUser, idRoute) {
         
         //extraer clientes
         const clientsList = []
+        const locationRoute = activeRoute.location
 
         clients.forEach(client => {
             const { nameClient, surnameClient, tel, location, address, isActive } = client
-            clientsList.push({nameClient, surnameClient, tel, location: activeRoute.location, address, isActive })
+            clientsList.push({nameClient, surnameClient, tel, location, locationRoute, address, isActive })
         })
         
        

@@ -11,9 +11,7 @@ export default function ({ agents }) {
 
             <ul className='agents__results results'>
                 
-                {agents.map((call) => {
-
-                    <li className='agents__row' key={agent.id}> <AdminAgentItem agent = {agent} /></li>
+                {agents.map((agent) => { return  <li className='agents__row' key={agent.id}> <AdminAgentItem agent = {agent} /></li>
 
                 })}
 

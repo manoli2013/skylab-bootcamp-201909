@@ -2,9 +2,12 @@ import React from 'react'
 import AgentDetailClient from '../AgentDetailClient'
 
 
-export default function ({ client: { id, name, surname, tel, location, address }, onDetail }) {
+export default function ( client, onDetail ) {
+
+    const { id, name, surname, tel, location, address } = client
 
     return <li className='client-item item'>
+        <h1> Detail Client</h1>
 
         <a href="#" className="item__link" onClick={event => {
             event.preventDefault()
