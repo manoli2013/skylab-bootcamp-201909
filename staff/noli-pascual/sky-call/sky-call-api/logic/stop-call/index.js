@@ -1,5 +1,5 @@
 const { validate, errors: { ConflictError } } = require('sky-call-util')
-const { models: { User, Call } } = require('sky-call-data')
+const { models: { User, Call, Client } } = require('sky-call-data')
 
 module.exports = function (idUser, idClient, idCall, statusCall) {
 
@@ -13,11 +13,15 @@ module.exports = function (idUser, idClient, idCall, statusCall) {
     validate.string.notVoid('statusCall', statusCall)
 
 
-    return (async () => {
+    return (async () => {debugger
 
         let user = await User.findById(idUser)
 
         if (!user) throw new ConflictError(`user with id ${idUser} does not exist`)
+
+        let client = await Client.findById(idClient)
+        if (!client) throw new ConflictError(`client with id ${idClient} does not exist`)
+
 
         let call = await Call.findById(idCall)
         if (!call) throw new ConflictError(`call with id ${idCall} does not exist`)

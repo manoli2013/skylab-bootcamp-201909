@@ -8,7 +8,7 @@ const { database } = require('sky-call-data')
 const jsonBodyParser = require('body-parser')
 
 
-const { users, visits, clients, calls, routes } = require('./routes')
+const { users, visits, clients, calls } = require('./routes')
 
 const api = express()
 
@@ -19,7 +19,6 @@ api.options('*', cors, (req, res) => {
 })
 
 api.use('/users', users)
-api.use('/routes', routes)
 api.use('/clients', clients)
 api.use('/calls', calls)
 api.use('/visits', visits)

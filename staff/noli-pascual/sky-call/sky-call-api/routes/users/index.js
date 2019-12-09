@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { registerUser, authenticateUser, retrieveUser, removeUser, listAgents, adminReport, uploadImageUser, loadImageUser} = require('../../logic')
+const { registerUser, authenticateUser, retrieveUser, generalReport, agentsReport, uploadImageUser, loadImageUser} = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)

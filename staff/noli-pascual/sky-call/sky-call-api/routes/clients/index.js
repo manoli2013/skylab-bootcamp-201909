@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createClient, retrieveClient, createCall, createVisit, removeClient, updateClient, listCallsClient, listVisitsClient, searchClients} = require('../../logic')
+const { createClient, retrieveClient, createCall, createVisit, removeClient, updateClient, stopCall, listClientsRoute} = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -13,10 +13,10 @@ const router = Router()
 //crear client
 
 router.post('/', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id, body: { nameClient, surnameClient, tel, location, address } } = req
+    const { id, body: { nameClient, surnameClient, tel, location, address, callIds, visits } } = req
 
     try {
-        createClient(id, nameClient, surnameClient, tel, location,address)
+        createClient(id, nameClient, surnameClient, tel, location, address, callIds, visits)
             .then(() => res.status(201).end())
             .catch(error => {
                 const { message } = error
@@ -104,10 +104,10 @@ router.patch('/:idClient', tokenVerifier, jsonBodyParser, (req, res) => {
 
 //filtrar clientes x location
 
-router.get('/', tokenVerifier, (req, res) => {debugger
+router.get('/list/:location', tokenVerifier, (req, res) => {debugger
     const { id } = req
-
-    try {
+    const { params: { location} } = req
+    try {debugger
 
         listClientsRoute(id, location)
             .then(clients => res.json(clients))
@@ -129,7 +129,7 @@ router.get('/', tokenVerifier, (req, res) => {debugger
 router.post('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
     const { id, params: { idClient }} = req
 
-    try {
+    try {debugger
         createCall(id, idClient)
             .then(() => res.status(201).end())
             .catch(error => {

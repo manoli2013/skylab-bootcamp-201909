@@ -20,7 +20,7 @@ module.exports = function (idUser, idClient) {
     validate.string.notVoid('idClient', idClient)
    
 
-    return (async () => {
+    return (async () => {debugger
 
         let user = await User.findById(idUser)
 

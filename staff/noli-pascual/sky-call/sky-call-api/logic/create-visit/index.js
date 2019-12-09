@@ -28,10 +28,6 @@ module.exports = function(idUser, idClient, dateVisit, statusVisit) {
         const user = await User.findById(idUser)
 
         if(!user) throw new NotFoundError(`user with id ${idUser} not found`)
-        
-        if((user.role === 'agent') && user.profile === undefined) {
-            user.profile = new Agent()
-        }
 
         const clientFiltered = await Client.findById(idClient)
 
@@ -40,7 +36,8 @@ module.exports = function(idUser, idClient, dateVisit, statusVisit) {
         dateVisit = new Date(dateVisit)
 
         const visit = await Visit.create({agent: idUser, client: idClient, dateVisit, statusVisit})
-  
+     
+
         //extraer el agent
        
         switch(statusVisit) {

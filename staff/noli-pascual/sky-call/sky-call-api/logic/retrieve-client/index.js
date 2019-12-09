@@ -21,7 +21,7 @@ module.exports = function (idUser, idClient) {
 
         if(!client) throw new NotFoundError(`client with id ${idClient} not found`)
 
-        const callsClient = await Call.find({client: idClient})
+        let callsClient = await Call.find({client: idClient})
 
         const visitsClient = await Visit.find({client: idClient})
         

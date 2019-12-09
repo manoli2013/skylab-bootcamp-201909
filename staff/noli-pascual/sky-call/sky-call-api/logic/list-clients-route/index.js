@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError, ConflictError } } = require('sky-call-util')
-const { ObjectId, models: { Client, User, Route} } = require('sky-call-data')
+const { ObjectId, models: { Client, User} } = require('sky-call-data')
 
 module.exports = function (idUser, location) {
     validate.string(idUser)
@@ -10,12 +10,10 @@ module.exports = function (idUser, location) {
     //validación de Mongo
     if (!ObjectId.isValid(idUser)) throw new ContentError(`${idUser} is not a valid id`)
 
-    return (async () => {
+    return (async () => {debugger
 
         let user = await User.findById(idUser)
         if (!user) throw new NotFoundError(`user with id ${idUser} does not exist`)
-
-
 
         const clients = await Client.find({location})
 
@@ -27,10 +25,10 @@ module.exports = function (idUser, location) {
 
         clients.forEach(client => {
             const { id, nameClient, surnameClient, tel, location, address, isActive } = client
-            clientsList.push({id, nameClient, surnameClient, tel, location, locationRoute, address, isActive })
+
+            clientsList.push({id, nameClient, surnameClient, tel, location, address, isActive })
         })
         
-       
         return clientsList
 
     })()

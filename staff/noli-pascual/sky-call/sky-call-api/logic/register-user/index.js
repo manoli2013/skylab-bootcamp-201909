@@ -19,8 +19,7 @@ module.exports = function (name, surname, username, password) {
 
         user = await User.create({ name, surname, username, password })
 
-        if (role === 'agent') user.profile = new Agent()
-
+        user.profile = new Agent()
         user.save()
     })()
 }

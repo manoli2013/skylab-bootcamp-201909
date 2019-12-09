@@ -15,19 +15,15 @@ module.exports = function (idAdmin, nameClient, surnameClient, tel, location, ad
     validate.string.notVoid('address', address)
 
 
-    return (async () => {
+    return (async () => {debugger
         
         let user = await User.findById(idAdmin)
 
         if (!user) throw new ConflictError(`user with id ${idAdmin} does not exist`)
 
-        if (user.role === 'admin') {
 
-            const client = await Client.create({ creator: idAdmin, nameClient, surnameClient, tel, location, address, callIds: [], visits: [], isActive: true })
-            return client.id
-        }
-
-
+        const client = await Client.create({ creator: idAdmin, nameClient, surnameClient, tel, location, address, callIds: [], visits: [], isActive: true })
+        
         return client.id
 
     })()

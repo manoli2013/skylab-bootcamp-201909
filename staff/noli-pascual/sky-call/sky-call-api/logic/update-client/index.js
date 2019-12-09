@@ -26,7 +26,7 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
     
     if (nameClient) {
         validate.string(nameClient)
-        validate.string.notVoid('nameClient', namelient)
+        validate.string.notVoid('nameClient', nameClient)
     }
 
     if (surnameClient) {
