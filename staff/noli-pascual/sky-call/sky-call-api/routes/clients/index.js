@@ -77,7 +77,7 @@ router.delete('/:idClient', tokenVerifier, (req, res) => {
     }
 })
 
-//update client
+//update client 
 
 router.patch('/:idClient', tokenVerifier, jsonBodyParser, (req, res) => {
     try {
@@ -102,14 +102,14 @@ router.patch('/:idClient', tokenVerifier, jsonBodyParser, (req, res) => {
     }
 })
 
-//pintar clientes con select route
+//filtrar clientes x location
 
-router.get('/', tokenVerifier, (req, res) => {
-    const { id , query } = req
+router.get('/', tokenVerifier, (req, res) => {debugger
+    const { id } = req
 
     try {
 
-        listClientsRoute(id, query)
+        listClientsRoute(id, location)
             .then(clients => res.json(clients))
             .catch(error => {
                 const { message } = error
@@ -145,7 +145,7 @@ router.post('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
     }
 })
 
-//update llamada del cliente
+//stop llamada del cliente (update del status input)
 
 router.patch('/:idClient/calls/:idCall', tokenVerifier, jsonBodyParser, (req, res) => {
     const { id, params: { idClient, idCall} , body: { statusCall }} = req
@@ -189,95 +189,69 @@ router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res)
  
 })
 
-//update visit(agent)
-
-router.patch('/:idClient/visits/idVisit', tokenVerifier, jsonBodyParser, (req, res) => {
-    try {
-        const { id, params: { idClient, idVisit }, body: { dateVisit, statusVisit } } = req
-
-        updateVisit(id, idClient, idVisit, dateVisit, statusVisit)
-            .then(() => res.status(200).json({message: "updated"}))
-            .catch(error => {
-                const { message } = error
-
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
-                if (error instanceof ConflictError)
-                    return res.status(409).json({ message })
-
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
-
-
-
-
 
 //listar llamadas en cada cliente
 
-router.get('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id , params: {idClient} } = req
-    try {
+// router.get('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
+//     const { id , params: {idClient} } = req
+//     try {
 
-       listCallsClient(id, idClient)
-            .then((calls) => res.json(calls))
-            .catch(error => {
-                const { message } = error
+//        listCallsClient(id, idClient)
+//             .then((calls) => res.json(calls))
+//             .catch(error => {
+//                 const { message } = error
 
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
+//                 if (error instanceof NotFoundError)
+//                     return res.status(404).json({ message })
 
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
+//                 res.status(500).json({ message })
+//             })
+//     } catch ({ message }) {
+//         res.status(400).json({ message })
+//     }
+// })
 
 //listar visits en cada cliente
 
-router.get('/:idClient/visits', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id , params: {idClient} } = req
-    try {
+// router.get('/:idClient/visits', tokenVerifier, jsonBodyParser, (req, res) => {
+//     const { id , params: {idClient} } = req
+//     try {
 
-       listVisitsClient(id, idClient)
-            .then((calls) => res.json(calls))
-            .catch(error => {
-                const { message } = error
+//        listVisitsClient(id, idClient)
+//             .then((calls) => res.json(calls))
+//             .catch(error => {
+//                 const { message } = error
 
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
+//                 if (error instanceof NotFoundError)
+//                     return res.status(404).json({ message })
 
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
+//                 res.status(500).json({ message })
+//             })
+//     } catch ({ message }) {
+//         res.status(400).json({ message })
+//     }
+// })
 
 
 //listar visitas en cada cliente
 
-router.get('/:idClient/visits', tokenVerifier, jsonBodyParser, (req, res) => {
-    const { id , params: {idClient} } = req
-    try {
+// router.get('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
+//     const { id , params: {idClient} } = req
+//     try {
 
-       listCallsClient(id, idClient)
-            .then((visits) => res.json(visits))
-            .catch(error => {
-                const { message } = error
+//        listCallsClient(id, idClient)
+//             .then((calls) => res.json(calls))
+//             .catch(error => {
+//                 const { message } = error
 
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
+//                 if (error instanceof NotFoundError)
+//                     return res.status(404).json({ message })
 
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
+//                 res.status(500).json({ message })
+//             })
+//     } catch ({ message }) {
+//         res.status(400).json({ message })
+//     }
+// })
 
 module.exports = router

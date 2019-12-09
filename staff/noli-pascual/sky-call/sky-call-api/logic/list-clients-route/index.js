@@ -1,11 +1,14 @@
 const { validate, errors: { NotFoundError, ContentError, ConflictError } } = require('sky-call-util')
 const { ObjectId, models: { Client, User, Route} } = require('sky-call-data')
 
-module.exports = function (idUser, idRoute) {
-    validate.string(idRoute)
-    validate.string.notVoid('idRoute', idRoute)
+module.exports = function (idUser, location) {
+    validate.string(idUser)
+    validate.string.notVoid('idUser', idUser)
+    
+    validate.string(location)
+    validate.string.notVoid('location', location)
     //validación de Mongo
-    if (!ObjectId.isValid(idRoute)) throw new ContentError(`${idRoute} is not a valid id`)
+    if (!ObjectId.isValid(idUser)) throw new ContentError(`${idUser} is not a valid id`)
 
     return (async () => {
 
@@ -13,23 +16,18 @@ module.exports = function (idUser, idRoute) {
         if (!user) throw new NotFoundError(`user with id ${idUser} does not exist`)
 
 
-        let activeRoute = await Route.findById(idRoute)
-       
-        if(!activeRoute) throw new NotFoundError(`route with id ${idRoute} not found`)
-        
-     
 
-        const clients = await Client.find({location: idRoute})
+        const clients = await Client.find({location})
 
-        if(clients.length === 0) throw new NotFoundError(`No clients in route ${idRoute}`)
+        if(clients.length === 0) throw new NotFoundError(`No clients in route`)
         
         //extraer clientes
         const clientsList = []
-        const locationRoute = activeRoute.location
+        
 
         clients.forEach(client => {
-            const { nameClient, surnameClient, tel, location, address, isActive } = client
-            clientsList.push({nameClient, surnameClient, tel, location, locationRoute, address, isActive })
+            const { id, nameClient, surnameClient, tel, location, address, isActive } = client
+            clientsList.push({id, nameClient, surnameClient, tel, location, locationRoute, address, isActive })
         })
         
        

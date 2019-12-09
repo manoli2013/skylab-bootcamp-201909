@@ -1,5 +1,5 @@
 const { validate, errors: { ConflictError } } = require('sky-call-util')
-const { models: { User, Client, Route } } = require('sky-call-data')
+const { models: { User, Client } } = require('sky-call-data')
 
 module.exports = function (idAdmin, nameClient, surnameClient, tel, location, address) {
 
@@ -9,10 +9,10 @@ module.exports = function (idAdmin, nameClient, surnameClient, tel, location, ad
     validate.string.notVoid('surnameClient', surnameClient)
     validate.string(tel)
     validate.string.notVoid('tel', tel)
-
+    validate.string(location)
+    validate.string.notVoid('location', location)
     validate.string(address)
     validate.string.notVoid('address', address)
-
 
 
     return (async () => {
@@ -21,11 +21,9 @@ module.exports = function (idAdmin, nameClient, surnameClient, tel, location, ad
 
         if (!user) throw new ConflictError(`user with id ${idAdmin} does not exist`)
 
-        const route = await Route.findOne({ user: idAdmin })
-
         if (user.role === 'admin') {
 
-            const client = await Client.create({ creator: idAdmin, nameClient, surnameClient, tel, location: route.id, address, callIds: [], visits: [], isActive: true })
+            const client = await Client.create({ creator: idAdmin, nameClient, surnameClient, tel, location, address, callIds: [], visits: [], isActive: true })
             return client.id
         }
 

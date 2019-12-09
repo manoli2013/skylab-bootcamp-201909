@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('sky-call-util')
-const { ObjectId, models: { Client, User, Route} } = require('sky-call-data')
+const { ObjectId, models: { Client, User, Call, Visit} } = require('sky-call-data')
 
 module.exports = function (idUser, idClient) {
     validate.string(idUser)
@@ -18,18 +18,16 @@ module.exports = function (idUser, idClient) {
         if (!user) throw new NotFoundError(`user with id ${idUser} does not exist`)
         
         const client = await Client.findById(idClient)
-        let locationId = client.location
-
-        const route = await Route.findById(locationId)
-
-        const routeName = route.location
 
         if(!client) throw new NotFoundError(`client with id ${idClient} not found`)
-        location = route.location
-        
-        const { id, nameClient, surnameClient, tel, address } = client.toObject()
 
-        return { id, nameClient, surnameClient, tel, address, routeName }
+        const callsClient = await Call.find({client: idClient})
+
+        const visitsClient = await Visit.find({client: idClient})
+        
+        const { id, nameClient, surnameClient, tel, location, address} = client.toObject()
+
+        return { id, nameClient, surnameClient, tel, location, address, callsClient, visitsClient }
         
 
     })()

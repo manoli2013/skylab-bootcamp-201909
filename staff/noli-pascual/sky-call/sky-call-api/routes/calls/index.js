@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { createCall, updateCall, stopCall, searchClients, retrieveCall, listCallsAdmin } = require('../../logic')
+const { callsReport } = require('../../logic')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
 const bodyParser = require('body-parser')
@@ -10,14 +10,14 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 
-//LIST CALLS ADMIN
+//CALLS REPORT ADMIN
 router.get('/', tokenVerifier, (req, res) => {
 
     const { id } = req
 
     try {
 
-        listCallsAdmin(id)
+        callsReport(id)
             .then(calls => res.json(calls))
             .catch(error => {
                 const { message } = error

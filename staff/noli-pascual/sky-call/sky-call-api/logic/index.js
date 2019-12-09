@@ -6,42 +6,35 @@ module.exports = {
     retrieveUser: require('./retrieve-user'),
     
     //admin
-    
-    retrieveUsers: require('./retrieve-users'),
-    retrieveCalls: require('./retrieve-calls'),
-    retrieveVisits: require('./retrieve-visits'),
     createClient: require('./create-client'),
-    listAgents: require('./list-agents'),
-    createRoute: require('./create-route'),
-    adminReport: require('./admin-report'),
-    listCallsAdmin: require('./list-calls-admin'),
-    updateUser: require('./update-user'),
+    agentsReport: require('./agents-report'),
+    callsReport: require('./calls-report'),
+    generalReport: require('./general-report'),
+    
+    updateAgent: require('./update-agent'),
+    
+    //PDTE ???????
+    retrieveUsers: require('./z-retrieve-users'),
+    retrieveCalls: require('./z.retrieve-calls'),
+    retrieveVisits: require('./z-retrieve-visits'),
+   
+    uploadImageUser: require('./upload-image-user'),
+    loadImageUser: require('./load-image-user'),
     
     
     //Agent
-    retrieveClients: require('./retrieve-clients'),
-    retrieveClient: require('./retrieve-client'),
-    updateClient: require('./update-client'),
-
-    listClientsRoute: require('./list-clients-route'),
-    listClientsStatus: require('./list-clients-status'),
-
     
-    listVisits: require('./list-visits-client'),
-    listCallsClient: require('./list-calls-client'),
-    
-    
-    createCall: require('./create-call'),
-    updateCall: require('./update-call'),
-    stopCall: require('./stop-call'),
-    
-    createVisit: require('./create-visit'),
-    updateVisit: require('./update-visit'),
-    
-    
-    uploadImageUser: require('./upload-image-user'),
-    loadImageUser: require('./load-image-user'),
     //Búsqueda de clientes
     listClientsRoute: require('./list-clients-route'),
-    listClientsStatus: require('./list-clients-status'),
+    retrieveClient: require('./retrieve-client'),
+    updateClient: require('./update-client'),
+    
+    createCall: require('./create-call'),
+    stopCall: require('./stop-call'),
+
+    createVisit: require('./create-visit'),
+    // listClientsStatus: require('./list-clients-status'),
+
+    
+    
 }

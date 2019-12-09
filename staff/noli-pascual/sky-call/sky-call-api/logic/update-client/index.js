@@ -1,6 +1,16 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('sky-call-util')
 const { ObjectId, models: { Client, User } } = require('sky-call-data')
 
+/**
+* Update Client
+* 
+* @param {string} id user
+* @param {string} idClient
+* @params {string} idClient, nameClient, surnameClient, tel, location, address
+* 
+* @returns {Promise}
+*/
+
 module.exports = function (idUser, idClient, nameClient, surnameClient, tel, location, address) {
 
     validate.string(idUser)
@@ -13,27 +23,31 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
     //validación de Mongo
     if (!ObjectId.isValid(idClient)) throw new ContentError(`${idClient} is not a valid id`)
 
- 
+    
+    if (nameClient) {
+        validate.string(nameClient)
+        validate.string.notVoid('nameClient', namelient)
+    }
 
-    // if (name) {
-    //     validate.string(name)
-    //     validate.string.notVoid('name', name)
-    // }
+    if (surnameClient) {
+        validate.string(surnameClient)
+        validate.string.notVoid('surnameClient', surnameClient)
+    }
 
-    // if (surname) {
-    //     validate.string(surname)
-    //     validate.string.notVoid('surname', surname)
-    // }
+    if (tel) {
+        validate.string(tel)
+        validate.string.notVoid('tel', tel)
+    }
 
-    // if (tel) {
-    //     validate.string(tel)
-    //     validate.string.notVoid('tel', tel)
-    // }
+    if (location) {
+        validate.string(location)
+        validate.string.notVoid('location', location)
+    }
 
-    // if (address) {
-    //     validate.string(address)
-    //     validate.string.notVoid('address', address)
-    // }
+    if (address) {
+        validate.string(address)
+        validate.string.notVoid('address', address)
+    }
 
     return (async () => {
         const user = await User.findById(idUser)

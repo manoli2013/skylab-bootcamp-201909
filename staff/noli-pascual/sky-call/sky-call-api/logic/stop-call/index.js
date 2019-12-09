@@ -1,16 +1,19 @@
 const { validate, errors: { ConflictError } } = require('sky-call-util')
 const { models: { User, Call } } = require('sky-call-data')
 
-module.exports = function (idUser, idCall) {
+module.exports = function (idUser, idClient, idCall, statusCall) {
 
     validate.string(idUser)
     validate.string.notVoid('idUser', idUser)
+    validate.string(idClient)
+    validate.string.notVoid('idClient', idClient)
     validate.string(idCall)
     validate.string.notVoid('idClient', idCall)
+    validate.string(statusCall)
+    validate.string.notVoid('statusCall', statusCall)
 
 
     return (async () => {
-        
 
         let user = await User.findById(idUser)
 
@@ -23,13 +26,12 @@ module.exports = function (idUser, idCall) {
         const dateFinish = new Date()
         const now = Math.round(dateFinish.getTime() / 1000)
 
-
-
         const difference = now - dateCreation
 
         //calling pasar a false
         call.calling = false
         call.finished = dateFinish
+        call.statusCall = statusCall
 
         let mind = difference % (60 * 60);
         let minutes = Math.floor(difference / 60);
@@ -38,23 +40,7 @@ module.exports = function (idUser, idCall) {
 
         call.duration = (`${minutes} min : ${seconds} sec`)
 
-        //TO DO
-        // const convertDate = function (date) {
-        //     const year = date.getFullYear();
-        //     month = date.getMonth() + 1;
-        //     dt = date.getDate();
-
-        //     if (dt < 10) {
-        //         dt = '0' + dt;
-        //     }
-        //     if (month < 10) {
-        //         month = '0' + month;
-        //     }
-            
-        //     return (year + '-' + month + '-' + dt);
-
-        // }
-        // dateCreation = convertDate(dateCreation)
+       
 
         await call.save()
 

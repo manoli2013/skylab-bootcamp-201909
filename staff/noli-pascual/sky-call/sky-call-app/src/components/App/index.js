@@ -23,7 +23,6 @@ import AdminUpdateAgent from '../AdminUpdateAgent'
 
 //agent
 
-import AgentSearch from '../AgentSearch'
 
 import { registerUser, authenticateUser, retrieveUser, retrieveCalls, retrieveVisits, listCallsAdmin } from '../../logic'
 
@@ -47,15 +46,11 @@ export default withRouter(function ({ history }) {
     const [calls, setCalls] = useState([])
     const [visits, setVisits] = useState([])
 
-
-    
-
     useEffect(() => {
         const { token } = sessionStorage;
 
         (async () => {
             if (token) {
-
 
                
                 //ADMIN
@@ -71,39 +66,7 @@ export default withRouter(function ({ history }) {
                 // await retrieveAdminReport(token)
                 // await retrieveAgentsReport(token)
 
-                //Agent
-                //     async function retrieveClientsRoute(token) {
-                //         const clients = listClientsRoute(token)
-
-                //         setClients(clients)
-                //     }
-                //     async function retrieveClientsStatus(token) {
-                //         const clients = listClientsStatus(token)
-
-                //         setClients(clients)
-                //     }
-
-
-                //     async function retrieveCallsClient(token) {
-                //         const calls = listCallsClient(token)
-
-                //         setCalls(calls)
-                //     }
-                //     async function retrieveVisitsClient(token) {
-                //         const visits = listVisitsClient(token)
-
-                //         setVisits(visits)
-                //     }
-
-                //     //retrieve client actual
-
-                //     async function retrieveClient(token) {
-                //         const Client = retrieveClient(token)
-
-                //         setClient(client)
-                //     }
-
-
+               
             }
         })()
     }, [sessionStorage.token, user, calls, visits, users, clients, client, callsReport, adminReport, listAgents])
@@ -213,12 +176,7 @@ export default withRouter(function ({ history }) {
     function handleGoToCallsResults() { history.push('/admin/calls-report') }
 
 
-    //handles AGENT
-
-    async function handleSubmitRoute(query) {
-
-        alert('llamar a la lógica de Update Client')
-    }
+    
     
     const { token } = sessionStorage
 

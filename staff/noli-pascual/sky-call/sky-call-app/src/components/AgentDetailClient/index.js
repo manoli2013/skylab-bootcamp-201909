@@ -1,9 +1,27 @@
 import React from 'react'
+//TO DO BOTTONES
 
-
-export default function ({ client: { id, nameClient, surnameClient, tel, location, address, calls, visits }, onUpdate}) {
+export default function ({ onCall, onStop, client: { id, nameClient, surnameClient, tel, location, address, calls, visits }, onUpdate}) {
 
     return <section className="client-detail detail">
+
+        <section className = "client__call-buttons">
+            <button className = "client__call" onClick = {function(event => {
+                event.preventDefault()
+
+                onCall(token, id)
+
+            })} >Call </button>
+            
+            <button className = "client__stop" onClick={function(event) => {
+                 event.preventDefault()
+
+                 onCall(token, id)
+
+            }}>Stop</button>
+        
+        </section>
+
         <form className = "detail__form" on submit = {function(event) {
             event.preventDefault()
 
@@ -19,6 +37,7 @@ export default function ({ client: { id, nameClient, surnameClient, tel, locatio
         <input className="detail__title">location{location} </input>
         <input className="detail__title">adrress{address} </input>
 
+        <button className = "detail__submit">Update</button>
         </form>
         
         <section className = "detail__info">
@@ -45,7 +64,7 @@ export default function ({ client: { id, nameClient, surnameClient, tel, locatio
         </ul>
 
         </section>
-        <button className = "detail__submit">Update</button>
+        
 
     </section>
 }

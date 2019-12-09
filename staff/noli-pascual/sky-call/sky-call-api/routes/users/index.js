@@ -75,6 +75,31 @@ router.get('/', tokenVerifier, (req, res) => {
     }
 })
 
+//Update Agent (desde Admin)
+
+router.patch('/:idUser', tokenVerifier, jsonBodyParser, (req, res) => {
+    try {
+        const { id, params: { idUser }, body: { name, surname, username, password } } = req
+
+        updateAgent(id, idUser, name, surname, username, password)
+            .then(() =>
+                res.end()
+            )
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+                if (error instanceof ConflictError)
+                    return res.status(409).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch ({ message }) {
+        res.status(400).json({ message })
+    }
+})
+
 //upload image user
 
 router.post('/upload/:idUser', tokenVerifier, (req, res) => {
@@ -110,37 +135,37 @@ router.get('/load/:idUser', tokenVerifier, async (req, res) => {
 
 //remove user
 
-router.delete('/:userId', tokenVerifier, (req, res) => {
-    try {
-        const { id, params: { userId } } = req
+// router.delete('/:userId', tokenVerifier, (req, res) => {
+//     try {
+//         const { id, params: { userId } } = req
         
-        removeUser(id, userId)
-            .then(() =>
-                res.end()
-            )
-            .catch(error => {
-                const { message } = error
+//         removeUser(id, userId)
+//             .then(() =>
+//                 res.end()
+//             )
+//             .catch(error => {
+//                 const { message } = error
 
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
-                if (error instanceof ConflictError)
-                    return res.status(409).json({ message })
+//                 if (error instanceof NotFoundError)
+//                     return res.status(404).json({ message })
+//                 if (error instanceof ConflictError)
+//                     return res.status(409).json({ message })
 
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
+//                 res.status(500).json({ message })
+//             })
+//     } catch ({ message }) {
+//         res.status(400).json({ message })
+//     }
+// })
 
-//LIST AGENTS (ADMIN)
+//AGENTS REPORT ADMIN
 router.get('/agents', tokenVerifier, (req, res) => {
 
     const { id } = req
 
     try {
 
-        listAgents(id)
+        agentsReport(id)
             .then(agents => res.json(agents))
             .catch(error => {
                 const { message } = error
@@ -155,14 +180,14 @@ router.get('/agents', tokenVerifier, (req, res) => {
     }
 })
 
-//LIST GENERAL REPORT (ADMIN)
+//GENERAL REPORT (ADMIN)
 router.get('/report', tokenVerifier, (req, res) => {
 
     const { id } = req
 
     try {
 
-        adminReport(id)
+        generalReport(id)
             .then(report => res.json(report))
             .catch(error => {
                 const { message } = error
