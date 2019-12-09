@@ -9,16 +9,16 @@ const API_URL = process.env.REACT_APP_API_URL
  * 
  */
 
-module.exports = function (token) {
+module.exports = function (token, nameClient, surnameClient, tel, location,address, callIds, visits) {
     validate.string(token)
     validate.string.notVoid('token', token)
 
-    return (async () => {
+    return (async () => {debugger
 
         const res = await call(`${API_URL}/clients/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`},
-            body: JSON.stringify({nameClient, surnameClient, tel, location,address})
+            body: JSON.stringify({nameClient, surnameClient, tel, location,address, callIds, visits})
         })
 
         if (res.status === 200){

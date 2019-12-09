@@ -7,12 +7,12 @@ module.exports = function (token, location) {
     validate.string(token)
     validate.string.notVoid('token', token)
   
-    return (async () => {debugger
+    return (async () => {
 
-        const res = await call(`${API_URL}/clients/`, {
+        const res = await call(`${API_URL}/clients/${location}`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` },
-            body: JSON.stringify({ location })
+            body: JSON.stringify({location})
         })
 
         if (res.status === 200) {

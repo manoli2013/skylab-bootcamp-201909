@@ -21,7 +21,7 @@ module.exports = function (token, idClient) {
         const res = await call(`${API_URL}/clients/${idClient}/calls`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-            //no body, fields are default values
+            body: JSON.stringify({idClient})
         })
 
         if (res.status === 200){
