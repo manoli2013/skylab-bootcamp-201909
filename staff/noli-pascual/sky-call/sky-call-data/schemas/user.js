@@ -24,7 +24,6 @@ module.exports = new Schema({
     
     role: {
         type: String,
-        required: true,
         enum: ['admin', 'agent'],
         default: 'agent'
     },
