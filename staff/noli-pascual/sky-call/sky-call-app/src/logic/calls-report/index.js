@@ -9,7 +9,7 @@ module.exports = function (token) {
   
     return (async () => {
 
-        //INSERT SET INTERVAL
+    
 
 
         const res = await call(`${API_URL}/calls`, {

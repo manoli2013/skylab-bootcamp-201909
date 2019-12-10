@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function (onRegister, onLogin) {
+export default function ({onRegister, onLogin}) {
 
     return <section className='landing'>
 
@@ -16,16 +16,16 @@ export default function (onRegister, onLogin) {
 
             <section className="landing__link-container">
 
-                <div class="landing__option-container">
+                <div className="landing__option-container">
 
-                    <button class="landing__option" href="" onClick={event => {
+                    <button className="landing__option" href="" onClick={event => {
                         event.preventDefault()
                         
                         onRegister()
 
                     }}> Register </button>
 
-                    <button class="landing__option" href="" onClick={event => {
+                    <button className="landing__option" href="" onClick={event => {
                         event.preventDefault()
 
                         onLogin()

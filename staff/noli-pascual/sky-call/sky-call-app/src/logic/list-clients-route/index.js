@@ -9,7 +9,7 @@ module.exports = function (token, location) {
   
     return (async () => {
 
-        const res = await call(`${API_URL}/clients/${location}`, {
+        const res = await call(`${API_URL}/clients/list/${location}`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` },
             body: JSON.stringify({location})

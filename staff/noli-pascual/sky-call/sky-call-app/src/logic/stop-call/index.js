@@ -15,11 +15,11 @@ const API_URL = process.env.REACT_APP_API_URL
  * 
  */
 
-module.exports = function ( token, idClient, idCall, statusCall) {debugger
+module.exports = function ( token, idClient, idCall, statusCall) {
 
     
-    validate.string(idUser)
-    validate.string.notVoid('idUser', idUser)
+    validate.string(token)
+    validate.string.notVoid('token', token)
     validate.string(idClient)
     validate.string.notVoid('idClient', idClient)
     validate.string(idCall)

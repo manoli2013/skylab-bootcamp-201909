@@ -4,12 +4,12 @@ export default function ({ call: { agent, created, statusCall, calling, finished
 
     return <section className = 'call-item'>
 
-        <div className='call-item__field' type="text" name='agent' value={agent} />
-        <div className='call-item__field' type="text" name='created' value={created} />
-        <div className='call-item__field' type="text" name='statusCall' value={statusCall} />
-        <div className='call-item__field' type="text" name='calling' value={calling} />
-        <div className='call-item__field' type="text" name='finished' value={finished} />
-        <div className='call-item__field' type="text" name='duration' value={duration} />
+        <div className='call-item__field'>Agent: {agent}</div>
+        <div className='call-item__field'>Issued: {created} </div>
+        <div className='call-item__field'>Status: {statusCall} </div>
+        <div className='call-item__field'>IsCalling: {calling}</div>
+        <div className='call-item__field'>Finished: {finished}</div>
+        <div className='call-item__field'>Duration: {duration} </div>
     
     </section> 
         

@@ -15,9 +15,9 @@ module.exports = function (token) {
         })
 
         if (res.status === 200) {
-            const clients = JSON.parse(res.body)
+            const agentsList = JSON.parse(res.body)
 
-            return clients
+            return agentsList
         }
 
         if (res.status === 401) throw new CredentialsError(JSON.parse(res.body).message)

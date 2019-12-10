@@ -9,7 +9,7 @@ export default function ({ }) {
             <nav className='nav__bar'>
                 <ul className='nav__list'>
                     <li className='nav__item'>Username</li>
-                    <li className='nav__item'>Logout</li>
+                    <li className='nav__item'><a className = ""Logout</li>
                 </ul>
             </nav>
 

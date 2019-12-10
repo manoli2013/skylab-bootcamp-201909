@@ -23,7 +23,7 @@ module.exports = function (token, idClient, nameClient, surnameClient, tel, loca
     validate.string.notVoid('idClient', idClient)
 
     validate.string(nameClient)
-    validate.string.notVoid('nameClient', namelient)
+    validate.string.notVoid('nameClient', nameClient)
 
     validate.string(surnameClient)
     validate.string.notVoid('surnameClient', surnameClient)

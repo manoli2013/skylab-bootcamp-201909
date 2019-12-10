@@ -13,7 +13,7 @@ export default function ({ clients }) {
 
             <ul className='clients__results results'>
                 
-                {clients.map((client => <AgentClientItem key = {client.id} client = {client}  /> ))}
+                {clients &&  clients.map((client => <AgentClientItem key = {client.id} client={client}  /> ))}
 
             </ul>
 

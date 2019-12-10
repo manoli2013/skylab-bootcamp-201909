@@ -1,10 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AgentDetailClient from '../AgentDetailClient'
 
 
-export default function ( client, onDetail ) {
+export default function ( {client} ) {
 
-    const { id, name, surname, tel, location, address } = client
+    const [control, setControl] = useState(false)
+
+    const { id, nameClient, surnameClient, tel, location, address } = client
 
     return <li className='client-item item'>
         <h1> Detail Client</h1>
@@ -12,11 +14,11 @@ export default function ( client, onDetail ) {
         <a href="#" className="item__link" onClick={event => {
             event.preventDefault()
             
-            onDetail(id)
+            setControl(!control)
         }}>
-            <p className="item__title">{name}</p>
-            <p className="item__title">{surname}</p>
-            <p className="item__title">{tel}</p>
+            <p className="item__title">{nameClient}</p>
+            <p className="item__title">{surnameClient}</p>
+            <p className="item__title">{client.tel}</p>
             <p className="item__title">{location}</p>
             <p className="item__title">{address}</p>
           

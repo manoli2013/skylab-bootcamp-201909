@@ -1,8 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {updateAgent} from '../../logic'
+import { withRouter } from 'react-router-dom'
 
 import Feedback from '../Feedback'
 
-export default function ({onUpdateAgent, error})  {
+export default withRouter (function ({history})  {
+
+    const [error, setError] = useState()
+
+    async function onUpdateAgent(name, surname, username, password, role) {
+
+        try {
+            const {token} = sessionStorage
+            await updateAgent(token, name, surname, username, password, role)
+
+        } catch (error) {
+
+            setError(error)
+        }
+    }
+
+    async function onBack(event) {
+        event.preventDefault()
+        history.push('/admin')
+    }
     return <section className="update-agent">
 
         <form className='update-agent__form form' onSubmit={function (event) {
@@ -25,4 +46,4 @@ export default function ({onUpdateAgent, error})  {
 
     </section>
 
-}
+})

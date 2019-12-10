@@ -13,7 +13,7 @@ module.exports = function (token, nameClient, surnameClient, tel, location,addre
     validate.string(token)
     validate.string.notVoid('token', token)
 
-    return (async () => {debugger
+    return (async () => {
 
         const res = await call(`${API_URL}/clients/`, {
             method: 'POST',
@@ -21,8 +21,8 @@ module.exports = function (token, nameClient, surnameClient, tel, location,addre
             body: JSON.stringify({nameClient, surnameClient, tel, location,address, callIds, visits})
         })
 
-        if (res.status === 200){
-            const clientId = JSON.parse(res.body)
+        if (res.status === 201){
+            const clientId = res.body
 
             return clientId
         }

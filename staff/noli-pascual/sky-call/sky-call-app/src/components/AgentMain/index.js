@@ -1,32 +1,63 @@
-import React from 'react';
-
-
-import AgentClientResults from '../AgentClientResults';
+import React, { useState, useEffect }from 'react'
+import './index.sass'
+import { retrieveUser } from '../../logic'
+import { withRouter } from 'react-router-dom'
 import AgentSearch from '../AgentSearch'
+import AgentClientResults from '../AgentClientResults'
+import Feedback from '../Feedback'
 
 
-export default (function ({ clients , onSubmitRoute, onBack}) {
-debugger
-    
+function AgentMain({ history }) {
+    let error
 
-    return <>
-
-        <h1>Hola main</h1>
-
-        {/* //Barra de busqueda
-        //select de búsqueda
-        //Compo Results */}
-
-        <AgentSearch clients={clients} onSubmitRoute={onSubmitRoute}  />
-        <AgentClientResults clients={clients} />
-
-        <a className="main__back" href="" onClick={event => {
-            event.preventDefault()
-
-            onBack()
-        }}>Go back</a>
-    </>
+    const { token } = sessionStorage
+    const [user, setUser] = useState()
+    const [name, setName] = useState()
 
 
-})
+    useEffect(() => {
+        
+        (async () => {
+            if (token) {
+                const user = await retrieveUser(token)
+                setUser(user)
+                const {name} = user
+                setName(name)
 
+            }
+        })()
+    }, [sessionStorage.token])
+
+    //handles AGENT
+
+
+    function handleLogout() {
+        sessionStorage.clear()
+        handleGoBack()
+    }
+    function handleGoBack(event) {
+        event.preventDefault()
+        history.push('/')
+    }
+    return <section className="agent-main">
+
+        <h1>Welcome to AGENT ${name} </h1>
+
+        <AgentSearch />
+
+        <AgentClientResults />
+
+        <nav className="agent-main__menu menu">
+
+            <li className="menu__item">Welcome, {name}</li>
+            <li className="menu__item" onClick={handleGoBack}>GO BACK</li>
+            <li className="menu__item" onClick={handleLogout}>Logout</li>
+
+        </nav>
+
+        {error && <Feedback message={error} />}
+
+    </section>
+}
+
+export default withRouter(AgentMain)

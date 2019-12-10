@@ -32,7 +32,7 @@ module.exports = function (token, idUser, name, surname, username, password) {
     validate.string.notVoid('username', username)
 
     validate.string(password)
-    validate.string.notVoid('password', passwordn)
+    validate.string.notVoid('password', password)
 
 
     return (async () => {

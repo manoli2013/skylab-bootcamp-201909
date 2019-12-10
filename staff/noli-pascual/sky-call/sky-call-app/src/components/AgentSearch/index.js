@@ -1,51 +1,68 @@
-import React from 'react'
+import React, { useState, useEffect }from 'react'
 import Feedback from '../Feedback'
 import AgentClientResults from '../AgentClientResults'
-import { searchClients } from '../../logic'
+import { listClientsRoute } from '../../logic'
 import { withRouter } from 'react-router-dom'
 
-function AgentSearch({ history }) {
-    let error
+
+function AgentSearch({  }) {
 
     const { token } = sessionStorage
-
-    const [clients, SetClients] = useState([])
+    const [clients, setClients] = useState([])
+    // const [location, setLocation] = useState()
+    const [error, setError] = useState()
 
     useEffect(() => {
-        debugger
+        
         (async () => {
             if (token) {
-                const clients = await searchClients(token, location)
-                setClients(clients)
-
+                // const clientsList = await listClientsRoute(token, location)
+                // setClients(clientsList)
             }
         })()
-    }, [location])
+    }, [clients, setClients])
 
-    function handleSelect() {
+
+
+    async function handleListClientsRoute(event) {
         event.preventDefault()
 
-        const location = event.target.value
+        try {
+            const {token} = sessionStorage
+            const location = event.target.select.value
+            const clientsList = await listClientsRoute(token, location)
+            setClients(clientsList)
+        } catch (error) {
+            setError(error.message.toString())
+        }
     }
 
     return <section className="search">
-        <h1 className="search__title">Search</h1>
 
-        <div className="search__container">
+            <h1 className="search__title">Search</h1>
 
+            <div className="search__container">
 
-            <select className="search__route" name="select" onChange={handleSelect}
-            >Select Route
-                <option value="Asturias">Asturias </option>
-                <option value="Valencia">Valencia</option>
+            <form className = "search__submit" onSubmit = {handleListClientsRoute}>
 
-            </select>
+                <select className="search__route" name="select"
+                >Select Route
+                    <option value="Asturias">Asturias </option>
+                    <option value="Valencia">Valencia</option>
+                    <option value="Barcelona">Barcelona</option>
+                </select>
+                <button className = "search__submit-button"> Submit </button>
+
+            </form>
+
+            {error && <Feedback message={error} />}
 
         </div>
-
-        {error && <Feedback message={error} />}
 
         {clients && <AgentClientResults clients={clients} />}
 
     </section>
 }
+
+
+export default withRouter(AgentSearch)
