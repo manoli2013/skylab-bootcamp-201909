@@ -3,12 +3,15 @@ const { validate, errors: { CredentialsError, NotFoundError } } = require('sky-c
 // const { env: { REACT_APP_API_URL: API_URL } } = process
 const API_URL = process.env.REACT_APP_API_URL
 
-module.exports = function (token) {
+
+module.exports = function (token, id) {
     validate.string(token)
     validate.string.notVoid('token', token)
+    
+    if (id) validate.string(id)
 
     return (async () => {
-        const res = await call(`${API_URL}/users`, {
+        const res = await call(`${API_URL}/users/${id}`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` }
         })

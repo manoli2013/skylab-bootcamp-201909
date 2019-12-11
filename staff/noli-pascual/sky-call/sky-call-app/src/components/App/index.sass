@@ -13,17 +13,15 @@
     padding: 0
     box-sizing: border-box
 
-
-.app
-    border: 1px solid blue
-    width: 100%
-    min-height: 100vh
+    
+#root
     @extend %flex-column
-
     background-image: $general-background
     background-repeat: no-repeat
     background-size: cover
-    
+    width: 100%
+    min-height: 100vh
+
 
 @import ../Landing
 @import ../Header
@@ -32,13 +30,13 @@
 @import ../Register
 @import ../Footer
 
-@import ../Admin
 @import ../AdminMain
 
 @import ../AdminGeneralReport
-
 @import ../AdminAgentsReport
+@import ../AdminAgentResults
 @import ../AdminAgentItem
+@import ../AdminCreateClient
 
 @import ../AdminCallsReport
 @import ../AdminCallItem
@@ -48,6 +46,7 @@
 @import ../AgentClientResults
 @import ../AgentClientItem
 @import ../AgentDetailClient
+@import ../AgentCreateVisit
 
 
 

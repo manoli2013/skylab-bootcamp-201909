@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react'
 import './index.sass'
 import { retrieveUser } from '../../logic'
-import { withRouter } from 'react-router-dom'
+import { Router, withRouter } from 'react-router-dom'
 import AgentSearch from '../AgentSearch'
 import AgentClientResults from '../AgentClientResults'
 import Feedback from '../Feedback'
@@ -30,34 +30,21 @@ function AgentMain({ history }) {
 
     //handles AGENT
 
-
-    function handleLogout() {
-        sessionStorage.clear()
-        handleGoBack()
-    }
-    function handleGoBack(event) {
-        event.preventDefault()
-        history.push('/')
-    }
-    return <section className="agent-main">
-
-        <h1>Welcome to AGENT ${name} </h1>
+    return<> 
 
         <AgentSearch />
 
-        <AgentClientResults />
+    
+        {/* <Router path='/564564' render={() => <section className="agent-main">
 
-        <nav className="agent-main__menu menu">
+            <AgentSearch />
 
-            <li className="menu__item">Welcome, {name}</li>
-            <li className="menu__item" onClick={handleGoBack}>GO BACK</li>
-            <li className="menu__item" onClick={handleLogout}>Logout</li>
+            <AgentClientResults />
 
-        </nav>
+            {error && <Feedback message={error} />}
 
-        {error && <Feedback message={error} />}
-
-    </section>
+        </section> } /> */}
+    </>
 }
 
 export default withRouter(AgentMain)

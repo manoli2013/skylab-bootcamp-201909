@@ -15,6 +15,7 @@ export default withRouter (function ({history})  {
             const {token} = sessionStorage
             
             await createClient(token, nameClient, surnameClient, tel, location, address)
+            history.goBack()
 
         } catch (error) {
 
@@ -24,11 +25,11 @@ export default withRouter (function ({history})  {
 
     async function onBack(event) {
         event.preventDefault()
-        history.push('/admin')
+        history.goBack()
     }
-    return <section className="add-client-form">
+    return <section className="add-client">
 
-        <form className='client__form form' onSubmit={function (event) {
+        <form className='add-client__form form' onSubmit={function (event) {
             event.preventDefault()
             let val = event.target.nameClient.value
             console.log(val)
@@ -46,11 +47,7 @@ export default withRouter (function ({history})  {
             <input className="form__input-field" type="text" name="address" placeholder="address" />
             <button className = "form__submit">CREATE</button>
 
-            <a className="form__back" href="#" onClick={event => {
-                event.preventDefault()
-
-                onBack()
-            }}>Go back</a>
+            <a className="form__back" href="#" onClick={onBack}>Go Back</a>
 
         </form>
         {error && <Feedback message={error} />}

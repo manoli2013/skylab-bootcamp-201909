@@ -1,4 +1,4 @@
-import React, { useState, useEffect }from 'react'
+import React, { useState, useEffect } from 'react'
 import Feedback from '../Feedback'
 import AgentClientResults from '../AgentClientResults'
 import { listClientsRoute } from '../../logic'
@@ -39,11 +39,11 @@ function AgentSearch({  }) {
 
     return <section className="search">
 
-            <h1 className="search__title">Search</h1>
-
             <div className="search__container">
 
-            <form className = "search__submit" onSubmit = {handleListClientsRoute}>
+            <form className = "search__form-bar" onSubmit = {handleListClientsRoute}>
+            <h2 className='clients__title'>Clients</h2>
+                <h3>Pick up your route</h3>
 
                 <select className="search__route" name="select"
                 >Select Route
@@ -59,7 +59,7 @@ function AgentSearch({  }) {
 
         </div>
 
-        {clients && <AgentClientResults clients={clients} />}
+        {clients && <AgentClientResults clients={clients} setClients={setClients}/>}
 
     </section>
 }

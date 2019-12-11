@@ -1,4 +1,28 @@
-@import flex-row
+@import ../flex-row
+@import ../text-center
+@import ../flex-column
+    
+.call-item
+    background-color: $box-info-background  
+    @extend %text-center
+    @extend %flex-column
+    padding-top: 0.3rem
+    margin-bottom: 0.5rem
 
-    .call-item
+    &__container
+    
         @extend %flex-row
+        flex-wrap: nowrap
+       
+    
+.field-1
+    padding: 0.2rem
+    @extend %flex-column
+
+    &__title
+        color: $box-info-color
+        
+    &__subtitle
+        color: $box-info-sub-color
+
+

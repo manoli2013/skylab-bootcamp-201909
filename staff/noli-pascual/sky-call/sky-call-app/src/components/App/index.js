@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Redirect } from 'react-router-dom'
 
 import './index.sass'
 
@@ -9,49 +9,23 @@ import Register from '../Register'
 import Login from '../Login'
 import Header from '../Header'
 import Footer from '../Footer'
-
-import AdminMain from '../AdminMain'
-import AgentMain from '../AgentMain'
-
-import AdminCreateClient from '../AdminCreateClient'
-import AdminGeneralReport from '../AdminGeneralReport'
-import AdminAgentsReport from '../AdminAgentsReport'
-import AdminCallsReport from '../AdminCallsReport'
+import Home from '../Home'
 
 
-
-
-
-import { registerUser, authenticateUser, retrieveUser} from '../../logic'
+import { registerUser, authenticateUser, retrieveUser } from '../../logic'
 
 export default withRouter (function ({ history }) {
 
-
-    const [user, setUser] = useState()
-
     useEffect(() => {
-        
-        (async () => {
-            if (token) {
-                const user = await retrieveUser(token)
-                setUser(user)
 
-            }
-        })()
+        const { token } = sessionStorage
+
+        if (token) {
+            history.push('/home')
+        }
+
+  
     }, [])
-
-    function handleLogout() {
-        sessionStorage.clear()
-        handleGoBack()
-    }
-    function handleGoBack(event) {
-        event.preventDefault()
-        history.push('/')
-    }
-
-
-    //HANDLES GENERAL
-
 
     function handleGoToRegister() { history.push('/register') }
 
@@ -69,55 +43,40 @@ export default withRouter (function ({ history }) {
     }
 
     async function handleLogin(username, password) {
-       
 
         try {
             const token = await authenticateUser(username, password)
 
             sessionStorage.token = token
             
-            const user = await retrieveUser(token)
+            const userActive = await retrieveUser(token)
             
-            setUser(user)
-            sessionStorage.role = user.role
-
-            const {role} = sessionStorage
-
-            role === 'agent' ? history.push('/agent') : history.push('/admin')
+            history.push('/home')
 
         } catch (error) {
             console.error(error)
         }
     }
-            const {role, token} = sessionStorage
+
+    async function handleGoBack() {
+        history.goBack()
+    }
+    
+    const { token } = sessionStorage
 
     return <>
 
-        
-
         <Header />
 
-        <Route exact path="/" render={() => <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
+        <Route exact path="/" render={() => token ? <Redirect to='/home' /> : <Landing onRegister={handleGoToRegister} onLogin={handleGoToLogin} />} />
 
-        <Route path="/register" render={() => <Register onRegister={handleRegister} onBack={handleGoBack} />} />
-        <Route path="/login" render={() => <Login onLogin={handleLogin} onBack={handleGoBack} on error />} />
+        <Route path="/register" render={() => token ? <Redirect to='/home' /> : <Register onRegister={handleRegister} onBack={handleGoBack} />} />
 
+        <Route path="/login" render={() => token ? <Redirect to='/home' /> : <Login onLogin={handleLogin} onBack={handleGoBack} on error />} />
 
-        <Route path="/agent" render={() =>token && role === 'agent' ? <AgentMain /> : <Login />} />
+        <Route path = "/home" render={() => <Home />} /> 
 
-
-        <Route path="/admin" render={() => <AdminMain />} />
-
-        <Route path="/agents-report" render={() => <AdminAgentsReport />} />
-
-        <Route path="/calls-report" render={() => <AdminCallsReport />} />
-
-        <Route exact path="/create-client" render={() => <AdminCreateClient />} />
-
-        <Route path="/general-report" render={() => <AdminGeneralReport />} />
-
-
-        <Footer />
+       <Footer />
     </>
 
 

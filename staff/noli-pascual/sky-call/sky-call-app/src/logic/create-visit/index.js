@@ -31,7 +31,7 @@ module.exports = function (token, idClient, dateVisit, statusVisit) {
             
         })
 
-        if (res.status === 200){
+        if (res.status === 201){
             const visitId = JSON.parse(res.body)
 
             return visitId

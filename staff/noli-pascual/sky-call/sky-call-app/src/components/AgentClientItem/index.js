@@ -2,30 +2,30 @@ import React, {useState} from 'react'
 import AgentDetailClient from '../AgentDetailClient'
 
 
-export default function ( {client} ) {
+export default function ( { client} ) {
 
     const [control, setControl] = useState(false)
+    
+    const [_client, setClient] = useState(client)
+    
 
-    const { id, nameClient, surnameClient, tel, location, address } = client
+    return <li className='client-item'>
+        
 
-    return <li className='client-item item'>
-        <h1> Detail Client</h1>
-
-        <a href="#" className="item__link" onClick={event => {
+        <a href="#" className="client-item__link" onClick={event => {
             event.preventDefault()
-            
             setControl(!control)
         }}>
-            <p className="item__title">{nameClient}</p>
-            <p className="item__title">{surnameClient}</p>
-            <p className="item__title">{client.tel}</p>
-            <p className="item__title">{location}</p>
-            <p className="item__title">{address}</p>
+            <p className="client-item__field">{_client.nameClient}</p>
+            <p className="client-item__field">{_client.surnameClient}</p>
+            <p className="client-item__field">{_client.tel}</p>
+            <p className="client-item__field">{_client.location}</p>
+            <p className="client-item__field">{_client.address}</p>
           
             
         </a>
 
-    {client && <AgentDetailClient client = {client} /> }
+    {control &&  <AgentDetailClient client={_client} setClient={setClient}/> }
     
     </li>
 }

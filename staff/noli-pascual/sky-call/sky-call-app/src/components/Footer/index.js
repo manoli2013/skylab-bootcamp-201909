@@ -1,19 +1,26 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 
-export default function ({ }) {
+
+export default withRouter(function ({ history }) {
+
+
+    async function goOut(event) {
+
+        event.preventDefault()
+        sessionStorage.clear()
+        history.push('/')
+
+    }
 
     return <footer className='footer'>
 
-        <section className='footer__nav-container nav'>
+        <section className='footer__container'>
+            <div className = "footer__copyright">Developed by Manuela Pascual Sáez</div>
 
-            <nav className='nav__bar'>
-                <ul className='nav__list'>
-                    <li className='nav__item'>Username</li>
-                    <li className='nav__item'><a className = ""Logout</li>
-                </ul>
-            </nav>
+            <a className='footer__logout' onClick={goOut}>LOGOUT</a>
 
         </section>
 
     </footer>
-}
+})

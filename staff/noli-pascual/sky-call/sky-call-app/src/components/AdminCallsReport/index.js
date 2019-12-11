@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import AdminCallItem from '../AdminCallItem'
 import { callsReport } from '../../logic'
 
-export default function () {
+export default withRouter( function ({history}) {
 
 
     const [calls, setCalls] = useState([])
@@ -22,12 +23,18 @@ export default function () {
         })()
     }, [])
 
+    async function onBack(event) {
+        event.preventDefault()
+        history.goBack()
+    }
+
 
     return <section className='calls'>
 
-        <section className='calls__list-container'>
+       
 
             <h2 className='calls__title'>List of Calls</h2>
+            <a className="report__back" href="#" onClick={onBack}>Go Back</a>
 
             <ul className='calls__results results'>
 
@@ -39,7 +46,6 @@ export default function () {
 
             </ul>
 
-        </section>
 
     </section>
-}
+})

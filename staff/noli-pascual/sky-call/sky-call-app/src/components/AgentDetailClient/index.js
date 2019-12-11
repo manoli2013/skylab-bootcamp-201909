@@ -1,44 +1,46 @@
 import React, { useState, useEffect } from 'react'
 import AgentCreateVisit from '../AgentCreateVisit'
+import { withRouter } from 'react-router-dom'
 
 import { retrieveClient, createCall, stopCall, updateClient } from '../../logic'
 
+import ClientHistory from '../ClientHistory'
 
-export default function ({ client: { id, nameClient, surnameClient, tel, location, address } }) {
+
+export default withRouter(function ({ history, client, setClient }) {
 
 
     const [callsClient, setCallsClient] = useState([])
     const [visitsClient, setVisitsClient] = useState([])
-    const [client, setClient] = useState()
     const [call, setCall] = useState(undefined)
-    
+    const [control, setControl] = useState(false)
 
     useEffect(() => {
         const { token } = sessionStorage;
 
             (async () => {
-                if (token) {
+                if (token) {debugger
+                    
+                    const _client = await retrieveClient(token, client.id)
 
-                    const client = await retrieveClient(token, id)
-
-                    setClient(client)
+                    setClient(_client)
+                    
 
                     const { callsClient, visitsClient } = client
 
                     setCallsClient(callsClient)
                     setVisitsClient(visitsClient)
-
                 }
             })()
-    }, [sessionStorage.token])
+    }, [control])
 
-
-    async function onCall() {
+    async function onCall(event) {
+        event.preventDefault()
 
         const { token } = sessionStorage
         try {
 
-            const callCreated = await createCall(token, id)
+            const callCreated = await createCall(token, client.id)
             setCall(callCreated)
 
 
@@ -47,27 +49,31 @@ export default function ({ client: { id, nameClient, surnameClient, tel, locatio
         }
     }
 
-    async function onUpdate(id, name, surname, telephone, loc, add) {debugger
+    async function onUpdate(name, surname, telephone) {debugger
 
         const {token} = sessionStorage
-        
+        if(name === '') name = undefined
+        if(surname === '') surname = undefined
+        if(telephone === '') telephone = undefined
+
+
         try {
 
-            await updateClient(token, id, name, surname, telephone, loc, add)
-
+            await updateClient(token, client.id, name, surname, telephone)
+            setControl(!control)
         } catch (error) {
 
             console.error(error.message)
         }
     }
-
+    
     async function onStop(statusCall) {
 
         const {token} = sessionStorage
         
         try {
 
-            await stopCall (token, id, call.id, statusCall)
+            await stopCall (token, client.id, call, statusCall)
         } catch (error) {
             console.error(error.message)
         }
@@ -76,72 +82,59 @@ export default function ({ client: { id, nameClient, surnameClient, tel, locatio
 
     return <section className="client-detail detail">
 
-        <form className="detail__form" on submit={function (event) {
-
+       {client && <form className="detail__form" onSubmit={function (event) {
             event.preventDefault()
+            event.stopPropagation()
 
-            const { nameClient: { value: name }, surnameClient: { value: surname }, tel: { value: telephone }, location: { value: loc }, address: { value: add } } = event.target
+            const { nameClient: { value: name }, surnameClient: { value: surname }, tel: { value: telephone }} = event.target
 
-            onUpdate(name, surname, telephone, loc, add)
+            onUpdate(name, surname, telephone)
         }}>
-            <h1>Client Details</h1>
+            <h2 className = "client-detail__title">Update Client</h2>
 
-            <input className="detail__title" name="nameClient" placeholder={nameClient}></input>
-            <input className="detail__title" name="surnameClient" placeholder={surnameClient}></input>
-            <input className="detail__title" name='tel' placeholder={tel}></input>
-            <input className="detail__title" name="location" placeholder={location}></input>
-            <input className="detail__title" name="address" placeholder={address}></input>
+            <input className="client-detail__input" name="nameClient" placeholder={client.nameClient}></input>
+            <input className="client-detail__input" name="surnameClient" placeholder={client.surnameClient}></input>
+            <input className="client-detail__input" name='tel' placeholder={client.tel}></input>
+            
 
-            <button className="detail__submit">Update</button>
+            <button className="client-detail__submit">Update</button>
 
-        </form>
+        </form>}
 
-        <section className="detail__info">
-            <h2>Client calls</h2>
-            <ul className="detail__calls">
-                {callsClient.map(call => <li className="detail__array" key={call.id}>
-
-                    <p className="detail__prop">{call.agent}</p>
-                    <p className="detail__prop">{call.created}</p>
-                    <p className="detail__propt">{call.statusCall}</p>
-
-                </li>)}
+        <section className="client-detail__info">
+            <h3 className = "client-detail__subtitles">Recent Calls</h3>
+            <ul className="client-detail__calls">
+                {callsClient&&callsClient.length > 0? callsClient.map(call => <ClientHistory id={call.agent} date={call.created} status={call.statusCall} />) :  <p className = "detail__prop">No calls</p>}
             </ul>
-
-            <h2>Client visits</h2>
+            
+            <h3 className = "client-detail__subtitles">Recent Visits</h3>
             <ul className="detail__visits">
-                {visitsClient.map(visit => <li className="detail__array" key={visit.id}>
-
-                    <p className="detail__prop">{visit.agent}</p>
-                    <p className="detail__prop">{visit.dateVisit}</p>
-                    <p className="detail__prop">{visit.statusVisit}</p>
-
-                </li>)}
+                {visitsClient&&visitsClient.length > 0 ? visitsClient.map(visit => <ClientHistory id={visit.agent} date={visit.dateVisit} status={visit.statusVisit} />) : <p className = "detail__prop">No visits</p>}
             </ul>
 
         </section>
 
-        <section className="client__call-buttons">
+        <section className="client-detail__call-buttons">
 
-            <button className="client__call" onClick={function (event) {
-                event.preventDefault()
-                const { token } = sessionStorage
-                onCall(token, id)
-
-            }} > START CALL </button>
+            <button type  = "button" className="client-detail__start" onClick={onCall}> START CALL </button>
 
 
-            <form className="detail__form" on submit={function (event) {
+            <form className="detail__stop-form" onSubmit={function (event) {
 
                 event.preventDefault()
+                event.stopPropagation()
 
                 const { statusCall: {value: statusCall} } = event.target
 
-                onStop(statusCall)
+                {statusCall ? onStop(statusCall) : alert('Please set status call')}
             }}>
-                <label for="result">Result Call</label>
-                <input className="client__call-result" type="text" name="statusCall" placeholder=" N.A - A " />
-                <button className = "client__stop">STOP CALL</button>
+                <div className = "client-detail__result-form">
+
+                    <label htmlFor="client-detail__result-label">Result Call</label>
+                    <input className="client-detail__call-result" type="text" name="statusCall" placeholder=" N.A - A "/>
+
+                </div>
+                <button className = "client-detail__stop">STOP CALL</button>
 
             </form>
 
@@ -152,4 +145,4 @@ export default function ({ client: { id, nameClient, surnameClient, tel, locatio
 
 
     </section >
-}
+})

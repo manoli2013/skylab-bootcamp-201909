@@ -1,14 +1,17 @@
 @import ../flex-row
 
 .footer
-    height: 10%
-.nav
-    @extend %flex-row
-    height: 100%
+    width: 100%
 
-    &__list
-        @extend %flex-row
-        justify-content: space-between
-        list-style: none
-        color: $main-border
-        text-shadow: $text-shadow
+    &__container
+
+    @extend %flex-column
+    @extend %text-center
+
+    &__copyright
+        font-size: 0.8rem
+        font-style: italic
+
+    &__logout
+        font-size: 0.9rem
+        color: tomato

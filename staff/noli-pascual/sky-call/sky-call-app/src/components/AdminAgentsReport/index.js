@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import AdminAgentItem from '../AdminAgentItem'
 import { agentsReport } from '../../logic'
 
-export default function () {
+export default withRouter( function ({history}) {
     
     const [agentsList, setAgentsList] = useState([])
 
@@ -19,13 +20,19 @@ export default function () {
         })()
     }, [])
 
+    async function onBack(event) {
+        event.preventDefault()
+        history.goBack()
+    }
+
+
 
     return <section className='agents'>
 
         <section className='agents__list-container'>
 
             <h2 className='agents__title'>List of Agents</h2>
-
+            <a className="agents__back" href="#" onClick={onBack}>Go Back</a>
             <ul className='agents__results results'>
 
                 {agentsList.map((agent) => {
@@ -38,4 +45,4 @@ export default function () {
         </section>
 
     </section>
-}
+})

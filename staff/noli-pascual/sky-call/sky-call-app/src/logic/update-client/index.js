@@ -15,28 +15,38 @@ const API_URL = process.env.REACT_APP_API_URL
 
 
 module.exports = function (token, idClient, nameClient, surnameClient, tel, location, address) {
-
+debugger
     validate.string('token', token)
     validate.string.notVoid('token', token)
 
     validate.string(idClient)
     validate.string.notVoid('idClient', idClient)
 
-    validate.string(nameClient)
-    validate.string.notVoid('nameClient', nameClient)
+    if (nameClient) {
+        validate.string(nameClient)
+        validate.string.notVoid('nameClient', nameClient)
+    }
 
-    validate.string(surnameClient)
-    validate.string.notVoid('surnameClient', surnameClient)
+    if (surnameClient) {
+        validate.string(surnameClient)
+        validate.string.notVoid('surnameClient', surnameClient)
+    }
 
-    validate.string(tel)
-    validate.string.notVoid('tel', tel)
+    if (tel) {
+        validate.string(tel)
+        validate.string.notVoid('tel', tel)
+    }
 
-    validate.string(location)
-    validate.string.notVoid('location', location)
+    if (location) {
+        validate.string(location)
+        validate.string.notVoid('location', location)
+    }
 
-    validate.string(address)
-    validate.string.notVoid('address', address)
-
+    if (address) {
+        validate.string(address)
+        validate.string.notVoid('address', address)
+    }
+    
     return (async () => {
         const res = await call(`${API_URL}/clients/${idClient}`, {
             method: 'PATCH',
