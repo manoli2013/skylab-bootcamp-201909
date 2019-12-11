@@ -10,7 +10,7 @@ module.exports = function (idUser, location) {
     //validación de Mongo
     if (!ObjectId.isValid(idUser)) throw new ContentError(`${idUser} is not a valid id`)
 
-    return (async () => {debugger
+    return (async () => {
 
         let user = await User.findById(idUser)
         if (!user) throw new NotFoundError(`user with id ${idUser} does not exist`)

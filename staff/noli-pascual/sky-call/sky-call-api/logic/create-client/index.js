@@ -1,7 +1,18 @@
 const { validate, errors: { ConflictError } } = require('sky-call-util')
 const { models: { User, Client } } = require('sky-call-data')
 
-module.exports = function (idAdmin, nameClient, surnameClient, tel, location, address) {
+module.exports = 
+/**
+ * Create client 
+ * 
+ * @param {*} idAdmin 
+ * @param {*} nameClient 
+ * @param {*} surnameClient 
+ * @param {*} tel 
+ * @param {*} location 
+ * @param {*} address 
+ */
+function (idAdmin, nameClient, surnameClient, tel, location, address) {
 
     validate.string(nameClient)
     validate.string.notVoid('nameClient', nameClient)
@@ -15,7 +26,7 @@ module.exports = function (idAdmin, nameClient, surnameClient, tel, location, ad
     validate.string.notVoid('address', address)
 
 
-    return (async () => {debugger
+    return (async () => {
         
         let user = await User.findById(idAdmin)
 

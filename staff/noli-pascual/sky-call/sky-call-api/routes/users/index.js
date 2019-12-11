@@ -54,11 +54,14 @@ router.post('/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-router.get('/', tokenVerifier, (req, res) => {
+router.get('/:idUser', tokenVerifier, (req, res) => {
+    debugger
     try {
-        const { id } = req
+        const { id, params: { idUser }  } = req
 
-        retrieveUser(id)
+        const getUser = idUser !== 'undefined' ? idUser : id
+
+        retrieveUser(getUser)
             .then(user => res.json(user))
             .catch(error => {
                 const { message } = error
@@ -167,6 +170,7 @@ router.get('/agents', tokenVerifier, (req, res) => {
 
         agentsReport(id)
             .then(agents => res.json(agents))
+        
             .catch(error => {
                 const { message } = error
 

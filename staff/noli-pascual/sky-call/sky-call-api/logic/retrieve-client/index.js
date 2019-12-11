@@ -25,7 +25,7 @@ module.exports = function (idUser, idClient) {
 
         const visitsClient = await Visit.find({client: idClient})
         
-        const { id, nameClient, surnameClient, tel, location, address} = client.toObject()
+        const { id, nameClient, surnameClient, tel, location, address} = client
 
         return { id, nameClient, surnameClient, tel, location, address, callsClient, visitsClient }
         

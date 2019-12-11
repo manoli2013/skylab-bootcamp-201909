@@ -8,26 +8,33 @@ module.exports = function (idAdmin) {
     //validación de Mongo
     if (!ObjectId.isValid(idAdmin)) throw new ContentError(`${idAdmin} is not a valid id`)
 
-    return (async () => {debugger
+    return (async () => {
 
         let user = await User.findById(idAdmin)
 
         if (!user) throw new NotFoundError(`user with id ${idAdmin} not found`)
 
-        if (user.role === 'agent') throw new ConflictError(`this user ${id} has no permission`)
+        if (user.role === 'agent') throw new ConflictError(`this user ${idAdmin} has no permission`)
 
-        const calls = await Call.find().sort({created: 'asc'})
+        const calls = await Call.find().sort({created: 'desc'}).populate('agent', 'name')
+        
 
-        const cleanCalls = calls.map(call => {debugger
+        const callsList = []
+        
+        calls.map(call => {
            
             let {created, calling, agent, statusCall, duration} = call
-            let userCall = User.find({_id: ObjectId(agent)})
-           //todo appear name agent
-            return {created, calling, agent, statusCall, duration}
+           
+            created = created.toLocaleDateString()
+            if(calling) calling = 'YES'
+            else calling = 'NO'
+           
+
+            callsList.push({agent: agent.name, created, calling, statusCall, duration})
         })
 
-
-        return cleanCalls
+       
+        return callsList
 
     })()
 }

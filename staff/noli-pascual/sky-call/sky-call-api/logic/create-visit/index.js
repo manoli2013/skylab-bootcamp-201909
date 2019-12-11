@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ContentError } } = require('sky-call-util')
-const { ObjectId, models: { User, Visit, Client, Agent} } = require('sky-call-data')
+const { ObjectId, models: { User, Visit, Client } } = require('sky-call-data')
 
 /**
  * create call
@@ -36,7 +36,7 @@ module.exports = function(idUser, idClient, dateVisit, statusVisit) {
         dateVisit = new Date(dateVisit)
 
         const visit = await Visit.create({agent: idUser, client: idClient, dateVisit, statusVisit})
-     
+
 
         //extraer el agent
        

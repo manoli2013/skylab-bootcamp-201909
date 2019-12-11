@@ -104,10 +104,10 @@ router.patch('/:idClient', tokenVerifier, jsonBodyParser, (req, res) => {
 
 //filtrar clientes x location
 
-router.get('/list/:location', tokenVerifier, (req, res) => {debugger
+router.get('/list/:location', tokenVerifier, (req, res) => {
     const { id } = req
     const { params: { location} } = req
-    try {debugger
+    try {
 
         listClientsRoute(id, location)
             .then(clients => res.json(clients))
@@ -129,9 +129,9 @@ router.get('/list/:location', tokenVerifier, (req, res) => {debugger
 router.post('/:idClient/calls', tokenVerifier, jsonBodyParser, (req, res) => {
     const { id, params: { idClient }} = req
 
-    try {debugger
+    try {
         createCall(id, idClient)
-            .then(() => res.status(201).end())
+            .then((idCall) => res.json(idCall))
             .catch(error => {
                 const { message } = error
 
@@ -171,7 +171,7 @@ router.patch('/:idClient/calls/:idCall', tokenVerifier, jsonBodyParser, (req, re
 router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {
     
     const { id, params: {idClient} , body: { dateVisit, statusVisit } } = req
-        try {
+        try {debugger
     
             createVisit(id, idClient, dateVisit, statusVisit)
                 .then(id => res.status(201).json({ id }))

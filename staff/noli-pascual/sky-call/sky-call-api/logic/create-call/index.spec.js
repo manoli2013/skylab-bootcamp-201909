@@ -33,17 +33,13 @@ describe('logic - createCall', () => {
         //todo test fail when user is not admin
         
 
-        await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()])
+        await Promise.all([User.deleteMany(), Client.deleteMany(), Call()])
 
         //create user
         const user = await User.create({ name, surname, username, password, role })
         id = user.id
-        
-        //create route
-        const route = await Route.create({location})
-        idRoute = route.id
 
-        const client = await Client.create({id, nameClient, surnameClient, tel, location: idRoute, address, callIds, visits})
+        const client = await Client.create({id, nameClient, surnameClient, tel, location, address, callIds, visits})
         idClient = client.id
 
         
@@ -52,14 +48,20 @@ describe('logic - createCall', () => {
 
     it('should succeed on correct credentials', async () => {
     
-        const response = await createCall(id, idClient)
+        const callId = await createCall(id, idClient)
 
-        expect(response).to.exist
+        expect(call).to.exist
+
+        const call = await Call.findById(callId)
+
+        expect(call).tobeDefined
+        expect(call.created).toBe Date
+
 
     })
 
     
     // TODO other cases
 
-    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Call.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Call.deleteMany()]).then(database.disconnect))
 })

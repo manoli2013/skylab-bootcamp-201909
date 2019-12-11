@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError } } = require('sky-call-util')
-const {models: { User, Visit, Call}, ObjectId } = require('sky-call-data')
+const {models: { User, Call}, ObjectId } = require('sky-call-data')
 
 module.exports = function (idAdmin) {
     
@@ -14,9 +14,10 @@ module.exports = function (idAdmin) {
 
         if(!admin) throw new NotFoundError(`admin user with id ${idAdmin} not found`)
         
-        if(admin.role === 'agent') throw new ConflictError(`user has no permissions`)
+        // if(admin.role === 'agent') throw new ConflictError(`user has no permissions`)
         
         const agents = await User.find({role: 'agent'})
+        
 
         if(agents.length === 0) throw new NotFoundError(`No users`)
         
@@ -33,11 +34,12 @@ module.exports = function (idAdmin) {
                 fail: agent.profile.failVisits.length,
                 pendingCalls
             }
+            
             return agent
             
         })
         )
-       
+        agentsList.sort((a, b) => (a.success < b.success) ? 1 : -1)
         return agentsList
         
     })()

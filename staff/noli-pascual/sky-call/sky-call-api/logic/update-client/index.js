@@ -48,7 +48,7 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
         validate.string(address)
         validate.string.notVoid('address', address)
     }
-
+   
     return (async () => {
         const user = await User.findById(idUser)
 
@@ -60,14 +60,23 @@ module.exports = function (idUser, idClient, nameClient, surnameClient, tel, loc
 
         const modifications = {}
 
-        if(nameClient) modifications.nameClient = nameClient
-        if(surnameClient) modifications.surnameClient = surnameClient
-        if(tel) modifications.tel = tel
-        if(address) modifications.address = address
-        if(location) modifications.location = location
+        // if(nameClient !== "") {modifications.nameClient = nameClient} else {nameClient = undefined}
+        // if(surnameClient !== "") {modifications.surnameClient = surameClient} else {surnameClient = undefined}
+        // if(tel !== "") {modifications.tel = tel}  else {tel = undefined}
+        // if(location !== "") {modifications.location = location} else {location = undefined}
+        // if(address !== "") {modifications.address = address} else {address = undefined}
 
-        await Client.updateOne({_id: ObjectId(idClient)}, {$set: modifications} )
+        // await client.save()
+
+        nameClient && (modifications.nameClient = nameClient)
+        surnameClient && (modifications.surnameClient = surnameClient)
+        tel && (modifications.tel = tel)
+        address && (modifications.address = address)
+        location && (modifications.location = location)
+        address && (modifications.address = address)
         
+        await Client.updateOne({_id: ObjectId(idClient)}, {$set: modifications})
 
+        
     })()
 }
