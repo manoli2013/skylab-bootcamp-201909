@@ -54,16 +54,24 @@ The main features included in this application are:
 
 ### Data Model
 
-![Data Model](data-model.jpg)
+![data-model](data-model.jpg)
 
 ## Installation
 
 To install this project go to [SkyCall](https://github.com/manoli2013/skycall.git) and clone it to your local repository.
 
 
-## Credits
+## TO DO
 
-This project has been developed by [Noli Pascual](https://github.com/manoli2013).
+1. Agent user can:
+
+    - work in team, sharing data 
+    - connect call to switchboard
+
+2. Admin user can:
+
+    - see further detail reports
+    - chat with users
 
 
 
