@@ -55,7 +55,7 @@ describe('logic - createCall', () => {
         const call = await Call.findById(callId)
 
         expect(call).tobeDefined
-        expect(call.created).toBe Date
+        expect(call.created).tobeDefined
 
 
     })

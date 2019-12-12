@@ -171,7 +171,7 @@ router.patch('/:idClient/calls/:idCall', tokenVerifier, jsonBodyParser, (req, re
 router.post('/:idClient/visits', tokenVerifier, jsonBodyParser, async (req, res) => {
     
     const { id, params: {idClient} , body: { dateVisit, statusVisit } } = req
-        try {debugger
+        try {
     
             createVisit(id, idClient, dateVisit, statusVisit)
                 .then(id => res.status(201).json({ id }))

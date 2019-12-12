@@ -54,14 +54,14 @@ router.post('/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-router.get('/:idUser', tokenVerifier, (req, res) => {
-    debugger
+router.get('/:idUser/data', tokenVerifier, (req, res) => {
+    
     try {
         const { id, params: { idUser }  } = req
 
-        const getUser = idUser !== 'undefined' ? idUser : id
+        // TODO control requester user id permission to see other user (idUser)
 
-        retrieveUser(getUser)
+        retrieveUser(idUser)
             .then(user => res.json(user))
             .catch(error => {
                 const { message } = error
@@ -185,7 +185,7 @@ router.get('/agents', tokenVerifier, (req, res) => {
 })
 
 //GENERAL REPORT (ADMIN)
-router.get('/report', tokenVerifier, (req, res) => {
+router.get('/report', tokenVerifier, (req, res) => {debugger
 
     const { id } = req
 

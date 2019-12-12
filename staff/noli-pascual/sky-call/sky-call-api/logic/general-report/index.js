@@ -17,7 +17,7 @@ module.exports = function (idAdmin) {
         
         if(admin.role === 'agent') throw new ConflictError(`user has no permissions`)
 
-        if(agents.length === 0) throw new NotFoundError(`No users in route ${idRoute}`)
+        if(agents.length === 0) throw new NotFoundError(`No users in route ${idAdmin}`)
         
         
         let calls = await Call.countDocuments()
