@@ -39,9 +39,18 @@ The main features included in this application are:
 
 ## Technical Description
 
+### Workflow
+
 ![Agent Workflow](agent.jpg)
 
 ![Admin Workflow](admin.jpg)
+
+### Blocks
+![Blocks](Blocks.jpg)
+
+### Components
+
+![Components](components.jpg)
 
 
 ## Installation
