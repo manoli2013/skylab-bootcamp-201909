@@ -52,6 +52,9 @@ The main features included in this application are:
 
 ![Components](components.jpg)
 
+### Data Model
+
+![Data Model](data-model.jpg)
 
 ## Installation
 
