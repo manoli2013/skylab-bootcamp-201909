@@ -13,8 +13,11 @@ import Home from '../Home'
 
 
 import { registerUser, authenticateUser, retrieveUser } from '../../logic'
+import Feedback from '../Feedback'
 
 export default withRouter (function ({ history }) {
+
+    const [error, setError] = useState()
 
     useEffect(() => {
 
@@ -38,7 +41,9 @@ export default withRouter (function ({ history }) {
 
             history.push('/login')
         } catch (error) {
-            console.error(error)
+            history.push('/error')
+            setError(error.message)
+            
         }
     }
 
@@ -54,7 +59,7 @@ export default withRouter (function ({ history }) {
             history.push('/home')
 
         } catch (error) {
-            console.error(error)
+            setError(error.message)
         }
     }
 
@@ -75,6 +80,8 @@ export default withRouter (function ({ history }) {
         <Route path="/login" render={() => token ? <Redirect to='/home' /> : <Login onLogin={handleLogin} onBack={handleGoBack} on error />} />
 
         <Route path = "/home" render={() => <Home />} /> 
+
+        {error && <Feedback message={error} />}
 
        <Footer />
     </>

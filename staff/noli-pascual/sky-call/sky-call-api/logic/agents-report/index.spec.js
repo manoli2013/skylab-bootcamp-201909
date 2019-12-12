@@ -2,11 +2,11 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { errors: { NotFoundError } } = require('sky-call-util')
-const listAgents = require('.')
+const agentsReport = require('.')
 const { random } = Math
 const { database, models: { User, Agent, Client, Route, Visit, Call } } = require('sky-call-data')
 
-describe('logic - list agents', () => {
+describe('logic - agents report', () => {
     before(() => database.connect(TEST_DB_URL))
     let user
     let name, surname, username, password, role
@@ -157,7 +157,7 @@ describe('logic - list agents', () => {
 
     it('should succeed listing all agents', async () => {
        
-        const agents = await listAgents(idAdmin)
+        const agents = await agentsReport(idAdmin)
 
         agents.forEach(agent => {
             expect(agent.name).to.exist
@@ -189,5 +189,6 @@ describe('logic - list agents', () => {
 
     // })
 
-    // after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Visit.deleteMany()]).then(database.disconnect))
+    
+    (() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Visit.deleteMany()]).then(database.disconnect))
 })

@@ -3,6 +3,8 @@ import React from 'react'
 import Feedback from '../Feedback'
 
 export default function ({ onRegister, onBack, error }) {
+
+
     return <section className="register">
 
         <form className='register__form form' onSubmit={function (event) {

@@ -25,7 +25,7 @@ describe('logic - create call', () => {
 
         await Promise.all([User.deleteMany(), Call.deleteMany()])
 
-        const user = await User.create({ name, surname, username,password, role) })
+        const user = await User.create({ name, surname, username,password, role })
 
         id = user.id
 
@@ -40,22 +40,22 @@ describe('logic - create call', () => {
 
     it('should succeed on correct call create', async () => {
 
-        const wishId = await createWish(token, title, link, price, description)
+        const callId = await createWish(token, title, link, price, description)
 
-        expect(wishId).toBeDefined()
-        expect(wishId).toBeOfType('string')
-        expect(wishId.length).toBeGreaterThan(0)
+        expect(callId).toBeDefined()
+        expect(callId).toBeOfType('string')
+        expect(callId.length).toBeGreaterThan(0)
 
         const _user = await User.findById(id)
 
-        const call = _user.wishes.find(call => call.id === wishId)
+        const call = _user.call.find(call => call.id === callId)
 
         expect(call.title).toBe(title)
         expect(call.link).toBe(link)
         expect(call.price).toBe(price)
         expect(call.description).toBe(description)
 
-        expect(_user.wishes.length).toBe(1)
+        expect(_user.call.length).toBe(1)
 
     })
 
