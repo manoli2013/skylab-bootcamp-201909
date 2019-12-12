@@ -4,7 +4,7 @@ import { createVisit } from '../../logic'
 
 
 
-export default function ({ client }) {
+export default function ({ client, control,setControl }) {
 
     
 
@@ -15,6 +15,7 @@ export default function ({ client }) {
 
         try {
             const visit = await createVisit(token, client.id, dateVisit, statusVisit)
+            setControl(!control)
         } catch (error) {
             
         }
@@ -46,7 +47,7 @@ export default function ({ client }) {
             <input className="visit__input" type="text" name="statusVisit" placeholder=" OK, NO, PDTE" />
             </div>
 
-            <button className="visit__submit">CREATE</button>
+            <button className="visit__submit">Create</button>
 
         </form>
 

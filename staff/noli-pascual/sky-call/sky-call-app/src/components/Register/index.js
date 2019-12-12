@@ -3,7 +3,7 @@ import React from 'react'
 import Feedback from '../Feedback'
 
 export default function ({ onRegister, onBack, error }) {
-
+    
 
     return <section className="register">
 

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import './index.sass'
 import { generalReport } from '../../logic'
 
-export default withRouter (function ({ history }) {
+export default withRouter(function ({ history }) {
     let error
     const [calls, setCalls] = useState()
     const [answered, setAnswered] = useState()
@@ -13,22 +13,22 @@ export default withRouter (function ({ history }) {
     const [calling, setCalling] = useState()
 
     useEffect(() => {
+        
+        const { token } = sessionStorage;
+        
+            (async () => {
+                if (token) {
+                    const { calls, answered, pending, visits, fails, calling } = await generalReport(token)
 
-        (async () => {
-            const { token } = sessionStorage
-            if (token) {
-
-                const { calls, answered, pending, visits, fails, calling } = await generalReport(token)
-
-                setCalls(calls)
-                setAnswered(answered)
-                setPending(pending)
-                setVisits(visits)
-                setFails(fails)
-                setCalling(calling)
-            }
-        })()
-    }, [sessionStorage.token])
+                    setCalls(calls)
+                    setAnswered(answered)
+                    setPending(pending)
+                    setVisits(visits)
+                    setFails(fails)
+                    setCalling(calling)
+                }
+            })()
+    }, [])
 
     async function onBack(event) {
         event.preventDefault()

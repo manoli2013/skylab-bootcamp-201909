@@ -9,7 +9,7 @@ import ClientHistory from '../ClientHistory'
 
 export default withRouter(function ({ history, client, setClient }) {
 
-
+    const [error, setError] = useState()
     const [callsClient, setCallsClient] = useState([])
     const [visitsClient, setVisitsClient] = useState([])
     const [call, setCall] = useState(undefined)
@@ -19,14 +19,14 @@ export default withRouter(function ({ history, client, setClient }) {
         const { token } = sessionStorage;
 
             (async () => {
-                if (token) {debugger
+                if (token) {
                     
                     const _client = await retrieveClient(token, client.id)
-
+                    
                     setClient(_client)
                     
 
-                    const { callsClient, visitsClient } = client
+                    const { callsClient, visitsClient } = _client
 
                     setCallsClient(callsClient)
                     setVisitsClient(visitsClient)
@@ -42,14 +42,15 @@ export default withRouter(function ({ history, client, setClient }) {
 
             const callCreated = await createCall(token, client.id)
             setCall(callCreated)
+            setControl(!control)
 
 
         } catch (error) {
-            console.error(error.message)
+            setError(error.message)
         }
     }
 
-    async function onUpdate(name, surname, telephone) {debugger
+    async function onUpdate(name, surname, telephone) {
 
         const {token} = sessionStorage
         if(name === '') name = undefined
@@ -63,7 +64,7 @@ export default withRouter(function ({ history, client, setClient }) {
             setControl(!control)
         } catch (error) {
 
-            console.error(error.message)
+            setError(error.message)
         }
     }
     
@@ -74,8 +75,10 @@ export default withRouter(function ({ history, client, setClient }) {
         try {
 
             await stopCall (token, client.id, call, statusCall)
+            setControl(!control)
+
         } catch (error) {
-            console.error(error.message)
+            setError(error.message)
         }
     }
 
@@ -104,12 +107,12 @@ export default withRouter(function ({ history, client, setClient }) {
         <section className="client-detail__info">
             <h3 className = "client-detail__subtitles">Recent Calls</h3>
             <ul className="client-detail__calls">
-                {callsClient&&callsClient.length > 0? callsClient.map(call => <ClientHistory id={call.agent} date={call.created} status={call.statusCall} />) :  <p className = "detail__prop">No calls</p>}
+                {callsClient && callsClient.length > 0 ? callsClient.map(call => <ClientHistory formatDate={'YYYY/MM/DD HH:mm'} id={call.agent}  date={call.created} status={call.statusCall} />) :  <p className = "detail__prop">No calls</p>}
             </ul>
             
             <h3 className = "client-detail__subtitles">Recent Visits</h3>
-            <ul className="detail__visits">
-                {visitsClient&&visitsClient.length > 0 ? visitsClient.map(visit => <ClientHistory id={visit.agent} date={visit.dateVisit} status={visit.statusVisit} />) : <p className = "detail__prop">No visits</p>}
+            <ul className="client-detail__visits">
+                {visitsClient && visitsClient.length > 0 ? visitsClient.map(visit => <ClientHistory formatDate={'YYYY/MM/DD'} id={visit.agent} date={visit.dateVisit} status={visit.statusVisit} />) : <p className = "detail__prop">No visits</p>}
             </ul>
 
         </section>
@@ -126,7 +129,7 @@ export default withRouter(function ({ history, client, setClient }) {
 
                 const { statusCall: {value: statusCall} } = event.target
 
-                {statusCall ? onStop(statusCall) : alert('Please set status call')}
+                {statusCall ? onStop(statusCall) : setError('Please set status call')}
             }}>
                 <div className = "client-detail__result-form">
 
@@ -137,8 +140,8 @@ export default withRouter(function ({ history, client, setClient }) {
                 <button className = "client-detail__stop">STOP CALL</button>
 
             </form>
-
-            { client && <AgentCreateVisit client = {client} /> } 
+         
+            { client && <AgentCreateVisit client = {client} control={control} setControl={setControl}/> } 
 
 
         </section>

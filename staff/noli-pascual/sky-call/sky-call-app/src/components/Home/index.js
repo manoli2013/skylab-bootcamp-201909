@@ -10,6 +10,7 @@ import AdminAgentsReport from '../AdminAgentsReport'
 import AdminCallsReport from '../AdminCallsReport'
 
 import { retrieveUser } from '../../logic'
+import jwt from '../../utils/jwt'
 
 export default withRouter(function ({ history }) {
 
@@ -21,7 +22,8 @@ export default withRouter(function ({ history }) {
             const { token } = sessionStorage
 
             if (!user && token) {
-                const user = await retrieveUser(token)
+                const { sub: id } = jwt.extractPayload(token)
+                const user = await retrieveUser(token, id)
                 setUser(user)
             } else {
                 history.push('/')

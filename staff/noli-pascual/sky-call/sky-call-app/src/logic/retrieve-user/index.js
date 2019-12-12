@@ -7,11 +7,11 @@ const API_URL = process.env.REACT_APP_API_URL
 module.exports = function (token, id) {
     validate.string(token)
     validate.string.notVoid('token', token)
-    
-    if (id) validate.string(id)
+    validate.string(id)
+    validate.string.notVoid('id', id)
 
     return (async () => {
-        const res = await call(`${API_URL}/users/${id}`, {
+        const res = await call(`${API_URL}/users/${id}/data`, {
             method: 'GET',
             headers: { Authorization: `Bearer ${token}` }
         })

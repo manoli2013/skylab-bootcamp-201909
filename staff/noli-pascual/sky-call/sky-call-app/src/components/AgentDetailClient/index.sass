@@ -10,31 +10,44 @@
     
 .client-detail
     @extend %flex-column
-    width: 85%
-    margin: 5% auto
+    
 
     &__title
         font-size: 1.2rem
+        margin-bottom: 0.5rem
+        margin-top: 0.5rem
 
     &__form
         @extend %form
+        
 
     &__info
         @extend %flex-column
+        width: 100%
         margin: 5% auto
+        background-color: silver
+        color: #ffffff
     &__subtitles
         text-align: center
         margin-bottom: 1.5rem
         margin-top: .8rem
+        font-size: 1.2rem
     
     &__calls
         list-style: square
+        
         width: 100%
-        margin: 0 auto
-        font-size: 0.8rem
+        color: #006600
+        font-size: 1.2rem
 
     &__call-buttons
         @extend %flex-column
+    
+    &__visits
+        list-style: square
+        width: 100%
+        color: #006600
+        font-size: 1.2rem
 
     &__start
         color: $box-info-background
@@ -54,6 +67,9 @@
     
     &__stop-form
         @extend %flex-column
+    
+    &__result-label
+        font-weight: bold
         
     &__result-form
         width: 50%
@@ -67,7 +83,18 @@
     &__started
         background-color: tomato
         color: #ffffff
-    &__input-read
-        background-color: grey
+    &__input
+        width: 80%
+        margin: 0 auto
+        text-align: center
+        font-size: 1.2rem
+    &__submit
+        width: 50%
+        margin: 0 auto
+        @extend %button
+        
+    &__link
+        text-decoration: none
+
 
     

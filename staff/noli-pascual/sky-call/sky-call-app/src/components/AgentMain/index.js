@@ -5,6 +5,7 @@ import { Router, withRouter } from 'react-router-dom'
 import AgentSearch from '../AgentSearch'
 import AgentClientResults from '../AgentClientResults'
 import Feedback from '../Feedback'
+import jwt from '../../utils/jwt'
 
 
 function AgentMain({ history }) {
@@ -19,7 +20,8 @@ function AgentMain({ history }) {
         
         (async () => {
             if (token) {
-                const user = await retrieveUser(token)
+                const { sub: id } = jwt.extractPayload(token)
+                const user = await retrieveUser(token, id)
                 setUser(user)
                 const {name} = user
                 setName(name)

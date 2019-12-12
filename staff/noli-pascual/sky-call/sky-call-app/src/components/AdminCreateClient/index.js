@@ -19,7 +19,7 @@ export default withRouter (function ({history})  {
 
         } catch (error) {
 
-            console.error(error)
+            setError(error.message)
         }
     }
 
@@ -32,7 +32,7 @@ export default withRouter (function ({history})  {
         <form className='add-client__form form' onSubmit={function (event) {
             event.preventDefault()
             let val = event.target.nameClient.value
-            console.log(val)
+            
             
         const { nameClient: { value: nameClient }, surnameClient: { value: surnameClient }, tel: { value: tel }, location: { value: location }, address: {value: address}} = event.target
 

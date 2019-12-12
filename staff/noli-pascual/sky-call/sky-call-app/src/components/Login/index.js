@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Feedback from '../Feedback'
 
-export default function ({ onLogin, onBack, error }) {
+export default function ({ onLogin, onBack }) {
+
+    const [error, setError] = useState()
 
     return <section className="login">
 

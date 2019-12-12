@@ -12,7 +12,7 @@ function AdminMain({ history, error }) {
     // //Admin informes
 
 
-    function onGeneralReport() { history.push('/Home/general-report') }
+    function onGeneralReport() { history.push('/home/general-report') }
     function onAgentsReport() { history.push('/home/agents-report') }
     function onCallsReport() { history.push('/home/calls-report') }
     function onCreateClient() {history.push('/home/create-client') }

@@ -10,14 +10,15 @@ import Login from '../Login'
 import Header from '../Header'
 import Footer from '../Footer'
 import Home from '../Home'
+import Feedback from '../Feedback'
+import jwt from '../../utils/jwt'
 
 
 import { registerUser, authenticateUser, retrieveUser } from '../../logic'
-import Feedback from '../Feedback'
 
 export default withRouter (function ({ history }) {
 
-    const [error, setError] = useState()
+    const [error, setError] = useState('')
 
     useEffect(() => {
 
@@ -30,9 +31,15 @@ export default withRouter (function ({ history }) {
   
     }, [])
 
-    function handleGoToRegister() { history.push('/register') }
+    function handleGoToRegister() { 
+        setError('')
+        history.push('/register')
+    }
 
-    function handleGoToLogin() { history.push('/login') }
+
+    function handleGoToLogin() { 
+        setError('')
+        history.push('/login') }
 
     async function handleRegister(name, surname, username, password) {
 
@@ -41,9 +48,8 @@ export default withRouter (function ({ history }) {
 
             history.push('/login')
         } catch (error) {
-            history.push('/error')
+          
             setError(error.message)
-            
         }
     }
 
@@ -51,19 +57,27 @@ export default withRouter (function ({ history }) {
 
         try {
             const token = await authenticateUser(username, password)
-
+    
             sessionStorage.token = token
+
+            const { sub: id } = jwt.extractPayload(token)
             
-            const userActive = await retrieveUser(token)
+            const userActive = await retrieveUser(token, id)
+
+            setError('')
             
             history.push('/home')
 
         } catch (error) {
+        
+         
             setError(error.message)
+            
         }
     }
 
     async function handleGoBack() {
+        setError('')
         history.goBack()
     }
     
@@ -81,7 +95,7 @@ export default withRouter (function ({ history }) {
 
         <Route path = "/home" render={() => <Home />} /> 
 
-        {error && <Feedback message={error} />}
+        {error && <Feedback message = {error} />} 
 
        <Footer />
     </>

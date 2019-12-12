@@ -1,10 +1,12 @@
 import React, {useState} from 'react'
 import AgentDetailClient from '../AgentDetailClient'
+import Feedback from '../Feedback'
 
 
 export default function ( { client} ) {
 
     const [control, setControl] = useState(false)
+    const [error, setError] = useState(undefined)
     
     const [_client, setClient] = useState(client)
     
@@ -26,6 +28,7 @@ export default function ( { client} ) {
         </a>
 
     {control &&  <AgentDetailClient client={_client} setClient={setClient}/> }
+    {error && <Feedback error={error.message} />}
     
     </li>
 }

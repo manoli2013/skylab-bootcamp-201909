@@ -5,7 +5,8 @@ export default function({}) {
 return <header className ='header'>
 
         <section className ="header_logo-container logo">
-            <a className ='logo__link' href="#"><img className ='logo__image' src="/images/logo.png" alt="logo" /></a>
+            <a className ='logo__link' href="#"><img className ='logo__image' src="/images/headset-151660_640.png" alt="logo" /></a>
+            
         </section>
     </header>
 }

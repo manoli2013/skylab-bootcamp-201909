@@ -5,7 +5,7 @@ export default function Feedback({ message }) {
         <div className = "feedback__content">
 
        
-        <p className="feedback__message">¡{message}!</p>
+        <p className="feedback__message">{message}</p>
 
         </div>
         
