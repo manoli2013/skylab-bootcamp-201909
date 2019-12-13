@@ -6,7 +6,7 @@ const retrieveReport = require('.')
 const { random } = Math
 const { database, models: { User, Agent, Client, Route, Visit, Call } } = require('sky-call-data')
 
-describe('logic - retrieve report', () => {
+describe('logic - general report', () => {
     before(() => database.connect(TEST_DB_URL))
     let user
     let name, surname, username, password, role

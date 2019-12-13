@@ -6,7 +6,7 @@ const listClients = require('.')
 const { random } = Math
 const { database, ObjectId, models: { User, Client, Route } } = require('sky-call-data')
 
-describe('logic - list clients by idRoute', () => {
+describe('logic - list clients by location', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
     let location
