@@ -11,13 +11,8 @@ module.exports = {
     callsReport: require('./calls-report'),
     generalReport: require('./general-report'),
     
-    updateAgent: require('./update-agent'),
-    
-    //PDTE ???????
-    retrieveUsers: require('./z-retrieve-users'),
-    retrieveCalls: require('./z.retrieve-calls'),
-    retrieveVisits: require('./z-retrieve-visits'),
    
+       
     uploadImageUser: require('./upload-image-user'),
     loadImageUser: require('./load-image-user'),
     
