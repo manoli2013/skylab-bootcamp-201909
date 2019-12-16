@@ -1,0 +1,64 @@
+@import ../config
+@import ../flex-row
+@import ../flex-column
+@import ../form
+@import ../button
+@import ../input-field
+@import ../text-center
+@import ../box-info
+
+.landing
+    width: 100%    
+    
+    &__image-container
+       
+        @extend %flex-row
+        
+
+    &__figure
+        width: 100%
+        height: 100%
+        
+        
+        @extend %flex-column
+      
+    &__caption
+       
+        @extend %text-center
+        color: $title
+        margin: 0 auto
+        position: absolute
+        top: 20%
+        left: 20%
+        font-weight: bold
+        text-shadow: $text-shadow
+        
+
+    &__image
+        width: 100%
+        height: 100%
+    
+    &__link-container
+        @extend %flex-column
+
+    &__option-container
+        @extend %flex-row
+        justify-content: space-evenly
+       
+        position: absolute
+        width: 100%
+        top: 35%
+        left: 2%
+        
+    &__option
+        width: 30%
+        @extend %button
+        &:hover 
+            border: solid 1% rgb(255, 0, 0)
+            cursor: pointer
+            color: darken(#ffffff, 30%)
+
+    	
+    
+
+        

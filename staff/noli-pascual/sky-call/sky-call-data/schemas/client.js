@@ -24,7 +24,7 @@ module.exports = new Schema({
         required: true
     },
 
-    location: { type: ObjectId, ref: 'Route', required: true},
+    location: { type: String, required: true},
 
     address: { type: String, required: true },
 

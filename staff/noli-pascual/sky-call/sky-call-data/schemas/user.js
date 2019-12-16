@@ -24,9 +24,8 @@ module.exports = new Schema({
     
     role: {
         type: String,
-        required: true,
         enum: ['admin', 'agent'],
-        default: 'admin'
+        default: 'agent'
     },
 
     profile: Agent

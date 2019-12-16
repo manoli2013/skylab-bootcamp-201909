@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "moment": "^2.24.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "sky-call-util": "file: ../sky-call-util"
+    "sky-call-util": "file:../sky-call-util"
   },
-  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -19,7 +19,6 @@
     "sass:watch": "sass --watch template/index.sass template/index.css",
     "eject": "react-scripts eject"
   },
-
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -36,8 +35,14 @@
     ]
   },
   "devDependencies": {
+    "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.13.0",
-    "sky-call-data": "file: ../sky-call-data"
-  }
+    "sky-call-data": "file:../sky-call-data"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

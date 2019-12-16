@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { registerUser, authenticateUser, retrieveUser, removeUser, listAgents, adminReport, uploadImageUser, loadImageUser} = require('../../logic')
+const { registerUser, authenticateUser, retrieveUser, generalReport, agentsReport, uploadImageUser, loadImageUser} = require('../../logic')
 const jwt = require('jsonwebtoken')
 const { env: { SECRET } } = process
 const tokenVerifier = require('../../helpers/token-verifier')(SECRET)
@@ -12,10 +12,10 @@ const jsonBodyParser = bodyParser.json()
 const router = Router()
 
 router.post('/', jsonBodyParser, (req, res) => {
-    const { body: { name, surname, username, password, role } } = req
+    const { body: { name, surname, username, password } } = req
 
     try {
-        registerUser(name, surname, username, password, role)
+        registerUser(name, surname, username, password)
             .then(() => res.status(201).end())
             .catch(error => {
                 const { message } = error
@@ -54,11 +54,14 @@ router.post('/auth', jsonBodyParser, (req, res) => {
     }
 })
 
-router.get('/', tokenVerifier, (req, res) => {
+router.get('/:idUser/data', tokenVerifier, (req, res) => {
+    
     try {
-        const { id } = req
+        const { id, params: { idUser }  } = req
 
-        retrieveUser(id)
+        // TODO control requester user id permission to see other user (idUser)
+
+        retrieveUser(idUser)
             .then(user => res.json(user))
             .catch(error => {
                 const { message } = error
@@ -71,6 +74,31 @@ router.get('/', tokenVerifier, (req, res) => {
     } catch (error) {
         const { message } = error
 
+        res.status(400).json({ message })
+    }
+})
+
+//Update Agent (desde Admin)
+
+router.patch('/:idUser', tokenVerifier, jsonBodyParser, (req, res) => {
+    try {
+        const { id, params: { idUser }, body: { name, surname, username, password } } = req
+
+        updateAgent(id, idUser, name, surname, username, password)
+            .then(() =>
+                res.end()
+            )
+            .catch(error => {
+                const { message } = error
+
+                if (error instanceof NotFoundError)
+                    return res.status(404).json({ message })
+                if (error instanceof ConflictError)
+                    return res.status(409).json({ message })
+
+                res.status(500).json({ message })
+            })
+    } catch ({ message }) {
         res.status(400).json({ message })
     }
 })
@@ -110,38 +138,39 @@ router.get('/load/:idUser', tokenVerifier, async (req, res) => {
 
 //remove user
 
-router.delete('/:userId', tokenVerifier, (req, res) => {
-    try {
-        const { id, params: { userId } } = req
+// router.delete('/:userId', tokenVerifier, (req, res) => {
+//     try {
+//         const { id, params: { userId } } = req
         
-        removeUser(id, userId)
-            .then(() =>
-                res.end()
-            )
-            .catch(error => {
-                const { message } = error
+//         removeUser(id, userId)
+//             .then(() =>
+//                 res.end()
+//             )
+//             .catch(error => {
+//                 const { message } = error
 
-                if (error instanceof NotFoundError)
-                    return res.status(404).json({ message })
-                if (error instanceof ConflictError)
-                    return res.status(409).json({ message })
+//                 if (error instanceof NotFoundError)
+//                     return res.status(404).json({ message })
+//                 if (error instanceof ConflictError)
+//                     return res.status(409).json({ message })
 
-                res.status(500).json({ message })
-            })
-    } catch ({ message }) {
-        res.status(400).json({ message })
-    }
-})
+//                 res.status(500).json({ message })
+//             })
+//     } catch ({ message }) {
+//         res.status(400).json({ message })
+//     }
+// })
 
-//LIST AGENTS (ADMIN)
+//AGENTS REPORT ADMIN
 router.get('/agents', tokenVerifier, (req, res) => {
 
     const { id } = req
 
     try {
 
-        listAgents(id)
+        agentsReport(id)
             .then(agents => res.json(agents))
+        
             .catch(error => {
                 const { message } = error
 
@@ -155,14 +184,14 @@ router.get('/agents', tokenVerifier, (req, res) => {
     }
 })
 
-//LIST GENERAL REPORT (ADMIN)
-router.get('/report', tokenVerifier, (req, res) => {
+//GENERAL REPORT (ADMIN)
+router.get('/report', tokenVerifier, (req, res) => {debugger
 
     const { id } = req
 
     try {
 
-        adminReport(id)
+        generalReport(id)
             .then(report => res.json(report))
             .catch(error => {
                 const { message } = error

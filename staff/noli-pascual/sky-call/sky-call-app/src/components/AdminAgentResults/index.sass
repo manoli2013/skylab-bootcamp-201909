@@ -1,0 +1,28 @@
+@import ../flex-row
+@import ../text-center
+@import ../flex-column
+@import ../config
+
+.agents
+
+    @extend %flex-column
+
+    &__title
+        @extend %text-center
+        color: $report-title-color 
+        text-shadow: $report-title-shadow
+        margin-bottom: 2rem
+
+
+.results
+
+    @extend %flex-column
+    width: 100%
+    flex-wrap: nowrap
+    list-style: none
+
+    &__row
+        @extend %flex-row
+        background-color: $box-info-background
+   
+

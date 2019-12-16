@@ -18,19 +18,18 @@ The main features included in this application are:
 
 1. Agent user can:
 
-    - call clients 
-    - create, read, update and delete clients.
-    - create commercial visits to each client at a certain date and time.
-    - check calls lists and filter clients according to several criteria queries.
-    - check visits counter of the current day
+    - search clients by location 
+    - create calls by client
+    - create visits by client 
+    - read and update client detail
+    - check calls and visits by each client
 
 2. Admin user can:
 
-    - create, read, update and delete agent users.
+    - create, clients
     - check calls reports 
-    - check in real time all calls and agents performance.
-
-
+    - check agents reports
+    - check general report 
 
 <center>
 
@@ -40,19 +39,39 @@ The main features included in this application are:
 
 ## Technical Description
 
-![Agent Workflow](agent-flow.jpg)
+### Workflow
 
-![Admin Workflow](admin-flow.jpg)
+![Agent Workflow](agent.jpg)
 
+![Admin Workflow](admin.jpg)
+
+### Blocks
+![Blocks](Blocks.jpg)
+
+### Components
+
+![Components](components.jpg)
+
+### Data Model
+
+![data-model](data-model.jpg)
 
 ## Installation
 
 To install this project go to [SkyCall](https://github.com/manoli2013/skycall.git) and clone it to your local repository.
 
 
-## Credits
+## TO DO
 
-This project has been developed by [Noli Pascual](https://github.com/manoli2013).
+1. Agent user can:
+
+    - work in team, sharing data 
+    - connect call to switchboard
+
+2. Admin user can:
+
+    - see further detail reports
+    - chat with users
 
 
 

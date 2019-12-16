@@ -1,0 +1,27 @@
+@import ../config
+@import ../flex-row
+@import ../text-center
+@import ../box-info
+
+.visit
+    @extend %box-info
+    @extend %text-center
+    width: 100% 
+    background-color: silver
+    
+   
+    &__title
+        width: 100%
+        padding-bottom: 0.9rem
+
+    &__input-container
+        
+        @extend %flex-row
+    &__label
+        width: 30%
+    &__input
+        @extend %text-center
+  
+    &__submit
+        @extend %button
+        width: 40%

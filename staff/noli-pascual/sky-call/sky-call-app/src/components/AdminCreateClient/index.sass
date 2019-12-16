@@ -1,0 +1,23 @@
+@import ../config
+@import ../form
+@import ../button
+@import ../input-field
+@import ../link
+
+
+.add-client
+    width: 90%
+    margin: 0 auto
+
+.form
+    @extend %form
+
+    &__input-field
+        @extend %input-field
+
+    &__submit
+        @extend %button
+
+    &__back
+       @extend %link
+       margin-top: 15%

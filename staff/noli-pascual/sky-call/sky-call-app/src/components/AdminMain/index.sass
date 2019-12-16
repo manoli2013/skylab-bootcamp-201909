@@ -1,0 +1,32 @@
+@import ../config
+
+@import ../button
+@import ../input-field
+@import ../form
+
+
+.main
+    @extend %flex-column
+    @extend %text-center
+
+    &__title
+        color: $report-title-color
+        text-shadow: $report-title-shadow
+
+
+    &__nav-list
+        @extend %flex-column
+        padding-bottom: 2rem
+    
+    &__nav-item
+        font-size: 2rem
+        margin-bottom: 20%
+
+    &__title
+        margin-bottom: 1.5rem
+        color: $report-title-color
+
+
+    &__back
+        @extend %button
+    

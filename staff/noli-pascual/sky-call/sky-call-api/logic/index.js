@@ -1,32 +1,40 @@
 module.exports = {
+
+    //General
     authenticateUser: require('./authenticate-user'),
     registerUser: require('./register-user'),
     retrieveUser: require('./retrieve-user'),
-    removeUser: require('./remove-user'),
-    updateUser: require('./update-user'),
+    
+    //admin
     createClient: require('./create-client'),
+    agentsReport: require('./agents-report'),
+    callsReport: require('./calls-report'),
+    generalReport: require('./general-report'),
+    
+    updateAgent: require('./update-agent'),
+    
+    //PDTE ???????
+    retrieveUsers: require('./z-retrieve-users'),
+    retrieveCalls: require('./z.retrieve-calls'),
+    retrieveVisits: require('./z-retrieve-visits'),
+   
+    uploadImageUser: require('./upload-image-user'),
+    loadImageUser: require('./load-image-user'),
+    
+    
+    //Agent
+    
+    //Búsqueda de clientes
+    listClientsRoute: require('./list-clients-route'),
     retrieveClient: require('./retrieve-client'),
-    listClients: require('./list-clients'),
-
-    createVisit: require('./create-visit'),
-    updateVisit: require('./update-visit'),
-
-    listAgents: require('./list-agents'),
-    listVisits: require('./list-visits-client'),
-
-    createRoute: require('./create-route'),
-    removeClient: require('./remove-client'),
     updateClient: require('./update-client'),
-    adminReport: require('./admin-report'),
-
+    
     createCall: require('./create-call'),
-    updateCall: require('./update-call'),
     stopCall: require('./stop-call'),
 
-    listCallsAdmin: require('./list-calls-admin'),
-    listCallsClient: require('./list-calls-client'),
-    searchClients: require('./search-clients-call'),
+    createVisit: require('./create-visit'),
+    // listClientsStatus: require('./list-clients-status'),
 
-    uploadImageUser: require('./upload-image-user'),
-    loadImageUser: require('./load-image-user')
+    
+    
 }
