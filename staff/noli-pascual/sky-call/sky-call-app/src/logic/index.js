@@ -21,7 +21,7 @@ module.exports = {
     callsReport: require('./calls-report'),
     generalReport: require('./general-report'),
 
-    updateAgent: require('./update-agent')
+    // updateAgent: require('./update-agent')
     // retrieveUsers: require('./retrieve-users'),
 
 }
