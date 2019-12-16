@@ -2,11 +2,11 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { random } = Math
-const listCallsAdmin = require('.')
+const callsReport = require('.')
 const { errors: { NotFoundError } } = require('sky-call-util')
 const { database, models: { User, Client, Route, Call } } = require('sky-call-data')
 
-describe('logic - list calls admin', () => {
+describe('logic - calls report', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
     let idRoute, location
@@ -78,20 +78,19 @@ describe('logic - list calls admin', () => {
     it('should succeed listing all calls with id admin', async () => {
         
 
-        const resultCalls = await listCallsAdmin(idAdmin)
+        const resultCalls = await callsReport(idAdmin)
 
         expect(resultCalls).to.exist
         expect(resultCalls).to.be.an('array')
         // expect(resultCalls).to.include(call1)
         
-        const ids = []
+        const ids = [idCall1, idCall2, idCall3]
 
-        resultCalls.forEach(call => {
-            ids.push(call.id)
-        })
+    
         expect(idCall1).to.be.oneOf(ids)
         expect(idCall2).to.be.oneOf(ids)
         expect(idCall3).to.be.oneOf(ids)
+
 
         //TODO
 
@@ -101,7 +100,7 @@ describe('logic - list calls admin', () => {
         const wrongAdminId = '251452145858'
 
         try {
-            await listCallsAdmin(wrongAdminId)
+            await callsReport(wrongAdminId)
 
             throw Error('should not reach this point')
 

@@ -2,7 +2,7 @@ require('dotenv').config()
 const { env: { TEST_DB_URL } } = process
 const { expect } = require('chai')
 const { errors: { NotFoundError} } = require('sky-call-util')
-const listClients = require('.')
+const listClientsRoute = require('.')
 const { random } = Math
 const { database, ObjectId, models: { User, Client, Route } } = require('sky-call-data')
 
@@ -28,8 +28,7 @@ describe('logic - list clients by location', () => {
        
         //creo rutas
         location = 'Barcelona'
-        const route = await Route.create( {location} )
-        idRoute = route.id
+       
 
         //creo clients de la ruta
     
@@ -40,7 +39,7 @@ describe('logic - list clients by location', () => {
                 nameClient: `name-${random()}`,
                 surnameClient: `surname-${random()}`,
                 tel: `tel- ${random()}`,
-                location: idRoute,
+                location: location,
                 address: `address-${random()}`,
                 callIds: [],
                 visits: []
@@ -70,7 +69,7 @@ describe('logic - list clients by location', () => {
     })
 
     it('should succeed listing clients by idRoute', async () => {
-        const clients = await listClients(id, idRoute)
+        const clients = await listClientsRoute(id, location)
 
         expect(clients).to.exist
         // expect(clients).to.have.lengthOf(5)
@@ -81,15 +80,14 @@ describe('logic - list clients by location', () => {
         expect(isIncluded).to.be.false
 
         
-        clients.forEach(client => {
+        clients.forEach(client => {debugger
 
             expect(client.id).to.exist
 
             expect(client.id).to.be.a('string')
             
-            expect(client.location.toString()).to.equal(idRoute)
+            expect(client.location).to.equal(location)
 
-            expect(client.creator.toString()).to.equal(id)
 
         })
     })
@@ -98,13 +96,13 @@ describe('logic - list clients by location', () => {
     it('should succeed fail when no client in idRoute', async () => {
         const wrongLocationId = '452154215421'
         try {
-            await listClients(id, wrongLocationId)
+            await listClientsRoute(id, wrongLocationId)
 
             throw Error('should not reach this point')
         } catch (error) {
             expect(error).to.exist
             expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`route with id ${wrongLocationId} not found`)
+            expect(error.message).to.equal(`No clients in location ${wrongLocationId}`)
         }
         
     })

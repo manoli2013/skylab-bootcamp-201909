@@ -4,12 +4,12 @@ const { expect } = require('chai')
 const { random } = Math
 const updateClient = require('.')
 const { errors: { NotFoundError } } = require('sky-call-util')
-const { database, models: { User, Client, Route }, ObjectId } = require('sky-call-data')
+const { database, models: { User, Client }, ObjectId } = require('sky-call-data')
 
 describe('logic - update client', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
-    let idRoute, location
+    let location
     let idClient, nameClient, surnameClient, tel, address
 
     beforeEach(async () => {
@@ -19,7 +19,7 @@ describe('logic - update client', () => {
         surname = `surname-${random()}`
         username = `username-${random()}`
         password = `password-${random()}`
-        role = 'admin'
+        role = 'agent'
 
         //crear ruta
         location = 'Barcelona'
@@ -34,48 +34,52 @@ describe('logic - update client', () => {
         callIds = []
         visits = []
 
-        //new data
-
-        newNameClient = 'new-name'
-        newSurnameClient = 'new-surname'
-        newTel = 'new-tel'
        
-        newAddress = 'new-address'
+        await Promise.all([User.deleteMany(), Client.deleteMany()])
 
-        await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()])
-
-        const route = await Route.create({ location })
-        idRoute = route.id
-
-        const route2 = await Route.create({ location })
-        idRoute2 = route2.id
-
+     
         const user = await User.create({ name, surname, username, password, role })
         id = user.id
       
-        const client = await Client.create({ creator: id, nameClient, surnameClient, tel, location: idRoute, address })
+        const client = await Client.create({ creator: id, nameClient, surnameClient, tel, location, address })
         idClient = client.id
         
     })
 
     it('should succeed on correct client id', async () => {
+         //new data
 
-        const newClient = await updateClient(id, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+         let newNameClient = 'new-name'
+         let newSurnameClient = 'new-surname'
+         let newTel = 'new-tel'
+         let newLocation = 'Asturias'
+         let newAddress = 'new-address'
+ 
 
-        expect(newClient).to.exist
+        const modificated = await updateClient(id, idClient, newNameClient, newSurnameClient, newTel, newLocation, newAddress)
+
+        expect(modificated).to.not.exist
         
+        const newClient = await Client.findById(idClient)
         expect(newClient.nameClient).to.equal(newNameClient)
         expect(newClient.surnameClient).to.equal(newSurnameClient)
         expect(newClient.tel).to.equal(newTel)
-        expect(newClient.location.toString()).to.equal(idRoute2)
+        expect(newClient.location.toString()).to.equal(newLocation)
         expect(newClient.address).to.equal(newAddress)
 
     })
     it('should fail on wrong user id', async () => {
+         //new data
+
+         let newNameClient = 'new-name'
+         let newSurnameClient = 'new-surname'
+         let newTel = 'new-tel'
+         let newLocation = 'Asturias'
+         let newAddress = 'new-address'
         const id2 = '251452145858'
 
         try {
-            await updateClient(id2, idClient, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+            await updateClient(id2, idClient, newNameClient, newSurnameClient, newTel, newLocation, newAddress)
 
             throw Error('should not reach this point')
 
@@ -86,10 +90,17 @@ describe('logic - update client', () => {
         }
     })
     it('should fail on wrong client id', async () => {
+         //new data
+
+         let newNameClient = 'new-name'
+         let newSurnameClient = 'new-surname'
+         let newTel = 'new-tel'
+         let newLocation = 'Asturias'
+         let newAddress = 'new-address'
         const wrongClientId = '251452145858'
 
         try {
-            await updateClient(id, wrongClientId, newNameClient, newSurnameClient, newTel, idRoute2, newAddress)
+            await updateClient(id, wrongClientId, newNameClient, newSurnameClient, newTel, newLocation, newAddress)
 
             throw Error('should not reach this point')
 
@@ -101,5 +112,5 @@ describe('logic - update client', () => {
     })
 
 
-    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Client.deleteMany()]).then(database.disconnect))
 })

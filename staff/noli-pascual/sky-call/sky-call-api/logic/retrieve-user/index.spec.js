@@ -29,8 +29,7 @@ describe('logic - retrieve user', () => {
         const user = await retrieveUser(id)
 
         expect(user).to.exist
-        expect(user.id).to.equal(id)
-        expect(user.id).to.be.a('string')
+        
         expect(user._id).to.not.exist
         expect(user.name).to.equal(name)
         expect(user.name).to.be.a('string')

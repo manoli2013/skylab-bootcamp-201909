@@ -37,13 +37,11 @@ describe('logic - retrieve client', () => {
 
         await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()])
 
-        const route = await Route.create( {location} )
-        idRoute = route.id
         
         const user = await User.create( {name, surname, username, password, role} )
         creator = user.id
         id = user.id
-        location = idRoute
+        
 
         const client = await Client.create({ creator, nameClient, surnameClient, tel, location, address, callIds, visits })
         
@@ -57,10 +55,7 @@ describe('logic - retrieve client', () => {
         expect(client).to.exist
         expect(client.id).to.equal(idClient)
         expect(client.id).to.be.a('string')
-        //pendiente
-        // expect(resultClient._id).to.not.exist
-        expect(client.creator.toString()).to.equal(creator)
-        expect(client.creator.toString()).to.be.a('string')
+    
 
         expect(client.nameClient).to.equal(nameClient)
         expect(client.nameClient).to.be.a('string')
@@ -68,9 +63,16 @@ describe('logic - retrieve client', () => {
         expect(client.surnameClient).to.be.a('string')
         expect(client.tel).to.equal(tel)
         expect(client.tel).to.be.a('string')
-        expect(client.location.toString()).to.equal(idRoute)
+        expect(client.location.toString()).to.equal(location)
         expect(client.address).to.equal(address)
         expect(client.address).to.be.a('string')
+
+        expect(client.callsClient).to.exist
+        expect(client.callsClient).to.be.instanceOf(Array)
+
+        expect(client.visitsClient).to.exist
+        expect(client.visitsClient).to.be.instanceOf(Array)
+
 
     })
 
@@ -78,7 +80,7 @@ describe('logic - retrieve client', () => {
         const idClient = '251452145858'
 
         try {
-            await retrieveClient(idClient)
+            await retrieveClient(id, idClient)
 
             throw Error('should not reach this point')
         } catch (error) {
@@ -88,7 +90,6 @@ describe('logic - retrieve client', () => {
         }
     })
 
-    // TODO other cases
 
     after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
 })

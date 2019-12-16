@@ -39,32 +39,32 @@ describe('logic - stop call', () => {
         const user = await User.create({ name, surname, username, password, role })
         id = user.id
         
-        //create route
-        const route = await Route.create({location})
-        idRoute = route.id
 
-        const client = await Client.create({id, nameClient, surnameClient, tel, location: idRoute, address, callIds, visits})
+        const client = await Client.create({id, nameClient, surnameClient, tel, location, address, callIds, visits})
         idClient = client.id
 
-        const call = await Call.create({agent: id, client: idClient, created: new Date(), calling: true, statusCall: 'N.A', })
+        
+
+        const call = await Call.create({agent: id, client: idClient, created: new Date(), calling: true, statusCall })
         idCall = call.id
     })
 
     it('should succeed on stoping the call', async () => {
     
-        const resultCall = await stopCall(id, idClient, idCall)
+        const stop = await stopCall(id, idClient, idCall, statusCall)
+        
+        expect(stop).to.not.exist
+
+        const stopedCall = await Call.findById(idCall)
+        expect(stopedCall.calling).to.equal(false)
+        expect(stopedCall.duration).to.exist
+        expect(stopedCall.created).to.be.instanceOf(Date)
+        expect(stopedCall.finished).to.be.instanceOf(Date)
+        expect(stopedCall.statusCall).to.equal(statusCall)
        
-        expect(resultCall).to.exist
-        expect(resultCall.calling).to.be.false
-        expect(resultCall.duration).to.exist
-        expect(resultCall.created).to.be.a('date')
-        expect(resultCall.finished).to.be.a('date')
-        expect(resultCall.duration).to.be.a('string')
        
     })
 
-    
-    // TODO other cases
 
     after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Call.deleteMany()]).then(database.disconnect))
 })

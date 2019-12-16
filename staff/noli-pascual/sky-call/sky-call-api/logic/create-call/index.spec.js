@@ -6,7 +6,7 @@ const { random } = Math
 const { errors: { ContentError } } = require('sky-call-util')
 const { database, models: { User, Client, Route, Call } } = require('sky-call-data')
 
-describe('logic - createCall', () => {
+describe('logic - create call', () => {
     before(() => database.connect(TEST_DB_URL))
 
     let id, name, surname, username, password, role
@@ -50,12 +50,16 @@ describe('logic - createCall', () => {
     
         const callId = await createCall(id, idClient)
 
-        expect(call).to.exist
+        expect(callId).to.exist
 
         const call = await Call.findById(callId)
 
-        expect(call).tobeDefined
-        expect(call.created).tobeDefined
+        expect(call).to.exist
+        expect(call.created).to.exist
+        expect(call.created).to.be.instanceOf(Date)
+        expect(call.agent.toString()).to.equal(id)
+        expect(call.client.toString()).to.equal(idClient)
+        expect(call.date)
 
 
     })
