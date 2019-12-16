@@ -22,6 +22,11 @@ const validate = {
         this.typeOf('boolean', target)
     },
 
+    date(target) {
+        this.typeOf('date', target)
+    },
+
+
     instanceOf(type, target) {
         if (!isInstanceOf(target, type)) throw TypeError(`${target} is not a ${type.name}`)
     },

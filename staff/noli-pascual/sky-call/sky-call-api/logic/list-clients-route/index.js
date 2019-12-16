@@ -17,7 +17,7 @@ module.exports = function (idUser, location) {
 
         const clients = await Client.find({location})
 
-        if(clients.length === 0) throw new NotFoundError(`No clients in route`)
+        if(clients.length === 0) throw new NotFoundError(`No clients in location ${location}`)
         
         //extraer clientes
         const clientsList = []

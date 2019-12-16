@@ -33,7 +33,7 @@ describe('logic - create visit', () => {
         visits = []
 
 
-        // await Promise.all([User.deleteMany(), Visit.deleteMany(), Client.deleteMany(), Route.deleteMany()])
+        await Promise.all([User.deleteMany(), Visit.deleteMany(), Client.deleteMany(), Route.deleteMany()])
 
         const user = await User.create({ name, surname, username, password, role, profile: new Agent() })
 
@@ -59,30 +59,27 @@ describe('logic - create visit', () => {
         let status = 'OK'
 
         const resultVisit = await createVisit(id, idClient, dateVisit, status)
-        idVisit = resultVisit.id
+        
+        expect(resultVisit).to.exist
+        expect(resultVisit).to.be.a('string')
 
+        expect(resultVisit).to.have.length.greaterThan(0)
 
-        expect(idVisit).to.exist
-        expect(idVisit).to.be.a('string')
-
-        expect(idVisit).to.have.length.greaterThan(0)
-
-        const visit = await Visit.findById(idVisit)
+        const visit = await Visit.findById(resultVisit)
 
         expect(visit).to.exist
 
-        expect(visit.status).to.equal(status)
-        expect(visit.status).to.be.a('string')
+        expect(visit.statusVisit).to.equal(status)
+        expect(visit.statusVisit).to.be.a('string')
         expect(visit.dateVisit).to.deep.equal(dateVisit)
         expect(visit.dateVisit).to.be.instanceOf(Date)
         expect(visit.dateRegister).to.exist
         expect(visit.dateRegister).to.be.instanceOf(Date)
 
-        //PENDIENTE
-        // expect(client.visits).to.have.length.greaterThan(0)
+        
     })
 
-    // TODO other test cases
+  
 
-    // after(() => Promise.all([User.deleteMany(), Visit.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Visit.deleteMany(), Client.deleteMany(), Route.deleteMany()]).then(database.disconnect))
 })

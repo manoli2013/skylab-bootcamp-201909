@@ -4,14 +4,14 @@ const { expect } = require('chai')
 const { random } = Math
 const retrieveCall = require('.')
 const { errors: { NotFoundError } } = require('sky-call-util')
-const { database, models: { User, Client, Route, Call} } = require('sky-call-data')
+const { database, models: { User, Client, Route, Call, Visit} } = require('sky-call-data')
 
 describe('logic - retrieve visit', () => {
     before(() => database.connect(TEST_DB_URL))
     let name, surname, username, password, role
     let idRoute, location
     let idClient, creator, nameClient, surnameClient, tel, address, callIds, visits
-    let idCall
+    let dateVisit, statusVisit
     let idAdmin
 
     beforeEach(async () => {
@@ -43,6 +43,12 @@ describe('logic - retrieve visit', () => {
         callIds = []
         visits = []
 
+        //visit
+        dateVisit = new Date()
+        statusVisit = 'OK'
+
+        
+
         await Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Call.deleteMany()])
 
         const route = await Route.create( {location} )
@@ -60,41 +66,41 @@ describe('logic - retrieve visit', () => {
         
         idClient = client.id
 
-        const call = await Call.create({agent: id, client: idClient, created: new Date(), calling: true, statusCall: 'N.A', })
-        idCall = call.id
+        const visit = await Visit.create({agent: id, client: idClient, dateVisit, statusVisit })
+        idVisit = visit.id
     })
 
     it('should succeed on correct call id', async () => {
         
-        const resultCall = await retrieveCall(id, idClient, idCall)
+        const resultVisit = await retrieveCall(id, idClient, idVisit)
         
-        expect(resultCall).to.exist
-        expect(resultCall.id).to.equal(idCall)
-        expect(resultCall.id.toString()).to.be.a('string')
+        expect(resultVisit).to.exist
+        expect(resultVisit.id).to.equal(idVisit)
+        expect(resultVisit.id.toString()).to.be.a('string')
        
-        expect(resultCall.client.toString()).to.equal(idClient)
-        expect(resultCall.client.toString()).to.be.a('string')
+        expect(resultVisit.client.toString()).to.equal(idClient)
+        expect(resultVisit.client.toString()).to.be.a('string')
 
-        // expect(resultCall.created).to.equal(call.created)
-        expect(resultCall.client.toString()).to.equal(idClient)
+        // expect(resultVisit.created).to.equal(call.created)
+        expect(resultVisit.client.toString()).to.equal(idClient)
         
     })
 
-    it('should fail on wrong call id', async () => {
-        const wrongIdCall = '251452145858'
+    it('should fail on wrong visit id', async () => {
+        const wrongIdVisit = '251452145858'
 
         try {
-            await retrieveCall(id, idClient, wrongIdCall)
+            await retrieveCall(id, idClient, wrongIdVisit)
 
             throw Error('should not reach this point')
+
         } catch (error) {
             expect(error).to.exist
             expect(error).to.be.an.instanceOf(NotFoundError)
-            expect(error.message).to.equal(`call with id ${wrongIdCall} not found`)
+            expect(error.message).to.equal(`visit with id ${wrongIdVisit} not found`)
         }
     })
 
-    // TODO other cases
 
-    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Call.deleteMany()]).then(database.disconnect))
+    after(() => Promise.all([User.deleteMany(), Client.deleteMany(), Route.deleteMany(), Visit.deleteMany()]).then(database.disconnect))
 })
