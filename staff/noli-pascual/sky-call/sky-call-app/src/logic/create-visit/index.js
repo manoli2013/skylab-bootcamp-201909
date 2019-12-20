@@ -1,5 +1,5 @@
 const { validate, errors: { NotFoundError, ConflictError } } = require('sky-call-util')
-const call = require('../../utils/call')
+import call from '../../utils/call' //eslint-disable-line
 const API_URL = process.env.REACT_APP_API_URL
 
 /**
@@ -9,7 +9,8 @@ const API_URL = process.env.REACT_APP_API_URL
  * 
  */
 
-module.exports = function (token, idClient, dateVisit, statusVisit) {
+// module.exports = function (token, idClient, dateVisit, statusVisit) {
+    export default function (token, idClient, dateVisit, statusVisit) {
     validate.string(token)
     validate.string.notVoid('token', token)
 

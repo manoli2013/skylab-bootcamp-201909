@@ -14,8 +14,8 @@ const API_URL = process.env.REACT_APP_API_URL
 */
 
 
-module.exports = function (token, idUser, name, surname, username, password) {
-
+// module.exports = function (token, idUser, name, surname, username, password) {
+    export default function (token, idUser, name, surname, username, password) {
     validate.string('token', token)
     validate.string.notVoid('token', token)
 

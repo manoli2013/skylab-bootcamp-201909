@@ -1,27 +1,34 @@
-module.exports = {
-    authenticateUser: require('./authenticate-user'),
-    registerUser: require('./register-user'),
-    retrieveUser: require('./retrieve-user'),
-    
-    //Agent
-    
-    listClientsRoute: require('./list-clients-route'),
-    retrieveClient: require('./retrieve-client'),
-    updateClient: require('./update-client'),
+import authenticateUser from './authenticate-user'
+import registerUser from './register-user'
+import retrieveUser from './retrieve-user'
+import listClientsRoute from './list-clients-route'
+import retrieveClient from './retrieve-client'
+import updateClient from './update-client'
+import createCall from './create-call'
+import stopCall from './stop-call'
+import createVisit from './create-visit'
+import createClient from './create-client'
+import agentsReport from './agents-report'
+import callsReport from './calls-report'
+import generalReport from './general-report'
 
-    createCall: require('./create-call'),
-    stopCall: require('./stop-call'),
 
-    createVisit: require('./create-visit'),
-    //TODO updatevisit
+
+export  {
+   
+authenticateUser,
+registerUser,
+retrieveUser,
+listClientsRoute,
+retrieveClient,
+updateClient,
+createCall,
+stopCall,
+createVisit,
+createClient,
+agentsReport,
+callsReport,
+generalReport
     
-    //Admin
-    createClient: require('./create-client'),
-    agentsReport: require('./agents-report'),
-    callsReport: require('./calls-report'),
-    generalReport: require('./general-report'),
-
-    // updateAgent: require('./update-agent')
-    // retrieveUsers: require('./retrieve-users'),
 
 }
