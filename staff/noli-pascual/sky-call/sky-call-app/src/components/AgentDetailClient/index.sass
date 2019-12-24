@@ -10,6 +10,7 @@
     
 .client-detail
     @extend %flex-column
+    padding: 0
     
 
     &__title
@@ -19,25 +20,25 @@
 
     &__form
         @extend %form
-        
-
+        width: 100%
+       
     &__info
         @extend %flex-column
+        @extend %box-info
         width: 100%
-        margin: 5% auto
-        background-color: silver
         color: #ffffff
+       
     &__subtitles
         text-align: center
         margin-bottom: 1.5rem
         margin-top: .8rem
-        font-size: 1.2rem
+        font-size: 1.4rem
+        text-shadow: $shadow
     
     &__calls
         list-style: square
-        
         width: 100%
-        color: #006600
+        color: $box-info-color
         font-size: 1.2rem
 
     &__call-buttons
@@ -46,39 +47,45 @@
     &__visits
         list-style: square
         width: 100%
-        color: #006600
+        color: $box-info-color
         font-size: 1.2rem
 
     &__start
-        color: $box-info-background
-        width: 50%
-        margin: 0 auto
+        @extend %button
+        background-color: black
+        @extend %flex-row
+        color: #ffffff
         margin-bottom: 0.9rem
         font-weight: bold
         
     
     &__stop
-        color: tomato
+        @extend %button
+        @extend %flex-row
+        background-color: tomato
+        color: #ffffff
         font-weight: bold
         display: block
-        width: 50%
-        margin: 0 auto
+        
         margin-bottom: 0.9rem
     
     &__stop-form
-        @extend %flex-column
+        @extend %flex-row
+        background-color: yellow
     
     &__result-label
         font-weight: bold
         
     &__result-form
-        width: 50%
-        margin: 0 auto
-        @extend %flex-column
+        width: 100%
+        
+        @extend %flex-row
         @extend %text-center
         margin-bottom: 1.5rem
     &__call-result
         @extend %text-center
+        width: 30%
+        margin-left: 1.5rem
     
     &__started
         background-color: tomato
@@ -89,8 +96,7 @@
         text-align: center
         font-size: 1.2rem
     &__submit
-        width: 50%
-        margin: 0 auto
+    
         @extend %button
         
     &__link

@@ -51,7 +51,7 @@ function AgentSearch({  }) {
                     <option value="Valencia">Valencia</option>
                     <option value="Barcelona">Barcelona</option>
                 </select>
-                <button className = "search__submit-button"> Submit </button>
+                <button className = "search__submit-button"> Search </button>
 
             </form>
 
