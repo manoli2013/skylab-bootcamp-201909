@@ -10,8 +10,6 @@ export default function ({ clients }) {
 
         <section className='clients__list-container'>
 
-           
-
             <ul className='clients__results'>
                 
                 {clients &&  clients.map(client => <AgentClientItem key = {client.id} client={client} /> )}

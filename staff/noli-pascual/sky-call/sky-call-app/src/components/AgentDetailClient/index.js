@@ -83,9 +83,9 @@ export default withRouter(function ({ history, client, setClient }) {
     }
 
 
-    return <section className="client-detail detail">
+    return <section className="client-detail">
 
-       {client && <form className="detail__form" onSubmit={function (event) {
+       {client && <form className="client-detail__form" onSubmit={function (event) {
             event.preventDefault()
             event.stopPropagation()
 
@@ -119,7 +119,7 @@ export default withRouter(function ({ history, client, setClient }) {
 
         <section className="client-detail__call-buttons">
 
-            <button type  = "button" className="client-detail__start" onClick={onCall}> START CALL </button>
+            <button type  = "button" className="client-detail__start" onClick={onCall}> CALL </button>
 
 
             <form className="detail__stop-form" onSubmit={function (event) {
@@ -137,7 +137,7 @@ export default withRouter(function ({ history, client, setClient }) {
                     <input className="client-detail__call-result" type="text" name="statusCall" placeholder=" N.A - A "/>
 
                 </div>
-                <button className = "client-detail__stop">STOP CALL</button>
+                <button className = "client-detail__stop">STOP</button>
 
             </form>
          

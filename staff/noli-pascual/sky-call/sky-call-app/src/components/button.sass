@@ -1,6 +1,10 @@
+@import ./flex-row
+
 %button
     box-shadow: $shadow
-    width: 30%
+    @extend %flex-row
+    width: 6rem
+    height: 3rem
     display: flex
     justify-content: center
     align-content: center
@@ -15,7 +19,6 @@
     margin-bottom: 3%
     padding: 5%
     overflow: hidden
-    
     box-shadow: $shadow
 
 

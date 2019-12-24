@@ -18,10 +18,14 @@ export default function ( { client} ) {
             event.preventDefault()
             setControl(!control)
         }}>
-            <p className="client-item__field">{_client.nameClient}</p>
-            <p className="client-item__field">{_client.surnameClient}</p>
-            <p className="client-item__field">{_client.tel}</p>
+            <div className = "client-item__area">
+                <p className="client-item__field">{_client.nameClient}</p>
+                <p className="client-item__field">{_client.surnameClient}</p>
+            </div>
+            <div className = "client-item__area"> 
+                <p className="client-item__field">{_client.tel}</p>
             <p className="client-item__field">{_client.location}</p>
+            </div>
             <p className="client-item__field">{_client.address}</p>
           
             
