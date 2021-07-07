@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,400i,700")
+
+body
+   background-color: #e4e9ed
+   font-family: Raleway, sans-serifin
+   margin: 0
+   padding: 0
+   list-style: none outside none
+   text-decoration: none
+
+br 
+   margin-bottom: 2%
+
+
+.header 
+   width: 100%
+   height: 65vh
+   position: relative
+   display: grid
+   grid-template-rows: max-content 1fr
+   grid-template-columns: 1fr max-content
+   
+   &__bg 
+        width: 100%
+        height: 100%
+        background-size: cover
+        background-position: center
+        filter: brightness(60%)
+        clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%)
+        position: absolute
+        top: 0
+        left: 0
+        z-index: -2
+
+        &--video
+            width: auto
+
+   &__title 
+        grid-area: 2 / 1 / 2 / 3
+        align-self: center
+        justify-self: center
+        color: white
+        text-transform: uppercase
+        font-size: 4rem
+        text-shadow: 0px 2px 4px rgba(0,0,0,.4)
+        margin-top: -5rem
+        z-index: 1
+    
+   &__nav
+        background-color: black
+        display: flex
+        justify-content: space-around
+        padding: 1rem 2rem  
+    
+        &--logo 
+            fill: white
+            width: 3rem
+            padding: 1rem
+            cursor: pointer
+        
+        &--bar 
+            margin-top: 1%
+            
+            &__button
+                text-transform: capitalize
+                margin-left: 2rem
+                color: gray
+                font-size: 0.9rem
+                cursor: pointer
+                text-shadow: 0px 2px 4px rgba(0,0,0,.4)
+            
+            &__button:hover
+                color: white
+      
+.about 
+    width: 100%
+    height: 30vh
+    margin-top: -7rem
+    clip-path: polygon(0 27%, 100% 0, 100% 100%, 0 100%)
+   
+    &__title
+        padding-top: 7rem
+        text-align: center
+        text-transform: uppercase
+        color: #232323
+
+    &__title:hover
+        color: #1d241d44
+        
+
+    &__text 
+        width: 80%
+        margin: 5% auto
+      
+        &--justify
+            text-align: justify
